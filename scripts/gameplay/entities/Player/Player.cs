@@ -6,7 +6,9 @@ namespace Game.Gameplay;
 
 public partial class Player : Entity
 {
+	[ExportCategory("Player Nodes")]
 	[Export] public StateMachine StateMachine;
+	[Export] public Marker2D HitboxPivot;
 
 	[ExportCategory("Player Vars")]
 	[Export] public double AttackCoolDown = 0.0;
@@ -21,6 +23,11 @@ public partial class Player : Entity
 		MovementSpeed = PlayerMovementSpeed;
 		StateMachine.ChangeState(StateMachine.GetNode<State>("Roam"));
 	}
+
+    public override void _Process(double delta)
+    {
+        HitboxPivot.Rotation = Direction.Angle() + Vector2.Up.Angle();
+    }
 
 	private void OnDamageReceived(DamageInfo dmgInfo)
 	{

@@ -607,12 +607,13 @@ size = Vector2(16, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_135ol"]
 size = Vector2(16, 16)
 
-[node name="Player" type="CharacterBody2D" unique_id=2135259194 node_paths=PackedStringArray("StateMachine", "CollisionShape", "EntityMovement")]
+[node name="Player" type="CharacterBody2D" unique_id=2135259194 node_paths=PackedStringArray("StateMachine", "HitboxPivot", "CollisionShape", "EntityMovement")]
 z_index = 1
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_dnykm")
 StateMachine = NodePath("StateMachine")
+HitboxPivot = NodePath("HitboxPivot")
 PlayerMovementSpeed = 2
 CollisionShape = NodePath("CollisionShape2D")
 EntityMovement = NodePath("Movement")
@@ -687,10 +688,10 @@ PlayerAnimation = NodePath("../../Animations")
 StateMachine = NodePath("..")
 StateOwner = NodePath("../..")
 
-[node name="Attack" type="Node" parent="StateMachine" unique_id=1995927179 node_paths=PackedStringArray("Player", "PlayerAnimation", "StateMachine", "HitboxPivot", "StateOwner")]
+[node name="Attack" type="Node" parent="StateMachine" unique_id=1995927179 node_paths=PackedStringArray("Player", "PlayerAnimation", "StateMachine", "PlayerHitbox", "StateOwner")]
 script = ExtResource("10_73kkf")
 Player = NodePath("../..")
 PlayerAnimation = NodePath("../../Animations")
 StateMachine = NodePath("..")
-HitboxPivot = NodePath("../../HitboxPivot")
+PlayerHitbox = NodePath("../../HitboxPivot/HitBox/HitboxShape")
 StateOwner = NodePath("../..")

@@ -40,8 +40,7 @@ public partial class PlayerRoamState : State
 
 	private void GetInput(double delta)
 	{
-		Player.Direction =  GetInputDirection();
-		
+
 		if(PlayerMovement.IsCurrentlyMoving())
         {
             return;
@@ -53,6 +52,7 @@ public partial class PlayerRoamState : State
 			PlayerAnimation.PlayIdle();
 			return;
 		}
+		Player.Direction =  GetInputDirection();
 
 		if (Modules.IsActionPressed())
 		{
@@ -64,7 +64,7 @@ public partial class PlayerRoamState : State
 			}
 			else
             {
-                //PlayerAnimation.PlayTurn();
+                PlayerAnimation.PlayTurn();
             }
 		}
 		else

@@ -8,19 +8,31 @@ public partial class PlayerAttackState : State
 	[Export] public Player Player;
 	[Export] public PlayerAnimation PlayerAnimation;
 	[Export] public StateMachine StateMachine;
-	[Export] public Marker2D HitboxPivot;
+	[Export] public CollisionShape2D PlayerHitbox;
 
-
-	public override void _Process(double delta)
+	public override void EnterState()
 	{
-		Vector2 attackDirection = GetMouseDirection(Player.Position);
-		Player.Direction = attackDirection;
-		PlayerAnimation.PlayAttack();
+		base.EnterState();
+        Attack();
 	}
+
+    private async void Attack()
+    {
+        Vector2 attackDirection = GetMouseDirection(Player.Position);
+		Player.Direction = attackDirection;
+
+	    PlayerHitbox.Disabled = false;
+		PlayerAnimation.PlayAttack();
+
+        await ToSignal(PlayerAnimation, EntityAnimation.SignalName.AnimationFinished);
+
+        PlayerHitbox.Disabled = true;
+        OnAttackFinished();
+    }
 
 	private Vector2 GetMouseDirection(Vector2 playerPosition)
 	{
-		Vector2 toMouse = HitboxPivot.GetGlobalMousePosition() - playerPosition;
+		Vector2 toMouse = Player.HitboxPivot.GetGlobalMousePosition() - playerPosition;
 		float angle = Mathf.PosMod(Mathf.RadToDeg(toMouse.Angle()), 360f);
 
 		if(angle > 45 && angle <= 135)
@@ -44,12 +56,6 @@ public partial class PlayerAttackState : State
 	public void OnAttackFinished()
 	{
 		StateMachine.ChangeState(StateMachine.GetNode<State>("Roam"));
-	}
-
-	public override void EnterState()
-	{
-		base.EnterState();
-
 	}
 
 	public override void ExitState()

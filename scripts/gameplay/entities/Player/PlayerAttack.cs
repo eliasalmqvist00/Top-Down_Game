@@ -19,31 +19,31 @@ public partial class PlayerAttack : Marker2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Attack();
+		//Attack();
 	}
 
-	public async void Attack()
-	{
-		if(Input.IsActionJustPressed("ui_attack"))
-		{
-			//IsAttacking = true;
-			PlayerHitbox.Disabled = false;
-			PlayerAnimation.IsAttacking = true;
+	// public async void Attack()
+	// {
+	// 	if(Input.IsActionJustPressed("ui_attack"))
+	// 	{
+	// 		//IsAttacking = true;
+	// 		PlayerHitbox.Disabled = false;
+	// 		PlayerAnimation.IsAttacking = true;
 
-			Vector2 attackDirection = GetMouseDirection(Player.Position);
-			Player.Direction = attackDirection;
-			HitboxPivot.Rotation = attackDirection.Angle() + Vector2.Up.Angle();
+	// 		Vector2 attackDirection = GetMouseDirection(Player.Position);
+	// 		Player.Direction = attackDirection;
+	// 		HitboxPivot.Rotation = attackDirection.Angle() + Vector2.Up.Angle();
 			
-			EmitSignal(SignalName.Animation, "attack");
+	// 		EmitSignal(SignalName.Animation, "attack");
 
-			await ToSignal(PlayerAnimation, AnimationMixer.SignalName.AnimationFinished);
+	// 		await ToSignal(PlayerAnimation, AnimationMixer.SignalName.AnimationFinished);
 
-			PlayerHitbox.Disabled = true;
-			PlayerAnimation.IsAttacking = false;
+	// 		PlayerHitbox.Disabled = true;
+	// 		PlayerAnimation.IsAttacking = false;
 
-			//PlayerInput.HoldTime = 0.0;
-		}
-	}
+	// 		//PlayerInput.HoldTime = 0.0;
+	// 	}
+	// }
 
 	private Vector2 GetMouseDirection(Vector2 playerPosition)
 	{

@@ -452,12 +452,12 @@ shape = SubResource("RectangleShape2D_mo4my")
 
 [node name="Input" type="Node" parent="." unique_id=225757676]
 
-[node name="Movement" type="Node" parent="." unique_id=1585575207 node_paths=PackedStringArray("Enemy", "HitboxPivot", "Character")]
+[node name="Movement" type="Node" parent="." unique_id=1585575207 node_paths=PackedStringArray("Enemy", "HitboxPivot", "Entity")]
 script = ExtResource("2_r3082")
 Enemy = NodePath("..")
 HitboxPivot = NodePath("../HitboxPivot")
 PatrolOrigin = Vector2(560, 88)
-Character = NodePath("..")
+Entity = NodePath("..")
 
 [node name="Animations" type="AnimatedSprite2D" parent="." unique_id=1373929480 node_paths=PackedStringArray("Enemy", "EnemyMovement", "EnemyRoamState", "EnemyAttackState", "Entity")]
 texture_filter = 1

@@ -12,10 +12,7 @@ public partial class EntityAnimation : AnimatedSprite2D
 	[ExportCategory("Animation Vars")]
 	[Export] public ECharacterAnimation CurrentAnimation = ECharacterAnimation.idle_down;
 	
-	public override void _Ready()
-	{
-		AnimationFinished += OnAnimationFinished;
-	}
+
 
 	public void PlayWalk() => PlayAnimation("move");
 	public void PlayIdle() => PlayAnimation("idle");
@@ -37,11 +34,6 @@ public partial class EntityAnimation : AnimatedSprite2D
 		{
 			Core.Logger.Error($"No animation named '{animation}' found...");
 		}
-	}
-
-	private void OnAnimationFinished()
-	{
-		EmitSignal(SignalName.AnimationFinished);
 	}
 
 	private ECharacterAnimation GetDirectionalAnimation(string animationPrefix)
