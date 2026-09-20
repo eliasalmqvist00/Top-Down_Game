@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bx5dtxm4u4101"]
+
+[ext_resource type="PackedScene" uid="uid://c0rlim53vdj3p" path="res://scenes/levels/nature_test.tscn" id="1_kikm7"]
+[ext_resource type="PackedScene" uid="uid://bi532wrvl1rlk" path="res://scenes/entities/player.tscn" id="2_xopn4"]
+[ext_resource type="PackedScene" uid="uid://bmthxxlaedqtq" path="res://scenes/entities/spider.tscn" id="3_cbem3"]
+
+[node name="MainGame" type="Node" unique_id=1623950917]
+
+[node name="Control" type="Control" parent="." unique_id=1237666331]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -112.0
+offset_bottom = -264.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control" unique_id=1648537629]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer" unique_id=1341362406]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+size_2d_override = Vector2i(1152, 648)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Level" parent="Control/SubViewportContainer/SubViewport" unique_id=1201450892 instance=ExtResource("1_kikm7")]
+
+[node name="Player" parent="Control/SubViewportContainer/SubViewport" unique_id=2135259194 instance=ExtResource("2_xopn4")]
+position = Vector2(560, 176)
+PlayerMovementSpeed = 2
+
+[node name="Spider" parent="Control/SubViewportContainer/SubViewport" unique_id=276010328 node_paths=PackedStringArray("Player") instance=ExtResource("3_cbem3")]
+position = Vector2(552, 88)
+Player = NodePath("../Player")
+
+[node name="Spider 2" parent="Control/SubViewportContainer/SubViewport" unique_id=278787618 node_paths=PackedStringArray("Player") instance=ExtResource("3_cbem3")]
+position = Vector2(56, 256)
+Player = NodePath("../Player")
+
+[node name="HUD_Layer" type="CanvasLayer" parent="." unique_id=610799083]
+
+[node name="HUD_root" type="Control" parent="HUD_Layer" unique_id=138492937]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HUD_Layer/HUD_root" unique_id=1181285459]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

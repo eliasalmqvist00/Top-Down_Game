@@ -1,0 +1,208 @@
+[gd_resource type="TileSet" format=3 uid="uid://diapg6qhx24qd"]
+
+[ext_resource type="Texture2D" uid="uid://br818p5p8b5r0" path="res://assets/nature/tiles/Beach_Tile.png" id="1_fqiqr"]
+[ext_resource type="Texture2D" uid="uid://b8ns7eapikj6t" path="res://assets/nature/tiles/Cliff_Tile.png" id="2_ljxxy"]
+[ext_resource type="Texture2D" uid="uid://b8po1vmd8jfpw" path="res://assets/nature/tiles/FarmLand_Tile.png" id="3_2dv1x"]
+[ext_resource type="Texture2D" uid="uid://crkqhgw2pmxyv" path="res://assets/nature/tiles/Grass_Middle.png" id="4_iw3dm"]
+[ext_resource type="Texture2D" uid="uid://ie8c0abe7x8b" path="res://assets/nature/tiles/Path_Middle.png" id="5_3yk3c"]
+[ext_resource type="Texture2D" uid="uid://dj574b3eik5ch" path="res://assets/nature/tiles/Path_Tile.png" id="6_yf1o4"]
+[ext_resource type="Texture2D" uid="uid://bjdr2p10gm1n" path="res://assets/nature/tiles/Water_Middle.png" id="7_fqp60"]
+[ext_resource type="Texture2D" uid="uid://bteik3e4nhkck" path="res://assets/nature/tiles/Water_Tile.png" id="8_n8waq"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_slncw"]
+resource_name = "beach_tiles"
+texture = ExtResource("1_fqiqr")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fsmmr"]
+resource_name = "cliff_tiles"
+texture = ExtResource("2_ljxxy")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kmses"]
+resource_name = "farmland_tiles"
+texture = ExtResource("3_2dv1x")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p8shp"]
+resource_name = "grass_tile"
+texture = ExtResource("4_iw3dm")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n2u5r"]
+resource_name = "path_mid_tile"
+texture = ExtResource("5_3yk3c")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fcaa3"]
+resource_name = "path_tiles"
+texture = ExtResource("6_yf1o4")
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/right_side = 0
+0:0/0/terrains_peering_bit/bottom_right_corner = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/bottom_right_corner = 0
+1:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0/terrains_peering_bit/bottom_left_corner = 0
+1:0/0/terrains_peering_bit/left_side = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/bottom_side = 0
+2:0/0/terrains_peering_bit/bottom_left_corner = 0
+2:0/0/terrains_peering_bit/left_side = 0
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 0
+0:1/0/terrains_peering_bit/right_side = 0
+0:1/0/terrains_peering_bit/bottom_right_corner = 0
+0:1/0/terrains_peering_bit/bottom_side = 0
+0:1/0/terrains_peering_bit/top_side = 0
+0:1/0/terrains_peering_bit/top_right_corner = 0
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 0
+1:1/0/terrains_peering_bit/right_side = 0
+1:1/0/terrains_peering_bit/bottom_right_corner = 0
+1:1/0/terrains_peering_bit/bottom_side = 0
+1:1/0/terrains_peering_bit/bottom_left_corner = 0
+1:1/0/terrains_peering_bit/left_side = 0
+1:1/0/terrains_peering_bit/top_left_corner = 0
+1:1/0/terrains_peering_bit/top_side = 0
+1:1/0/terrains_peering_bit/top_right_corner = 0
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrain = 0
+2:1/0/terrains_peering_bit/bottom_side = 0
+2:1/0/terrains_peering_bit/bottom_left_corner = 0
+2:1/0/terrains_peering_bit/left_side = 0
+2:1/0/terrains_peering_bit/top_left_corner = 0
+2:1/0/terrains_peering_bit/top_side = 0
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 0
+0:2/0/terrains_peering_bit/right_side = 0
+0:2/0/terrains_peering_bit/top_side = 0
+0:2/0/terrains_peering_bit/top_right_corner = 0
+1:2/0 = 0
+1:2/0/terrain_set = 0
+1:2/0/terrain = 0
+1:2/0/terrains_peering_bit/right_side = 0
+1:2/0/terrains_peering_bit/left_side = 0
+1:2/0/terrains_peering_bit/top_left_corner = 0
+1:2/0/terrains_peering_bit/top_side = 0
+1:2/0/terrains_peering_bit/top_right_corner = 0
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 0
+2:2/0/terrains_peering_bit/left_side = 0
+2:2/0/terrains_peering_bit/top_left_corner = 0
+2:2/0/terrains_peering_bit/top_side = 0
+0:3/0 = 0
+0:3/0/terrain_set = 0
+0:3/0/terrain = 0
+0:3/0/terrains_peering_bit/right_side = 0
+0:3/0/terrains_peering_bit/bottom_side = 0
+0:3/0/terrains_peering_bit/bottom_left_corner = 0
+1:3/0 = 0
+1:3/0/terrain_set = 0
+1:3/0/terrain = 0
+1:3/0/terrains_peering_bit/right_side = 0
+1:3/0/terrains_peering_bit/bottom_right_corner = 0
+1:3/0/terrains_peering_bit/left_side = 0
+0:4/0 = 0
+0:4/0/terrain_set = 0
+0:4/0/terrain = 0
+0:4/0/terrains_peering_bit/right_side = 0
+0:4/0/terrains_peering_bit/bottom_right_corner = 0
+0:4/0/terrains_peering_bit/left_side = 0
+0:4/0/terrains_peering_bit/top_left_corner = 0
+1:4/0 = 0
+1:4/0/terrain_set = 0
+1:4/0/terrain = 0
+1:4/0/terrains_peering_bit/right_side = 0
+1:4/0/terrains_peering_bit/bottom_side = 0
+1:4/0/terrains_peering_bit/bottom_left_corner = 0
+1:4/0/terrains_peering_bit/top_right_corner = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmso0"]
+resource_name = "water_mid_tile"
+texture = ExtResource("7_fqp60")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ij38v"]
+resource_name = "water_tiles"
+texture = ExtResource("8_n8waq")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+
+[resource]
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "grass_paths 0"
+terrain_set_0/terrain_0/color = Color(0.60817695, 0.2448192, 0.31272948, 1)
+sources/0 = SubResource("TileSetAtlasSource_slncw")
+sources/1 = SubResource("TileSetAtlasSource_fsmmr")
+sources/2 = SubResource("TileSetAtlasSource_kmses")
+sources/3 = SubResource("TileSetAtlasSource_p8shp")
+sources/4 = SubResource("TileSetAtlasSource_n2u5r")
+sources/5 = SubResource("TileSetAtlasSource_fcaa3")
+sources/6 = SubResource("TileSetAtlasSource_jmso0")
+sources/7 = SubResource("TileSetAtlasSource_ij38v")

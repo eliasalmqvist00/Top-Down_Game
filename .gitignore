@@ -1,0 +1,23 @@
+# Godot 4 import cache and internal files
+.godot/
+
+# Godot crash logs and export presets
+*.translation
+export_presets.cfg
+
+# Mono / C# build outputs
+.mono/
+bin/
+obj/
+
+# Visual Studio / VS Code configuration (keep project-specific settings if desired)
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# OS-specific files
+.DS_Store
+Thumbs.db
