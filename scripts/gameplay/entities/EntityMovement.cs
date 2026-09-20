@@ -7,16 +7,16 @@ namespace Game.Gameplay;
 public partial class EntityMovement : Node
 {
 	[Signal] public delegate void StepStartedEventHandler();
-    [Signal] public delegate void StepFinishedEventHandler();
-    [Signal] public delegate void StepBlockedEventHandler();
+	[Signal] public delegate void StepFinishedEventHandler();
+	[Signal] public delegate void StepBlockedEventHandler();
 
 	[ExportCategory("Entity Nodes")]
 	[Export] public Entity Entity;
 
 
 	// Class variables
-    public bool IsMoving { get; private set; } = false;
-    public Vector2 TargetPosition;
+	public bool IsMoving { get; private set; } = false;
+	public Vector2 TargetPosition;
 	private float StepDuration = 0.3f;
 
 	private Tween MoveTween;
@@ -36,7 +36,7 @@ public partial class EntityMovement : Node
 		TargetPosition = Entity.Position + direction * gridSize;
 
 		IsMoving = true;
-        EmitSignal(SignalName.StepStarted);
+		EmitSignal(SignalName.StepStarted);
 
 		//if(IsTargetOccupied(TargetPosition)) return false;
 
@@ -46,29 +46,29 @@ public partial class EntityMovement : Node
 		float stepSpeed;
 
 		if(direction.Length() != 1)
-        {
-            stepSpeed = (float)(StepDuration * Math.Sqrt(2) / Entity.MovementSpeed);
-        }
-        else
-        {
-            stepSpeed = (float)(StepDuration / Entity.MovementSpeed);
-        }
+		{
+			stepSpeed = (float)(StepDuration * Math.Sqrt(2) / Entity.MovementSpeed);
+		}
+		else
+		{
+			stepSpeed = (float)(StepDuration / Entity.MovementSpeed);
+		}
 
 		MoveTween.TweenProperty(Entity, "position", TargetPosition, stepSpeed)
-                  .SetTrans(Tween.TransitionType.Linear);
+				  .SetTrans(Tween.TransitionType.Linear);
 
 		MoveTween.Finished += OnTweenFinished;
 		return true;
 	}
 
 	private void OnTweenFinished()
-    {
-        Entity.Position = TargetPosition;
-        IsMoving = false;
-        EmitSignal(SignalName.StepFinished);
-    }
+	{
+		Entity.Position = TargetPosition;
+		IsMoving = false;
+		EmitSignal(SignalName.StepFinished);
+	}
 
-    protected virtual bool IsTargetOccupied(Vector2 targetWorldPosition)
+	protected virtual bool IsTargetOccupied(Vector2 targetWorldPosition)
 	{
 		var spaceState = Entity.GetWorld2D().DirectSpaceState;
 
@@ -97,7 +97,7 @@ public partial class EntityMovement : Node
 	{	
 		Core.Logger.Debug("Walking stopped");
 		Entity.Position = TargetPosition;
-        IsMoving = false;
+		IsMoving = false;
 		SnapPositionToGrid();
 		EmitSignal(SignalName.StepFinished);
 	}
@@ -110,12 +110,12 @@ public partial class EntityMovement : Node
 		);
 	}
 
-    public virtual bool IsCurrentlyMoving() => IsMoving;
+	public virtual bool IsCurrentlyMoving() => IsMoving;
 
-    public virtual Vector2 GetTargetPosition() => TargetPosition;
+	public virtual Vector2 GetTargetPosition() => TargetPosition;
 
-    public virtual void SetTargetPosition(Vector2 newTargetPosition)
-    {
-        TargetPosition = newTargetPosition;
-    }
+	public virtual void SetTargetPosition(Vector2 newTargetPosition)
+	{
+		TargetPosition = newTargetPosition;
+	}
 }

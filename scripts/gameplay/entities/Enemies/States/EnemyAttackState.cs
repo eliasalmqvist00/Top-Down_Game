@@ -15,7 +15,7 @@ public partial class EnemyAttackState : State
 
 	public override void _Ready()
 	{
-		Enemy.EnemyMovement.MoveSpeed = 10;
+		Enemy.MovementSpeed = 10;
 	}
 
 	public override void _Process(double delta)
@@ -31,7 +31,6 @@ public partial class EnemyAttackState : State
 	public async void Chase(double delta)
 	{
 
-		Enemy.EnemyMovement.IsWalking = true;
 		EmitSignal(SignalName.Animation, "walk");
 
 		//Enemy.Position = Enemy.Position.MoveToward(characterInput.TargetPosition, (float)delta* Core.Globals.Instance.GRID_SIZE * Enemy.EnemyMovement.MoveSpeed);

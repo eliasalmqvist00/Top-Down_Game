@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://c65ulh4unuqbc" path="res://scripts/gameplay/entities/Player/PlayerHurtbox.cs" id="8_73kkf"]
 [ext_resource type="Script" uid="uid://h1fhvfu08r1c" path="res://scripts/gameplay/entities/Player/PlayerHitbox.cs" id="8_b6tgf"]
 [ext_resource type="Script" uid="uid://djqef7e1rhxd8" path="res://scripts/gameplay/utilities/StateMachine.cs" id="9_b6tgf"]
+[ext_resource type="Script" uid="uid://bjv7lchyujpmv" path="res://scripts/gameplay/entities/Player/States/PlayerAttackState.cs" id="10_73kkf"]
 [ext_resource type="Script" uid="uid://b6vbqpw113vvk" path="res://scripts/gameplay/entities/Player/States/PlayerRoamState.cs" id="10_b6tgf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mo4my"]
@@ -686,4 +687,10 @@ PlayerAnimation = NodePath("../../Animations")
 StateMachine = NodePath("..")
 StateOwner = NodePath("../..")
 
-[node name="Attack" type="Node" parent="StateMachine" unique_id=1995927179]
+[node name="Attack" type="Node" parent="StateMachine" unique_id=1995927179 node_paths=PackedStringArray("Player", "PlayerAnimation", "StateMachine", "HitboxPivot", "StateOwner")]
+script = ExtResource("10_73kkf")
+Player = NodePath("../..")
+PlayerAnimation = NodePath("../../Animations")
+StateMachine = NodePath("..")
+HitboxPivot = NodePath("../../HitboxPivot")
+StateOwner = NodePath("../..")

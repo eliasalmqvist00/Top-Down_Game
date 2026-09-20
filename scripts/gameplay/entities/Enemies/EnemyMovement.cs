@@ -5,7 +5,7 @@ using Godot;
 
 namespace Game.Gameplay;
 
-public partial class EnemyMovement : CharacterMovement
+public partial class EnemyMovement : EntityMovement
 {
 	[ExportCategory("Nodes")]
 	[Export] public Enemy Enemy;
@@ -20,14 +20,12 @@ public partial class EnemyMovement : CharacterMovement
 	public override void _Ready()
 	{
 		base._Ready();
-		this.MoveSpeed = 4;
-
 	}
 	
-    public override void _Process(double delta)
-    {
-    	HitboxPivot.Rotation = Enemy.Direction.Angle();
-    }
+	public override void _Process(double delta)
+	{
+		HitboxPivot.Rotation = Enemy.Direction.Angle();
+	}
 
 	
 
