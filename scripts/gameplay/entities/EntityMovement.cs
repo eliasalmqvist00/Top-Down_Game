@@ -38,7 +38,9 @@ public partial class EntityMovement : Node
 		IsMoving = true;
 		EmitSignal(SignalName.StepStarted);
 
-		//if(IsTargetOccupied(TargetPosition)) return false;
+		if(IsTargetOccupied(TargetPosition)){
+			TargetPosition = Entity.Position;
+		}
 
 		MoveTween?.Kill();
 		MoveTween = CreateTween();

@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://blvmv8p1rxsqf" path="res://scripts/gameplay/entities/Enemies/EnemyHealthbarcs.cs" id="8_sb2t5"]
 [ext_resource type="Script" uid="uid://rggi4vb3bpnn" path="res://scripts/gameplay/entities/Enemies/States/EnemyAttackState.cs" id="10_73v7i"]
 [ext_resource type="Script" uid="uid://cu0q6w3nnoofb" path="res://scripts/gameplay/entities/Enemies/EnemyHitbox.cs" id="10_584b1"]
+[ext_resource type="Script" uid="uid://vipwed1wgga2" path="res://scripts/gameplay/entities/Enemies/States/EnemyDeadState.cs" id="10_wnrj2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mo4my"]
 size = Vector2(16, 12)
@@ -434,7 +435,7 @@ border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
 border_blend = true
 
-[node name="Spider" type="CharacterBody2D" unique_id=276010328 node_paths=PackedStringArray("EnemyHealthbar", "EnemyHurtbox", "EnemyAnimation", "CollisionBox", "EnemyMovement", "DetectionArea", "StateMachine")]
+[node name="Spider" type="CharacterBody2D" unique_id=276010328 node_paths=PackedStringArray("EnemyHealthbar", "EnemyHurtbox", "EnemyAnimation", "CollisionBox", "EnemyMovement", "StateMachine")]
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("1_m1fgu")
@@ -443,7 +444,6 @@ EnemyHurtbox = NodePath("Hurtbox")
 EnemyAnimation = NodePath("Animations")
 CollisionBox = NodePath("CollisionBox")
 EnemyMovement = NodePath("Movement")
-DetectionArea = NodePath("DetectionArea")
 StateMachine = NodePath("StateMachine")
 
 [node name="CollisionBox" type="CollisionShape2D" parent="." unique_id=2061794104]
@@ -464,7 +464,7 @@ texture_filter = 1
 position = Vector2(8, 0)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_mo4my")
-animation = &"idle_down"
+animation = &"death"
 autoplay = "idle_down"
 script = ExtResource("5_ed2xj")
 Enemy = NodePath("..")
@@ -502,17 +502,23 @@ debug_color = Color(0.92941177, 0, 0, 0.41960785)
 script = ExtResource("8_584b1")
 Customer = NodePath("..")
 
-[node name="Roam" type="Node" parent="StateMachine" unique_id=965655796 node_paths=PackedStringArray("Enemy", "EnemyMovement", "EnemyAnimation", "CollisionShape")]
+[node name="Roam" type="Node" parent="StateMachine" unique_id=965655796 node_paths=PackedStringArray("Enemy", "EnemyMovement", "EnemyAnimation", "CollisionShape", "DetectionArea")]
 script = ExtResource("8_gdla5")
 Enemy = NodePath("../..")
 EnemyMovement = NodePath("../../Movement")
 EnemyAnimation = NodePath("../../Animations")
 CollisionShape = NodePath("../../CollisionBox")
+DetectionArea = NodePath("../../DetectionArea")
 
 [node name="Attack" type="Node" parent="StateMachine" unique_id=1363970402 node_paths=PackedStringArray("Enemy", "EnemyHitbox", "StateOwner")]
 script = ExtResource("10_73v7i")
 Enemy = NodePath("../..")
 EnemyHitbox = NodePath("../../HitboxPivot/Hitbox")
+StateOwner = NodePath("../..")
+
+[node name="Dead" type="Node" parent="StateMachine" unique_id=971158782 node_paths=PackedStringArray("Enemy", "StateOwner")]
+script = ExtResource("10_wnrj2")
+Enemy = NodePath("../..")
 StateOwner = NodePath("../..")
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=337178119]

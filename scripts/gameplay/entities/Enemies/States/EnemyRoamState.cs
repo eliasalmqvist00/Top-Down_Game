@@ -13,6 +13,8 @@ public partial class EnemyRoamState : State
 	[Export] public EnemyMovement EnemyMovement;
 	[Export] public EntityAnimation EnemyAnimation;
 	[Export] public CollisionShape2D CollisionShape;
+	[Export] public Area2D DetectionArea;
+
 
 	[Export(PropertyHint.Layers2DPhysics)] public uint ObstacleCollisionMask = 1;
 
@@ -22,6 +24,12 @@ public partial class EnemyRoamState : State
 	{
 		BeginRoaming();
 	}
+
+    public override void EnterState()
+    {
+        base.EnterState();
+		DetectionArea.AreaEntered += OnPlayerDetected;
+    }
 
 	public async void BeginRoaming()
 	{	
@@ -48,11 +56,8 @@ public partial class EnemyRoamState : State
 		EnemyAnimation.PlayWalk();
 
 		for(int i = 0; i <= steps; i++)
-		{
-			//if(CurrentState != EnemyState.Roaming) return;
-			
+		{	
 			Enemy.EnemyMovement.TargetPosition = Enemy.Position + Enemy.Direction * Core.Globals.Instance.GRID_SIZE;
-			//Enemy.Position = Enemy.Position.MoveToward(TargetPosition, Core.Globals.Instance.GRID_SIZE * MoveSpeed);
 
 			if(IsTargetOccupied(Enemy.EnemyMovement.TargetPosition)) return;
 			
@@ -88,6 +93,15 @@ public partial class EnemyRoamState : State
 		return results.Count > 0;
 	}
 
+	public void OnPlayerDetected(Area2D area)
+    {
+        //Add if enemy is looking towards player
+        if(area is PlayerHurtbox && Enemy.StateMachine.GetCurrentState() == "Roam")
+        {
+		    Enemy.StateMachine.ChangeState(Enemy.StateMachine.GetNode<State>("Attack"));
+        }
+    }
+
 	private static readonly Vector2[] CardinalDirections = 
 	[
 		Vector2.Up,    // (0, -1)
@@ -105,6 +119,7 @@ public partial class EnemyRoamState : State
 	public override void ExitState()
 	{
 		base.ExitState();
+		DetectionArea.AreaEntered -= OnPlayerDetected;
 		Enemy.ActiveTween.Kill();
 	}
 

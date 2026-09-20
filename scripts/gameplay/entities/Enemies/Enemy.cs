@@ -8,75 +8,50 @@ public partial class Enemy : Entity
 	[Signal] public delegate void AnimationEventHandler(string animationType);
 	
 	[ExportCategory("Nodes")]
-    [Export] public Player Player;
-    [Export] public EnemyHealthbarcs EnemyHealthbar;
+	[Export] public Player Player;
+	[Export] public EnemyHealthbarcs EnemyHealthbar;
 	[Export] public EnemyHurtbox EnemyHurtbox;
 	[Export] public EntityAnimation EnemyAnimation;
-    [Export] public CollisionShape2D CollisionBox;
-    [Export] public EnemyMovement EnemyMovement;
-	[Export] public Area2D DetectionArea;
+	[Export] public CollisionShape2D CollisionBox;
+	[Export] public EnemyMovement EnemyMovement;
 	[Export] public StateMachine StateMachine;
-    
+	
 	
 	[ExportCategory("Enemy Vars")]
 	[Export] public int MaxHealth = 20;
 	[Export] public int AttackDamage = 4;
 
-    public bool IsAttacking = false;
+	public bool IsAttacking = false;
 
 
-    public Tween ActiveTween;
+	public Tween ActiveTween;
 
 	public override void _Ready()
 	{
 		CurrentHealth = MaxHealth;
 		EnemyHurtbox.ReceivedDamage += OnDamageReceived;
-		DetectionArea.AreaEntered += OnPlayerDetected;
 
 		StateMachine.ChangeState(StateMachine.GetNode<State>("Roam"));
 	}
-
-    public void OnPlayerDetected(Area2D area)
-    {
-        //Add if enemy is looking towards player
-        if(area is PlayerHurtbox && StateMachine.GetCurrentState() == "Roam")
-        {
-		    StateMachine.ChangeState(StateMachine.GetNode<State>("Attack"));
-        }
-    }
 
 	private void OnDamageReceived(DamageInfo dmgInfo)
 	{
 		CurrentHealth -= dmgInfo.Amount;
 		Core.Logger.Info($"Enemy health = {CurrentHealth}");
-        
-        SelfModulate = new Color(1.839f, 0.121f, 0.227f);
+		
+		SelfModulate = new Color(1.839f, 0.121f, 0.227f);
 
+		//TODO : Implement knockback
+		
 		if(CurrentHealth <= 0)
 		{
 			Death();
 		}
-        Position += dmgInfo.KnockbackForce;
 	}
 
 	public async void Death()
-	{   
-        if (ActiveTween != null && ActiveTween.IsRunning())
-        {
-            ActiveTween.Kill();
-        }
-        StateMachine.ChangeState(null);
-        EnemyMovement.Dispose();
-        EnemyHealthbar.Visible = false;
-
-        IsAlive = false;
-
-		Core.Logger.Debug("Enemy has died");
-    
-        this.CollisionLayer = 2;
-
-        await ToSignal(GetTree().CreateTimer(10.0f), SceneTreeTimer.SignalName.Timeout);
-        QueueFree();
+	{
+		StateMachine.ChangeState(StateMachine.GetNode<State>("Dead"));
 	}
 
 }

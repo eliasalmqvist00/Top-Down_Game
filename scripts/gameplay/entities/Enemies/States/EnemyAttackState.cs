@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Game.Core;
 using Game.Utilities;
 using Godot;
 
@@ -31,9 +32,7 @@ public partial class EnemyAttackState : State
 	public async void Chase(double delta)
 	{
 
-		EmitSignal(SignalName.Animation, "walk");
-
-		//Enemy.Position = Enemy.Position.MoveToward(characterInput.TargetPosition, (float)delta* Core.Globals.Instance.GRID_SIZE * Enemy.EnemyMovement.MoveSpeed);
+		Enemy.EnemyAnimation.PlayWalk();
 		
 		Enemy.ActiveTween = CreateTween();
 		Enemy.ActiveTween.SetTrans(Tween.TransitionType.Linear).SetEase(Tween.EaseType.InOut);
@@ -67,9 +66,12 @@ public partial class EnemyAttackState : State
 
     private Vector2 GetTargetPlayerPosition()
     {
+        Vector2 targetDir = (Enemy.Player.Position - Enemy.Position).Normalized();
+		Enemy.Direction = targetDir;
 
-        return Vector2.Zero;
-        
+		Vector2 targetPos = Enemy.Position + targetDir * Globals.Instance.GRID_SIZE;
+		
+		return targetPos;
     }
 	private void SnapPositionToGrid()
 	{

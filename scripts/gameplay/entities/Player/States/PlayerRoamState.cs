@@ -60,7 +60,8 @@ public partial class PlayerRoamState : State
 
 			if (HoldTime > HoldThreshold)
 			{
-				bool started = PlayerMovement.TryMove(Player.Direction, Globals.Instance.GRID_SIZE);
+				bool canMove = PlayerMovement.TryMove(Player.Direction, Globals.Instance.GRID_SIZE);
+
 			}
 			else
             {
