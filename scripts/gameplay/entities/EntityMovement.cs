@@ -19,7 +19,7 @@ public partial class EntityMovement : Node
 	public Vector2 TargetPosition;
 	private float StepDuration = 0.3f;
 
-	private Tween MoveTween;
+	private Tween _moveTween;
 	private RectangleShape2D _queryShape;
 
 	public override void _Ready()
@@ -28,12 +28,12 @@ public partial class EntityMovement : Node
 		_queryShape = new RectangleShape2D { Size = new Vector2(8,8) };
 	}
 
-	public virtual bool TryMove(Vector2 direction, float gridSize)
+	public virtual bool TryMove(Vector2 direction)
 	{
 		// Don't interrupt an existing step
 		if (IsMoving || direction == Vector2.Zero) return false;
 
-		TargetPosition = Entity.Position + direction * gridSize;
+		TargetPosition = Entity.Position + direction * Globals.Instance.GRID_SIZE;
 
 		IsMoving = true;
 		EmitSignal(SignalName.StepStarted);
@@ -42,8 +42,8 @@ public partial class EntityMovement : Node
 			TargetPosition = Entity.Position;
 		}
 
-		MoveTween?.Kill();
-		MoveTween = CreateTween();
+		_moveTween?.Kill();
+		_moveTween = CreateTween();
 
 		float stepSpeed;
 
@@ -56,10 +56,10 @@ public partial class EntityMovement : Node
 			stepSpeed = (float)(StepDuration / Entity.MovementSpeed);
 		}
 
-		MoveTween.TweenProperty(Entity, "position", TargetPosition, stepSpeed)
+		_moveTween.TweenProperty(Entity, "position", TargetPosition, stepSpeed)
 				  .SetTrans(Tween.TransitionType.Linear);
 
-		MoveTween.Finished += OnTweenFinished;
+		_moveTween.Finished += OnTweenFinished;
 		return true;
 	}
 
@@ -104,7 +104,7 @@ public partial class EntityMovement : Node
 		EmitSignal(SignalName.StepFinished);
 	}
 
-	private void SnapPositionToGrid()
+	public void SnapPositionToGrid()
 	{
 		Entity.Position = new Vector2(
 			Mathf.Round(Entity.Position.X / Globals.Instance.GRID_SIZE) * Globals.Instance.GRID_SIZE,

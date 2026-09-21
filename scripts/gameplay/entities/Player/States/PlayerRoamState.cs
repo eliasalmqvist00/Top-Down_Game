@@ -11,7 +11,6 @@ public partial class PlayerRoamState : State
 	[Export] public Player Player;
 	[Export] public PlayerMovement PlayerMovement;
 	[Export] public PlayerAnimation PlayerAnimation;
-	[Export] public StateMachine StateMachine;
 
 	[ExportCategory("Input Settings")]
 	[Export] public double HoldThreshold = 0.15;
@@ -60,7 +59,7 @@ public partial class PlayerRoamState : State
 
 			if (HoldTime > HoldThreshold)
 			{
-				bool canMove = PlayerMovement.TryMove(Player.Direction, Globals.Instance.GRID_SIZE);
+				bool canMove = PlayerMovement.TryMove(Player.Direction);
 
 			}
 			else

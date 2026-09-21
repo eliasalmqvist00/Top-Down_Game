@@ -7,6 +7,7 @@ public partial class EnemyHitbox : Area2D
 {   
 	[ExportCategory("Nodes")]
 	[Export] public Enemy Enemy;
+	[Export] public CollisionShape2D HitboxShape;
 
 	public bool HitboxEntered = false;
 	

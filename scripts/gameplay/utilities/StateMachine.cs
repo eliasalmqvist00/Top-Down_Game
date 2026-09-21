@@ -14,7 +14,6 @@ namespace Game.Utilities
 			{
 				if(child is State state)
 				{
-					state.StateOwner = Customer;
 					state.SetProcess(false);
 				}
 			}

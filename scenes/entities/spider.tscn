@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://rggi4vb3bpnn" path="res://scripts/gameplay/entities/Enemies/States/EnemyAttackState.cs" id="10_73v7i"]
 [ext_resource type="Script" uid="uid://cu0q6w3nnoofb" path="res://scripts/gameplay/entities/Enemies/EnemyHitbox.cs" id="10_584b1"]
 [ext_resource type="Script" uid="uid://vipwed1wgga2" path="res://scripts/gameplay/entities/Enemies/States/EnemyDeadState.cs" id="10_wnrj2"]
+[ext_resource type="Script" uid="uid://clk4ou2tdrpop" path="res://scripts/gameplay/entities/Enemies/States/EnemyChaseState.cs" id="11_wnrj2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mo4my"]
 size = Vector2(16, 12)
@@ -206,7 +207,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a8o7c")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"attack_down",
 "speed": 5.0
 }, {
@@ -223,7 +224,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s8kje")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"attack_left",
 "speed": 5.0
 }, {
@@ -240,7 +241,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qdgwk")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"attack_right",
 "speed": 5.0
 }, {
@@ -257,7 +258,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_isqxe")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"attack_up",
 "speed": 5.0
 }, {
@@ -435,15 +436,15 @@ border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
 border_blend = true
 
-[node name="Spider" type="CharacterBody2D" unique_id=276010328 node_paths=PackedStringArray("EnemyHealthbar", "EnemyHurtbox", "EnemyAnimation", "CollisionBox", "EnemyMovement", "StateMachine")]
+[node name="Spider" type="CharacterBody2D" unique_id=276010328 node_paths=PackedStringArray("EnemyHealthbar", "EnemyHurtbox", "EnemyAnimation", "EnemyMovement", "DetectionArea", "StateMachine")]
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("1_m1fgu")
 EnemyHealthbar = NodePath("HealthBar")
 EnemyHurtbox = NodePath("Hurtbox")
 EnemyAnimation = NodePath("Animations")
-CollisionBox = NodePath("CollisionBox")
 EnemyMovement = NodePath("Movement")
+DetectionArea = NodePath("DetectionArea")
 StateMachine = NodePath("StateMachine")
 
 [node name="CollisionBox" type="CollisionShape2D" parent="." unique_id=2061794104]
@@ -452,10 +453,11 @@ shape = SubResource("RectangleShape2D_mo4my")
 
 [node name="Input" type="Node" parent="." unique_id=225757676]
 
-[node name="Movement" type="Node" parent="." unique_id=1585575207 node_paths=PackedStringArray("Enemy", "HitboxPivot", "Entity")]
+[node name="Movement" type="Node" parent="." unique_id=1585575207 node_paths=PackedStringArray("Enemy", "HitboxPivot", "AttackRangePivot", "Entity")]
 script = ExtResource("2_r3082")
 Enemy = NodePath("..")
 HitboxPivot = NodePath("../HitboxPivot")
+AttackRangePivot = NodePath("../AttackRangePivot")
 PatrolOrigin = Vector2(560, 88)
 Entity = NodePath("..")
 
@@ -464,7 +466,7 @@ texture_filter = 1
 position = Vector2(8, 0)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_mo4my")
-animation = &"death"
+animation = &"attack_up"
 autoplay = "idle_down"
 script = ExtResource("5_ed2xj")
 Enemy = NodePath("..")
@@ -484,13 +486,16 @@ position = Vector2(8, -2)
 shape = SubResource("RectangleShape2D_j22mf")
 
 [node name="HitboxPivot" type="Marker2D" parent="." unique_id=1414648179]
+visible = false
 position = Vector2(8, 0)
 rotation = -0.010471975
 
-[node name="Hitbox" type="Area2D" parent="HitboxPivot" unique_id=2057842230]
-collision_layer = 16
-collision_mask = 0
+[node name="Hitbox" type="Area2D" parent="HitboxPivot" unique_id=2057842230 node_paths=PackedStringArray("Enemy", "HitboxShape")]
+collision_layer = 0
+collision_mask = 8
 script = ExtResource("10_584b1")
+Enemy = NodePath("../..")
+HitboxShape = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxPivot/Hitbox" unique_id=564895212]
 position = Vector2(10, 0)
@@ -498,32 +503,54 @@ shape = SubResource("RectangleShape2D_135ol")
 disabled = true
 debug_color = Color(0.92941177, 0, 0, 0.41960785)
 
+[node name="AttackRangePivot" type="Marker2D" parent="." unique_id=31883442]
+position = Vector2(8, 0)
+rotation = -0.010471975
+
+[node name="AttackRange" type="Area2D" parent="AttackRangePivot" unique_id=1714966752]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRangePivot/AttackRange" unique_id=1349236524]
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_135ol")
+debug_color = Color(0.6156863, 0.4745098, 0, 0.93333334)
+
 [node name="StateMachine" type="Node" parent="." unique_id=432503556 node_paths=PackedStringArray("Customer")]
 script = ExtResource("8_584b1")
 Customer = NodePath("..")
 
-[node name="Roam" type="Node" parent="StateMachine" unique_id=965655796 node_paths=PackedStringArray("Enemy", "EnemyMovement", "EnemyAnimation", "CollisionShape", "DetectionArea")]
+[node name="Roam" type="Node" parent="StateMachine" unique_id=965655796 node_paths=PackedStringArray("Enemy", "EnemyMovement", "EnemyAnimation", "CollisionShape", "StateMachine")]
 script = ExtResource("8_gdla5")
 Enemy = NodePath("../..")
 EnemyMovement = NodePath("../../Movement")
 EnemyAnimation = NodePath("../../Animations")
 CollisionShape = NodePath("../../CollisionBox")
-DetectionArea = NodePath("../../DetectionArea")
+StateMachine = NodePath("..")
 
-[node name="Attack" type="Node" parent="StateMachine" unique_id=1363970402 node_paths=PackedStringArray("Enemy", "EnemyHitbox", "StateOwner")]
+[node name="Chase" type="Node" parent="StateMachine" unique_id=924130791 node_paths=PackedStringArray("Enemy", "EnemyMovement", "AttackRange", "StateMachine")]
+script = ExtResource("11_wnrj2")
+Enemy = NodePath("../..")
+EnemyMovement = NodePath("../../Movement")
+AttackRange = NodePath("../../AttackRangePivot/AttackRange")
+StateMachine = NodePath("..")
+
+[node name="Attack" type="Node" parent="StateMachine" unique_id=1363970402 node_paths=PackedStringArray("Enemy", "EnemyAnimation", "EnemyMovement", "EnemyHitbox", "StateMachine")]
 script = ExtResource("10_73v7i")
 Enemy = NodePath("../..")
+EnemyAnimation = NodePath("../../Animations")
+EnemyMovement = NodePath("../../Movement")
 EnemyHitbox = NodePath("../../HitboxPivot/Hitbox")
-StateOwner = NodePath("../..")
+StateMachine = NodePath("..")
 
-[node name="Dead" type="Node" parent="StateMachine" unique_id=971158782 node_paths=PackedStringArray("Enemy", "StateOwner")]
+[node name="Dead" type="Node" parent="StateMachine" unique_id=971158782 node_paths=PackedStringArray("Enemy", "StateMachine")]
 script = ExtResource("10_wnrj2")
 Enemy = NodePath("../..")
-StateOwner = NodePath("../..")
+StateMachine = NodePath("..")
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=337178119]
 collision_layer = 0
-collision_mask = 32
+collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1359740940]
 position = Vector2(8, 0)

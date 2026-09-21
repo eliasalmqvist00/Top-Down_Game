@@ -7,7 +7,6 @@ public partial class PlayerAttackState : State
 	[ExportCategory("State Vars")]
 	[Export] public Player Player;
 	[Export] public PlayerAnimation PlayerAnimation;
-	[Export] public StateMachine StateMachine;
 	[Export] public CollisionShape2D PlayerHitbox;
 
 	public override void EnterState()

@@ -667,8 +667,8 @@ disabled = true
 debug_color = Color(0.9607843, 0.015686275, 0.07450981, 0.41960785)
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1124776377 node_paths=PackedStringArray("Player")]
-collision_layer = 32
-collision_mask = 32
+collision_layer = 72
+collision_mask = 0
 script = ExtResource("8_73kkf")
 Player = NodePath("..")
 

@@ -11,74 +11,50 @@ public partial class EnemyAttackState : State
 
 	[ExportCategory("Nodes")]
 	[Export] public Enemy Enemy;
+	[Export] public EnemyAnimation EnemyAnimation;
+	[Export] public EnemyMovement EnemyMovement;
 	[Export] public EnemyHitbox EnemyHitbox;
-	
 
-	public override void _Ready()
+	public override void EnterState()
 	{
-		Enemy.MovementSpeed = 10;
+		base.EnterState();
+		EnemyMovement.SnapPositionToGrid();
+		EnemyAnimation.FrameChanged += OnFrameChanged;
+		EnemyAnimation.AnimationFinished += OnAttackFinished;
+		Attack();
 	}
 
-	public override void _Process(double delta)
+	public void Attack()
 	{
-		Chase(delta);
-		if(PlayerInRange())
+		EnemyAnimation.PlayAttack();
+	}
+
+	public void OnAttackFinished()
+	{
+		StateMachine.ChangeState(StateMachine.GetNode<State>("Chase"));
+	}
+
+	private void OnFrameChanged()
+	{
+		if(EnemyAnimation.Animation.ToString().StartsWith("attack"))
 		{
-            Enemy.ActiveTween.Kill();
-			Attack();
+			if(EnemyAnimation.Frame == 1)
+			{
+				EnemyHitbox.HitboxShape.Disabled = false;
+			}
+			else
+			{
+				EnemyHitbox.HitboxShape.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+			}
 		}
 	}
 
-	public async void Chase(double delta)
+	public override void ExitState()
 	{
-
-		Enemy.EnemyAnimation.PlayWalk();
-		
-		Enemy.ActiveTween = CreateTween();
-		Enemy.ActiveTween.SetTrans(Tween.TransitionType.Linear).SetEase(Tween.EaseType.InOut);
-		Enemy.ActiveTween.TweenProperty(Enemy, "position", GetTargetPlayerPosition(), 0.5f);
-
-		await ToSignal(Enemy.ActiveTween, Tween.SignalName.Finished);
-
-        SnapPositionToGrid();
-	}
-
-	public bool PlayerInRange()
-	{
-		return EnemyHitbox.HitboxEntered;
-	}
-
-	public async void Attack()
-	{
-        SnapPositionToGrid();
-
-        //Enemy.EnemyAnimation.IsAttacking = true;
-		EmitSignal(SignalName.Animation, "attack");
-
-        Enemy.ActiveTween = CreateTween();
-		Enemy.ActiveTween.SetTrans(Tween.TransitionType.Linear).SetEase(Tween.EaseType.InOut);
-		Enemy.ActiveTween.TweenProperty(Enemy, "position", GetTargetPlayerPosition(), 1.4f);
-
-        await ToSignal(Enemy.ActiveTween, Tween.SignalName.Finished);
-
-        SnapPositionToGrid();
-	}
-
-    private Vector2 GetTargetPlayerPosition()
-    {
-        Vector2 targetDir = (Enemy.Player.Position - Enemy.Position).Normalized();
-		Enemy.Direction = targetDir;
-
-		Vector2 targetPos = Enemy.Position + targetDir * Globals.Instance.GRID_SIZE;
-		
-		return targetPos;
-    }
-	private void SnapPositionToGrid()
-	{
-		Enemy.Position = new Vector2(
-			Mathf.Round(Enemy.Position.X / Core.Globals.Instance.GRID_SIZE) * Core.Globals.Instance.GRID_SIZE,
-			Mathf.Round(Enemy.Position.Y / Core.Globals.Instance.GRID_SIZE) * Core.Globals.Instance.GRID_SIZE
-		);
+		base.ExitState();
+		EnemyHitbox.HitboxShape.Disabled = true;
+		EnemyAnimation.FrameChanged -= OnFrameChanged;
+		EnemyAnimation.AnimationFinished -= OnAttackFinished;
 	}
 
 }

@@ -10,6 +10,7 @@ public partial class EnemyMovement : EntityMovement
 	[ExportCategory("Nodes")]
 	[Export] public Enemy Enemy;
 	[Export] public Marker2D HitboxPivot;
+	[Export] public Marker2D AttackRangePivot;
 
 
 	[ExportCategory("Enemy Patrol Area")]
@@ -25,6 +26,7 @@ public partial class EnemyMovement : EntityMovement
 	public override void _Process(double delta)
 	{
 		HitboxPivot.Rotation = Enemy.Direction.Angle();
+		AttackRangePivot.Rotation = Enemy.Direction.Angle();
 	}
 
 	

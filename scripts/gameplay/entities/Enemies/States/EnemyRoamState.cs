@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Game.Utilities;
 using Godot;
@@ -13,22 +14,20 @@ public partial class EnemyRoamState : State
 	[Export] public EnemyMovement EnemyMovement;
 	[Export] public EntityAnimation EnemyAnimation;
 	[Export] public CollisionShape2D CollisionShape;
-	[Export] public Area2D DetectionArea;
-
 
 	[Export(PropertyHint.Layers2DPhysics)] public uint ObstacleCollisionMask = 1;
 
 	private float SecondsPerTile = 0.7f;
 
-	public override void _Ready()
-	{
-		BeginRoaming();
-	}
-
     public override void EnterState()
     {
         base.EnterState();
-		DetectionArea.AreaEntered += OnPlayerDetected;
+		BeginRoaming();
+    }
+
+	public void ReturnToOirigin()
+    {
+        
     }
 
 	public async void BeginRoaming()
@@ -57,17 +56,17 @@ public partial class EnemyRoamState : State
 
 		for(int i = 0; i <= steps; i++)
 		{	
-			Enemy.EnemyMovement.TargetPosition = Enemy.Position + Enemy.Direction * Core.Globals.Instance.GRID_SIZE;
+			EnemyMovement.TargetPosition = Enemy.Position + Enemy.Direction * Core.Globals.Instance.GRID_SIZE;
 
 			if(IsTargetOccupied(Enemy.EnemyMovement.TargetPosition)) return;
-			
 			Enemy.ActiveTween = CreateTween();
 			Enemy.ActiveTween.SetTrans(Tween.TransitionType.Linear).SetEase(Tween.EaseType.InOut);
-			Enemy.ActiveTween.TweenProperty(Enemy, "position", Enemy.EnemyMovement.TargetPosition, SecondsPerTile);
+			Enemy.ActiveTween.TweenProperty(Enemy, "position", EnemyMovement.TargetPosition, 0.5f);
 
 			await ToSignal(Enemy.ActiveTween, Tween.SignalName.Finished);
 
-			if (!Enemy.IsAlive|| !IsInstanceValid(Enemy)) return;
+			EnemyMovement.SnapPositionToGrid();
+			//EnemyMovement.TryMove(EnemyMovement.TargetPosition);
 		}
 	}
 
@@ -93,25 +92,20 @@ public partial class EnemyRoamState : State
 		return results.Count > 0;
 	}
 
-	public void OnPlayerDetected(Area2D area)
-    {
-        //Add if enemy is looking towards player
-        if(area is PlayerHurtbox && Enemy.StateMachine.GetCurrentState() == "Roam")
-        {
-		    Enemy.StateMachine.ChangeState(Enemy.StateMachine.GetNode<State>("Attack"));
-        }
-    }
-
 	private static readonly Vector2[] CardinalDirections = 
 	[
 		Vector2.Up,    // (0, -1)
 		Vector2.Down,  // (0, 1)
 		Vector2.Left,  // (-1, 0)
-		Vector2.Right  // (1, 0)
+		Vector2.Right,  // (1, 0)
+		new Vector2I(1, -1),
+        new Vector2I(-1, -1),
+        new Vector2I(1, 1),
+        new Vector2I(-1, 1)
 	];
 
 	public static Vector2 GetRandomDirectionVector()
-	{
+	{	
 		int index = GD.RandRange(0, CardinalDirections.Length - 1);
 		return CardinalDirections[index];
 	}
@@ -119,8 +113,7 @@ public partial class EnemyRoamState : State
 	public override void ExitState()
 	{
 		base.ExitState();
-		DetectionArea.AreaEntered -= OnPlayerDetected;
-		Enemy.ActiveTween.Kill();
+		//Enemy.ActiveTween.Kill();
 	}
 
 }
