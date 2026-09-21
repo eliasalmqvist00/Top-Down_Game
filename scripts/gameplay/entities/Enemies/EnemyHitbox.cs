@@ -13,8 +13,8 @@ public partial class EnemyHitbox : Area2D
 	
 	public override void _Ready()
 	{
-		AreaEntered += OnAreaEntered;
-		AreaExited += OnAreaExited;
+		// AreaEntered += OnAreaEntered;
+		// AreaExited += OnAreaExited;
 	}
 
 	public DamageInfo GetDamageInfo(Vector2 targetPosition)
@@ -29,20 +29,20 @@ public partial class EnemyHitbox : Area2D
 		};
 	}
 
-	private void OnAreaEntered(Area2D area)
-	{
-		if(area is PlayerHurtbox)
-		{
-			HitboxEntered = true;
-		}
-	}
+	// private void OnAreaEntered(Area2D area)
+	// {
+	// 	if(area is PlayerHurtbox)
+	// 	{
+	// 		HitboxEntered = true;
+	// 	}
+	// }
 
-	private void OnAreaExited(Area2D area)
-	{
-		if(area is PlayerHitbox hitbox)
-		{
-			HitboxEntered = false;
-		}
-	}
+	// private void OnAreaExited(Area2D area)
+	// {
+	// 	if(area is PlayerHitbox hitbox)
+	// 	{
+	// 		HitboxEntered = false;
+	// 	}
+	// }
 
 }

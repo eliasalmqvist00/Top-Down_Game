@@ -10,7 +10,7 @@ public partial class Entity : CharacterBody2D
     
     
     [ExportCategory("Entity Vars")]
-    [Export] private int MaxHealth;
+    [Export] public int MaxHealth;
     [Export] public int MovementSpeed;
 
     [Export] public Vector2 Direction;

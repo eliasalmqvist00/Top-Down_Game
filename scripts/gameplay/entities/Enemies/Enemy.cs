@@ -10,7 +10,7 @@ public partial class Enemy : Entity
 	
 	[ExportCategory("Nodes")]
 	[Export] public Player Player;
-	[Export] public EnemyHealthbarcs EnemyHealthbar;
+	[Export] public EnemyHealthbar EnemyHealthbar;
 	[Export] public EnemyHurtbox EnemyHurtbox;
 	[Export] public EntityAnimation EnemyAnimation;
 	[Export] public EnemyMovement EnemyMovement;
@@ -19,17 +19,22 @@ public partial class Enemy : Entity
 	
 	
 	[ExportCategory("Enemy Vars")]
-	[Export] public int MaxHealth = 20;
 	[Export] public int AttackDamage = 4;
 
 
 	public Tween ActiveTween;
 
+	private Tween _dmgFlashTween;
+
 	public override void _Ready()
 	{
-		CurrentHealth = MaxHealth;
-		EnemyHurtbox.ReceivedDamage += OnDamageReceived;
+		MaxHealth = 20;
+		
+		base._Ready();
 
+		MovementSpeed = 4;
+
+		EnemyHurtbox.ReceivedDamage += OnDamageReceived;
 		DetectionArea.AreaEntered += OnDetectionAreaEntered;
 		DetectionArea.AreaExited += OnDetectionAreaExited;
 
@@ -58,7 +63,7 @@ public partial class Enemy : Entity
 		CurrentHealth -= dmgInfo.Amount;
 		Core.Logger.Info($"Enemy health = {CurrentHealth}");
 		
-		SelfModulate = new Color(1.839f, 0.121f, 0.227f);
+		DamageFlash();
 
 		//TODO : Implement knockback
 
@@ -72,5 +77,18 @@ public partial class Enemy : Entity
 	{
 		StateMachine.ChangeState(StateMachine.GetNode<State>("Dead"));
 	}
+
+	public void DamageFlash()
+    {
+        // Cancel any existing flash tween so it doesn't fight the new one
+        _dmgFlashTween?.Kill();
+        _dmgFlashTween = CreateTween();
+
+        // 10x overbright dmgFlash (or use Colors.Red for a red tint)
+        EnemyAnimation.Modulate = new Color(10, 10, 10, 1);
+
+        // Tween back to normal over 0.15 seconds
+        _dmgFlashTween.TweenProperty(EnemyAnimation, "modulate", Colors.White, 0.15f);
+    }
 
 }

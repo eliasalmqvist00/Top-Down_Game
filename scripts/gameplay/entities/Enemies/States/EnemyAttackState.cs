@@ -14,6 +14,7 @@ public partial class EnemyAttackState : State
 	[Export] public EnemyAnimation EnemyAnimation;
 	[Export] public EnemyMovement EnemyMovement;
 	[Export] public EnemyHitbox EnemyHitbox;
+	[Export] public Area2D AttackRange;
 
 	public override void EnterState()
 	{
@@ -21,6 +22,7 @@ public partial class EnemyAttackState : State
 		EnemyMovement.SnapPositionToGrid();
 		EnemyAnimation.FrameChanged += OnFrameChanged;
 		EnemyAnimation.AnimationFinished += OnAttackFinished;
+		AttackRange.AreaExited += NotInRange;
 		Attack();
 	}
 
@@ -29,9 +31,17 @@ public partial class EnemyAttackState : State
 		EnemyAnimation.PlayAttack();
 	}
 
+	private void NotInRange(Area2D areaa)
+	{
+		if(areaa is PlayerHurtbox)
+		{
+			StateMachine.ChangeState(StateMachine.GetNode<State>("Chase"));
+		}
+	}
+
 	public void OnAttackFinished()
 	{
-		StateMachine.ChangeState(StateMachine.GetNode<State>("Chase"));
+		//StateMachine.ChangeState(StateMachine.GetNode<State>("Chase"));
 	}
 
 	private void OnFrameChanged()
@@ -52,9 +62,10 @@ public partial class EnemyAttackState : State
 	public override void ExitState()
 	{
 		base.ExitState();
-		EnemyHitbox.HitboxShape.Disabled = true;
+		EnemyHitbox.HitboxShape.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
 		EnemyAnimation.FrameChanged -= OnFrameChanged;
 		EnemyAnimation.AnimationFinished -= OnAttackFinished;
+		AttackRange.AreaExited -= NotInRange;
 	}
 
 }

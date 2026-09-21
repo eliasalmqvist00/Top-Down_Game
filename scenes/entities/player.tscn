@@ -607,13 +607,15 @@ size = Vector2(16, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_135ol"]
 size = Vector2(16, 16)
 
-[node name="Player" type="CharacterBody2D" unique_id=2135259194 node_paths=PackedStringArray("StateMachine", "HitboxPivot", "CollisionShape", "EntityMovement")]
+[node name="Player" type="CharacterBody2D" unique_id=2135259194 node_paths=PackedStringArray("StateMachine", "HitboxPivot", "PlayerHurtbox", "PlayerAnimation", "CollisionShape", "EntityMovement")]
 z_index = 1
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_dnykm")
 StateMachine = NodePath("StateMachine")
 HitboxPivot = NodePath("HitboxPivot")
+PlayerHurtbox = NodePath("Hurtbox")
+PlayerAnimation = NodePath("Animations")
 PlayerMovementSpeed = 2
 CollisionShape = NodePath("CollisionShape2D")
 EntityMovement = NodePath("Movement")
@@ -667,8 +669,8 @@ disabled = true
 debug_color = Color(0.9607843, 0.015686275, 0.07450981, 0.41960785)
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1124776377 node_paths=PackedStringArray("Player")]
-collision_layer = 72
-collision_mask = 0
+collision_layer = 64
+collision_mask = 8
 script = ExtResource("8_73kkf")
 Player = NodePath("..")
 
@@ -680,18 +682,16 @@ shape = SubResource("RectangleShape2D_135ol")
 script = ExtResource("9_b6tgf")
 Customer = NodePath("..")
 
-[node name="Roam" type="Node" parent="StateMachine" unique_id=2031262761 node_paths=PackedStringArray("Player", "PlayerMovement", "PlayerAnimation", "StateMachine", "StateOwner")]
+[node name="Roam" type="Node" parent="StateMachine" unique_id=2031262761 node_paths=PackedStringArray("Player", "PlayerMovement", "PlayerAnimation", "StateMachine")]
 script = ExtResource("10_b6tgf")
 Player = NodePath("../..")
 PlayerMovement = NodePath("../../Movement")
 PlayerAnimation = NodePath("../../Animations")
 StateMachine = NodePath("..")
-StateOwner = NodePath("../..")
 
-[node name="Attack" type="Node" parent="StateMachine" unique_id=1995927179 node_paths=PackedStringArray("Player", "PlayerAnimation", "StateMachine", "PlayerHitbox", "StateOwner")]
+[node name="Attack" type="Node" parent="StateMachine" unique_id=1995927179 node_paths=PackedStringArray("Player", "PlayerAnimation", "PlayerHitbox", "StateMachine")]
 script = ExtResource("10_73kkf")
 Player = NodePath("../..")
 PlayerAnimation = NodePath("../../Animations")
-StateMachine = NodePath("..")
 PlayerHitbox = NodePath("../../HitboxPivot/HitBox/HitboxShape")
-StateOwner = NodePath("../..")
+StateMachine = NodePath("..")

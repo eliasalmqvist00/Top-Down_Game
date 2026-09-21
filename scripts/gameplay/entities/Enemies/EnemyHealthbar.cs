@@ -3,7 +3,7 @@ using Godot;
 using System;
 
 namespace Game.Gameplay;
-public partial class EnemyHealthbarcs : ProgressBar
+public partial class EnemyHealthbar : ProgressBar
 {
 	[ExportCategory("Nodes")]
 	[Export] public Enemy Enemy;
@@ -21,7 +21,7 @@ public partial class EnemyHealthbarcs : ProgressBar
 		
 		if(Value <= 0)
 		{
-			Dispose();
+			//Dispose();
 		}
 	}
 }

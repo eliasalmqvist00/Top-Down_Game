@@ -52,11 +52,12 @@ public partial class EnemyRoamState : State
 		Vector2 randDir = GetRandomDirectionVector();
 		Enemy.Direction = randDir;
 
-		EnemyAnimation.PlayWalk();
 
 		for(int i = 0; i <= steps; i++)
 		{	
 			EnemyMovement.TargetPosition = Enemy.Position + Enemy.Direction * Core.Globals.Instance.GRID_SIZE;
+
+			EnemyAnimation.PlayWalk();
 
 			if(IsTargetOccupied(Enemy.EnemyMovement.TargetPosition)) return;
 			Enemy.ActiveTween = CreateTween();

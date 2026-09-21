@@ -19,6 +19,7 @@ public partial class PlayerHurtbox : Area2D
 	{
 		if(area is EnemyHitbox hitbox)
 		{
+			Core.Logger.Debug("Damage taken");
 			DamageInfo dmgInfo = hitbox.GetDamageInfo(Player.Position);
 			ReceivedDamage?.Invoke(dmgInfo);
 		}
