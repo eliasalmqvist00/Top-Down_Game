@@ -1,3 +1,4 @@
+using Game.Core;
 using Godot;
 
 namespace Game.Gameplay;
@@ -10,11 +11,12 @@ public partial class PlayerHitbox : Area2D
 	
 	public DamageInfo GetDamageInfo(Vector2 targetPosition)
 	{   
-        Vector2 knockbackDir = (targetPosition - GlobalPosition).Normalized();
+        Vector2 knockback = Player.Direction * Globals.Instance.GRID_SIZE*2;
+
 		return new DamageInfo
 		{
 			Amount = Player.AttackDamage,
-			KnockbackForce = new Vector2(0,0),
+			KnockbackForce = knockback,
 			Attacker = Owner
 		};
 	}

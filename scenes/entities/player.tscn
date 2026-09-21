@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://djqef7e1rhxd8" path="res://scripts/gameplay/utilities/StateMachine.cs" id="9_b6tgf"]
 [ext_resource type="Script" uid="uid://bjv7lchyujpmv" path="res://scripts/gameplay/entities/Player/States/PlayerAttackState.cs" id="10_73kkf"]
 [ext_resource type="Script" uid="uid://b6vbqpw113vvk" path="res://scripts/gameplay/entities/Player/States/PlayerRoamState.cs" id="10_b6tgf"]
+[ext_resource type="Script" uid="uid://cj7vjbuwxr01" path="res://scripts/gameplay/entities/Player/States/PlayerDeadState.cs" id="11_73kkf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mo4my"]
 size = Vector2(16, 16)
@@ -77,6 +78,22 @@ region = Rect2(64, 256, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ot03"]
 atlas = ExtResource("1_ucweq")
 region = Rect2(96, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bf44x"]
+atlas = ExtResource("1_ucweq")
+region = Rect2(0, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w446p"]
+atlas = ExtResource("1_ucweq")
+region = Rect2(32, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyo54"]
+atlas = ExtResource("1_ucweq")
+region = Rect2(64, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmdgs"]
+atlas = ExtResource("1_ucweq")
+region = Rect2(96, 288, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_08t41"]
 atlas = ExtResource("1_ucweq")
@@ -374,6 +391,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_bf44x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w446p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyo54")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmdgs")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_08t41")
 }, {
 "duration": 1.0,
@@ -621,6 +655,7 @@ CollisionShape = NodePath("CollisionShape2D")
 EntityMovement = NodePath("Movement")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=657134973]
+visible = false
 scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_mo4my")
 
@@ -633,8 +668,10 @@ Entity = NodePath("..")
 [node name="Animations" type="AnimatedSprite2D" parent="." unique_id=1905593507 node_paths=PackedStringArray("PlayerAttack", "Entity")]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_mo4my")
-animation = &"attack_down"
+animation = &"death"
 autoplay = "idle_down"
+frame = 3
+frame_progress = 1.0
 script = ExtResource("5_c5rqy")
 PlayerAttack = NodePath("../HitboxPivot")
 Entity = NodePath("..")
@@ -649,6 +686,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
 [node name="HitboxPivot" type="Marker2D" parent="." unique_id=1201070922 node_paths=PackedStringArray("Player", "HitboxPivot", "PlayerHitbox", "PlayerAnimation")]
+visible = false
 script = ExtResource("7_c5rqy")
 Player = NodePath("..")
 HitboxPivot = NodePath(".")
@@ -669,6 +707,7 @@ disabled = true
 debug_color = Color(0.9607843, 0.015686275, 0.07450981, 0.41960785)
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1124776377 node_paths=PackedStringArray("Player")]
+visible = false
 collision_layer = 64
 collision_mask = 8
 script = ExtResource("8_73kkf")
@@ -694,4 +733,10 @@ script = ExtResource("10_73kkf")
 Player = NodePath("../..")
 PlayerAnimation = NodePath("../../Animations")
 PlayerHitbox = NodePath("../../HitboxPivot/HitBox/HitboxShape")
+StateMachine = NodePath("..")
+
+[node name="Dead" type="Node" parent="StateMachine" unique_id=455586457 node_paths=PackedStringArray("Player", "PlayerAnimation", "StateMachine")]
+script = ExtResource("11_73kkf")
+Player = NodePath("../..")
+PlayerAnimation = NodePath("../../Animations")
 StateMachine = NodePath("..")

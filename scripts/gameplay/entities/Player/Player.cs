@@ -52,7 +52,7 @@ public partial class Player : Entity
 
     public override void OnDeath()
     {
-        throw new NotImplementedException();
+        StateMachine.ChangeState(StateMachine.GetNode<State>("Dead"));
     }
 	public void DamageFlash()
     {

@@ -175,13 +175,12 @@ public partial class PlayerRoamState : State
         PlayerMovement.StepBlocked += OnStepBlocked;
 
         HoldTime = 0.0;
-        PlayerAnimation.PlayIdle();
     }
 
 	public override void ExitState()
 	{
 		base.ExitState();
-		ActiveInputs.Clear();
+		//ActiveInputs.Clear();
 
         // Disconnectonnect signals only while not in this state
 		PlayerMovement.StepStarted -= OnStepStarted;

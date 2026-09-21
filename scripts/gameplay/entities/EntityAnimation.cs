@@ -18,7 +18,7 @@ public partial class EntityAnimation : AnimatedSprite2D
 	public void PlayIdle() => PlayAnimation("idle");
 	public void PlayTurn() => PlayAnimation("turn");
 	public void PlayAttack() => PlayAnimation("attack");
-	public void PlayDeath() => PlayAnimation("death");
+	public void PlayDeath() => Play("death");
 
 	private void PlayAnimation(string animationPrefix)
 	{

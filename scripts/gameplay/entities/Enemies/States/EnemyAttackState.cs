@@ -19,7 +19,9 @@ public partial class EnemyAttackState : State
 	public override void EnterState()
 	{
 		base.EnterState();
-		EnemyMovement.SnapPositionToGrid();
+
+		//EnemyMovement.SnapPositionToGrid();
+
 		EnemyAnimation.FrameChanged += OnFrameChanged;
 		EnemyAnimation.AnimationFinished += OnAttackFinished;
 		AttackRange.AreaExited += NotInRange;

@@ -58,24 +58,39 @@ public partial class Enemy : Entity
 		}
 	}
 
-	private void OnDamageReceived(DamageInfo dmgInfo)
-	{
+	private async void OnDamageReceived(DamageInfo dmgInfo)
+	{	
+		Vector2 knockback = dmgInfo.KnockbackForce;
+
 		CurrentHealth -= dmgInfo.Amount;
 		Core.Logger.Info($"Enemy health = {CurrentHealth}");
 		
 		DamageFlash();
 
-		//TODO : Implement knockback
+		ApplyKnockback(dmgInfo.KnockbackForce);
 
 		if(CurrentHealth <= 0)
 		{
 			Death();
 		}
+		await ToSignal(GetTree().CreateTimer(0.5f), SceneTreeTimer.SignalName.Timeout);
 	}
 
 	public void Death()
 	{
 		StateMachine.ChangeState(StateMachine.GetNode<State>("Dead"));
+	}
+
+	private void ApplyKnockback(Vector2 knockbackForce)
+	{
+		ActiveTween?.Kill();
+		ActiveTween = CreateTween();
+		
+		EnemyMovement.TargetPosition = Position + knockbackForce;
+
+		ActiveTween.TweenProperty(this, "position", EnemyMovement.TargetPosition, 0.15f)
+				.SetTrans(Tween.TransitionType.Spring)
+				.SetEase(Tween.EaseType.Out);
 	}
 
 	public void DamageFlash()
