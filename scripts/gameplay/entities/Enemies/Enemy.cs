@@ -10,16 +10,22 @@ public partial class Enemy : Entity
 	
 	[ExportCategory("Nodes")]
 	[Export] public Player Player;
+	[Export] public EnemyMovement EnemyMovement;
 	[Export] public EnemyHealthbar EnemyHealthbar;
 	[Export] public EnemyHurtbox EnemyHurtbox;
 	[Export] public EntityAnimation EnemyAnimation;
-	[Export] public EnemyMovement EnemyMovement;
 	[Export] public Area2D DetectionArea;
 	[Export] public StateMachine StateMachine;
+
+
+	[ExportCategory("Spawn-Point")]
+	[Export] public Marker2D SpawnPoint;
 	
 	
 	[ExportCategory("Enemy Vars")]
 	[Export] public int AttackDamage = 4;
+
+
 
 	//Tweens
 	private Tween _knockbackTween;
@@ -59,6 +65,8 @@ public partial class Enemy : Entity
 
 	private async void OnDamageReceived(DamageInfo dmgInfo)
 	{	
+		if(!IsAlive) return;
+
 		Vector2 knockback = dmgInfo.KnockbackForce;
 
 		CurrentHealth -= dmgInfo.Amount;
@@ -66,19 +74,28 @@ public partial class Enemy : Entity
 		
 		DamageFlash();
 
-		ApplyKnockback(dmgInfo.KnockbackForce);
-
 		if(CurrentHealth <= 0)
 		{
 			Death();
+			return;
 		}
-		await ToSignal(GetTree().CreateTimer(0.5f), SceneTreeTimer.SignalName.Timeout);
+
+		ApplyKnockback(dmgInfo.KnockbackForce);
+
+		await ToSignal(GetTree().CreateTimer(0.8f), SceneTreeTimer.SignalName.Timeout);
 	}
 
 	public void Death()
 	{
+		if(!IsAlive) return;
+		IsAlive = false;
+
 		_knockbackTween.Kill();
-		//_dmgFlashTween.Kill();
+		_dmgFlashTween.Kill();
+
+		DisableAreaMonitoring();
+
+		EnemyAnimation.Modulate = Colors.White;
 
 		StateMachine.ChangeState(StateMachine.GetNode<State>("Dead"));
 	}
@@ -106,6 +123,18 @@ public partial class Enemy : Entity
 
         // Tween back to normal over 0.15 seconds
         _dmgFlashTween.TweenProperty(EnemyAnimation, "modulate", Colors.White, 0.15f);
+    }
+
+	private void DisableAreaMonitoring()
+    {
+        DetectionArea.SetDeferred(Area2D.PropertyName.Monitoring, false);
+		DetectionArea.SetDeferred(Area2D.PropertyName.Monitorable, false);
+		EnemyHurtbox.SetDeferred(Area2D.PropertyName.Monitoring, false);
+		EnemyHurtbox.SetDeferred(Area2D.PropertyName.Monitorable, false);
+		GetNode<Marker2D>("HitboxPivot").GetNode<EnemyHitbox>("Hitbox").SetDeferred(Area2D.PropertyName.Monitoring, false);
+		GetNode<Marker2D>("HitboxPivot").GetNode<EnemyHitbox>("Hitbox").SetDeferred(Area2D.PropertyName.Monitorable, false);
+		GetNode<Marker2D>("AttackRangePivot").GetNode<Area2D>("AttackRange").SetDeferred(Area2D.PropertyName.Monitoring, false);
+		GetNode<Marker2D>("AttackRangePivot").GetNode<Area2D>("AttackRange").SetDeferred(Area2D.PropertyName.Monitorable, false);
     }
 
 }

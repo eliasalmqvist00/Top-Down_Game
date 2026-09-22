@@ -20,6 +20,7 @@ public partial class Player : Entity
 
 	private Tween _dmgFlashTween;
 	public bool IsAttacking = false;
+
 	
 	public override void _Ready()
 	{
@@ -39,6 +40,8 @@ public partial class Player : Entity
 
 	private void OnDamageReceived(DamageInfo dmgInfo)
 	{
+		if(!IsAlive) return;
+
 		CurrentHealth -= dmgInfo.Amount;
 		Core.Logger.Info($"Player health = {CurrentHealth}");
 
@@ -53,6 +56,16 @@ public partial class Player : Entity
 
     public override void OnDeath()
     {
+		if(!IsAlive) return;
+		IsAlive = false;
+
+		_dmgFlashTween?.Kill();
+
+		PlayerHurtbox.SetDeferred(Area2D.PropertyName.Monitoring, false);
+		PlayerHurtbox.SetDeferred(Area2D.PropertyName.Monitorable, false);
+
+		PlayerAnimation.Modulate = Colors.White;
+
         StateMachine.ChangeState(StateMachine.GetNode<State>("Dead"));
     }
 	public void DamageFlash()
@@ -67,4 +80,9 @@ public partial class Player : Entity
         // Tween back to normal over 0.15 seconds
         _dmgFlashTween.TweenProperty(PlayerAnimation, "modulate", Colors.White, 0.15f);
     }
+
+	// public static Vector2 GetPlayerPosition()
+    // {
+    //     return Position;
+    // }
 }

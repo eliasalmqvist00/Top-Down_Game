@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Threading.Tasks;
+using Game.Core;
 using Game.Utilities;
 using Godot;
 
@@ -24,12 +25,31 @@ public partial class EnemyRoamState : State
     {
         base.EnterState();
 		BeginRoaming();
-		Enemy.MovementSpeed = 4;
+		Enemy.MovementSpeed = 3;
+
+		ReturnToOirigin();
     }
 
-	public void ReturnToOirigin()
+	public async void ReturnToOirigin()
     {
-        
+		while(Enemy.Position != Enemy.SpawnPoint.Position)
+        {
+            Enemy.Direction = (Enemy.SpawnPoint.Position - Enemy.Position).Normalized();
+			EnemyMovement.TargetPosition = Enemy.Position + Enemy.Direction * Globals.Instance.GRID_SIZE;
+
+			EnemyAnimation.PlayWalk();
+
+			_moveTween?.Kill();
+			_moveTween = CreateTween();
+			_moveTween.SetTrans(Tween.TransitionType.Linear).SetEase(Tween.EaseType.InOut);
+			_moveTween.TweenProperty(Enemy, "position", EnemyMovement.TargetPosition, 1f / Enemy.MovementSpeed);
+
+			await ToSignal(_moveTween, Tween.SignalName.Finished);
+
+			EnemyMovement.SnapPositionToGrid();
+			Core.Logger.Debug($"Enemy Position = {Enemy.Position}");
+        }
+
     }
 
 	public async void BeginRoaming()
@@ -49,11 +69,10 @@ public partial class EnemyRoamState : State
 
 	private async Task Roam()
 	{	
-		int steps = GD.RandRange(4,8);
+		int steps = GD.RandRange(4,24);
 
 		Vector2 randDir = GetRandomDirectionVector();
 		Enemy.Direction = randDir;
-
 
 		for(int i = 0; i <= steps; i++)
 		{	
@@ -61,7 +80,9 @@ public partial class EnemyRoamState : State
 
 			EnemyAnimation.PlayWalk();
 
-			if(IsTargetOccupied(Enemy.EnemyMovement.TargetPosition)) return;
+			if(IsTargetOccupied(Enemy.EnemyMovement.TargetPosition)) break;
+
+			_moveTween?.Kill();
 			_moveTween = CreateTween();
 			_moveTween.SetTrans(Tween.TransitionType.Linear).SetEase(Tween.EaseType.InOut);
 			_moveTween.TweenProperty(Enemy, "position", EnemyMovement.TargetPosition, 1f / Enemy.MovementSpeed);
@@ -69,7 +90,6 @@ public partial class EnemyRoamState : State
 			await ToSignal(_moveTween, Tween.SignalName.Finished);
 
 			EnemyMovement.SnapPositionToGrid();
-			//EnemyMovement.TryMove(EnemyMovement.TargetPosition);
 		}
 	}
 
@@ -77,10 +97,8 @@ public partial class EnemyRoamState : State
 	{
 		if (CollisionShape?.Shape == null) return false;
 
-		// 1. Access the 2D physics world state
 		PhysicsDirectSpaceState2D spaceState = Enemy.GetWorld2D().DirectSpaceState;
 
-		// 2. Configure the shape query parameters
 		PhysicsShapeQueryParameters2D queryParams = new PhysicsShapeQueryParameters2D
 		{
 			Shape = CollisionShape.Shape,
@@ -89,8 +107,6 @@ public partial class EnemyRoamState : State
 			Exclude = [Enemy.GetRid()] // Ignore the enemy itself
 		};
 
-		// 3. Test if any collision overlaps at that position
-		// IntersectShape returns all colliders; empty means tile is free
 		var results = spaceState.IntersectShape(queryParams, 1);
 		return results.Count > 0;
 	}
@@ -116,7 +132,7 @@ public partial class EnemyRoamState : State
 	public override void ExitState()
 	{
 		base.ExitState();
-		_moveTween.Kill();
+		_moveTween?.Kill();
 	}
 
 }

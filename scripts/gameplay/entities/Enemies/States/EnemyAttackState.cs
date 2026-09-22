@@ -16,34 +16,38 @@ public partial class EnemyAttackState : State
 	[Export] public EnemyHitbox EnemyHitbox;
 	[Export] public Area2D AttackRange;
 
+	private bool _inRange = false;
+
 	public override void EnterState()
 	{
 		base.EnterState();
 
-		//EnemyMovement.SnapPositionToGrid();
+		EnemyMovement.SnapPositionToGrid();
 
 		EnemyAnimation.FrameChanged += OnFrameChanged;
-		EnemyAnimation.AnimationFinished += OnAttackFinished;
 		AttackRange.AreaExited += NotInRange;
+		
+		_inRange = true;
+
 		Attack();
 	}
 
-	public void Attack()
+	public async void Attack()
 	{
-		EnemyAnimation.PlayAttack();
+		while(_inRange)
+        {
+			EnemyAnimation.PlayAttack();
+			await ToSignal(GetTree().CreateTimer(1.2f), SceneTreeTimer.SignalName.Timeout); 
+        }
 	}
 
 	private void NotInRange(Area2D areaa)
 	{
 		if(areaa is PlayerHurtbox)
 		{
+			_inRange = false;
 			StateMachine.ChangeState(StateMachine.GetNode<State>("Chase"));
 		}
-	}
-
-	public void OnAttackFinished()
-	{
-		//StateMachine.ChangeState(StateMachine.GetNode<State>("Chase"));
 	}
 
 	private void OnFrameChanged()
@@ -52,7 +56,7 @@ public partial class EnemyAttackState : State
 		{
 			if(EnemyAnimation.Frame == 1)
 			{
-				EnemyHitbox.HitboxShape.Disabled = false;
+				EnemyHitbox.HitboxShape.SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
 			}
 			else
 			{
@@ -64,9 +68,11 @@ public partial class EnemyAttackState : State
 	public override void ExitState()
 	{
 		base.ExitState();
+		_inRange = false;
+
 		EnemyHitbox.HitboxShape.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+
 		EnemyAnimation.FrameChanged -= OnFrameChanged;
-		EnemyAnimation.AnimationFinished -= OnAttackFinished;
 		AttackRange.AreaExited -= NotInRange;
 	}
 

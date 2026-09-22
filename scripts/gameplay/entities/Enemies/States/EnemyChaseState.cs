@@ -21,7 +21,7 @@ public partial class EnemyChaseState : State
 	{
 		base.EnterState();
 		AttackRange.AreaEntered += PlayerInRange;
-		Enemy.MovementSpeed = 5;
+		Enemy.MovementSpeed = 3;
 	}
 
 	public void PlayerInRange(Area2D area)
@@ -53,7 +53,6 @@ public partial class EnemyChaseState : State
 		await ToSignal(_chaseTween, Tween.SignalName.Finished);
 
 		EnemyMovement.SnapPositionToGrid();
-		Enemy.MovementSpeed = 10;
 	}
 
 	private Vector2 GetTargetPlayerPosition()

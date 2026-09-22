@@ -26,7 +26,7 @@ public partial class EnemyDeadState : State
 		Enemy.CollisionLayer = 2;
 		Enemy.EnemyHurtbox.Dispose();
 
-		await ToSignal(GetTree().CreateTimer(10.0f), SceneTreeTimer.SignalName.Timeout);
+		await ToSignal(GetTree().CreateTimer(5.0f), SceneTreeTimer.SignalName.Timeout);
 		Enemy.QueueFree();
 	}
 
