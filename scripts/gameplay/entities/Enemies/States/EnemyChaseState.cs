@@ -14,16 +14,14 @@ public partial class EnemyChaseState : State
 	[Export] public EnemyMovement EnemyMovement;
 	[Export] public Area2D AttackRange;
 	
+	private Tween _chaseTween;
 
-	public override void _Ready()
-	{
-		Enemy.MovementSpeed = 10;
-	}
 
 	public override void EnterState()
 	{
 		base.EnterState();
 		AttackRange.AreaEntered += PlayerInRange;
+		Enemy.MovementSpeed = 5;
 	}
 
 	public void PlayerInRange(Area2D area)
@@ -48,15 +46,14 @@ public partial class EnemyChaseState : State
 	{
 		Enemy.EnemyAnimation.PlayWalk();
 		
-		Enemy.ActiveTween = CreateTween();
-		Enemy.ActiveTween.SetTrans(Tween.TransitionType.Linear).SetEase(Tween.EaseType.InOut);
-		Enemy.ActiveTween.TweenProperty(Enemy, "position", GetTargetPlayerPosition(), 0.5f);
+		_chaseTween = CreateTween();
+		_chaseTween.SetTrans(Tween.TransitionType.Linear).SetEase(Tween.EaseType.InOut);
+		_chaseTween.TweenProperty(Enemy, "position", GetTargetPlayerPosition(), 1f / Enemy.MovementSpeed);
 
-		await ToSignal(Enemy.ActiveTween, Tween.SignalName.Finished);
+		await ToSignal(_chaseTween, Tween.SignalName.Finished);
 
 		EnemyMovement.SnapPositionToGrid();
 		Enemy.MovementSpeed = 10;
-		//EnemyMovement.TryMove(GetTargetPlayerPosition());
 	}
 
 	private Vector2 GetTargetPlayerPosition()
@@ -72,7 +69,7 @@ public partial class EnemyChaseState : State
 	public override void ExitState()
 	{
 		base.ExitState();
-		Enemy.ActiveTween.Kill();
+		_chaseTween.Kill();
 		AttackRange.AreaEntered -= PlayerInRange;
 	}
 

@@ -12,6 +12,7 @@ public partial class PlayerAttackState : State
 	public override void EnterState()
 	{
 		base.EnterState();
+		PlayerAnimation.FrameChanged += OnFrameChange;
         Attack();
 	}
 
@@ -20,13 +21,28 @@ public partial class PlayerAttackState : State
         Vector2 attackDirection = GetMouseDirection(Player.Position);
 		Player.Direction = attackDirection;
 
-	    PlayerHitbox.Disabled = false;
+	    
 		PlayerAnimation.PlayAttack();
 
         await ToSignal(PlayerAnimation, EntityAnimation.SignalName.AnimationFinished);
 
         PlayerHitbox.Disabled = true;
         OnAttackFinished();
+    }
+
+	public void OnFrameChange()
+    {
+        if(PlayerAnimation.Animation.ToString().StartsWith("attack"))
+        {
+            if(PlayerAnimation.Frame == 1)
+            {
+                PlayerHitbox.SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
+            }
+            else
+            {
+                PlayerHitbox.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+            }
+        }
     }
 
 	private Vector2 GetMouseDirection(Vector2 playerPosition)
@@ -60,5 +76,7 @@ public partial class PlayerAttackState : State
 	public override void ExitState()
 	{
 		base.ExitState();
+		PlayerAnimation.FrameChanged -= OnFrameChange;
+		PlayerHitbox.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
 	}
 }

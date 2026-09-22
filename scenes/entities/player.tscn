@@ -336,7 +336,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"attack_down",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -353,7 +353,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"attack_left",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -370,7 +370,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"attack_right",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -387,7 +387,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"attack_up",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -650,12 +650,11 @@ StateMachine = NodePath("StateMachine")
 HitboxPivot = NodePath("HitboxPivot")
 PlayerHurtbox = NodePath("Hurtbox")
 PlayerAnimation = NodePath("Animations")
-PlayerMovementSpeed = 2
+PlayerMovementSpeed = 4
 CollisionShape = NodePath("CollisionShape2D")
 EntityMovement = NodePath("Movement")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=657134973]
-visible = false
 scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_mo4my")
 
@@ -668,10 +667,8 @@ Entity = NodePath("..")
 [node name="Animations" type="AnimatedSprite2D" parent="." unique_id=1905593507 node_paths=PackedStringArray("PlayerAttack", "Entity")]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_mo4my")
-animation = &"death"
+animation = &"attack_down"
 autoplay = "idle_down"
-frame = 3
-frame_progress = 1.0
 script = ExtResource("5_c5rqy")
 PlayerAttack = NodePath("../HitboxPivot")
 Entity = NodePath("..")
@@ -686,7 +683,6 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
 [node name="HitboxPivot" type="Marker2D" parent="." unique_id=1201070922 node_paths=PackedStringArray("Player", "HitboxPivot", "PlayerHitbox", "PlayerAnimation")]
-visible = false
 script = ExtResource("7_c5rqy")
 Player = NodePath("..")
 HitboxPivot = NodePath(".")
@@ -707,7 +703,6 @@ disabled = true
 debug_color = Color(0.9607843, 0.015686275, 0.07450981, 0.41960785)
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1124776377 node_paths=PackedStringArray("Player")]
-visible = false
 collision_layer = 64
 collision_mask = 8
 script = ExtResource("8_73kkf")

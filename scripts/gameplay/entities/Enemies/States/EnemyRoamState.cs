@@ -17,12 +17,14 @@ public partial class EnemyRoamState : State
 
 	[Export(PropertyHint.Layers2DPhysics)] public uint ObstacleCollisionMask = 1;
 
+	private Tween _moveTween;
 	private float SecondsPerTile = 0.7f;
 
     public override void EnterState()
     {
         base.EnterState();
 		BeginRoaming();
+		Enemy.MovementSpeed = 4;
     }
 
 	public void ReturnToOirigin()
@@ -60,11 +62,11 @@ public partial class EnemyRoamState : State
 			EnemyAnimation.PlayWalk();
 
 			if(IsTargetOccupied(Enemy.EnemyMovement.TargetPosition)) return;
-			Enemy.ActiveTween = CreateTween();
-			Enemy.ActiveTween.SetTrans(Tween.TransitionType.Linear).SetEase(Tween.EaseType.InOut);
-			Enemy.ActiveTween.TweenProperty(Enemy, "position", EnemyMovement.TargetPosition, 0.5f);
+			_moveTween = CreateTween();
+			_moveTween.SetTrans(Tween.TransitionType.Linear).SetEase(Tween.EaseType.InOut);
+			_moveTween.TweenProperty(Enemy, "position", EnemyMovement.TargetPosition, 1f / Enemy.MovementSpeed);
 
-			await ToSignal(Enemy.ActiveTween, Tween.SignalName.Finished);
+			await ToSignal(_moveTween, Tween.SignalName.Finished);
 
 			EnemyMovement.SnapPositionToGrid();
 			//EnemyMovement.TryMove(EnemyMovement.TargetPosition);
@@ -114,7 +116,7 @@ public partial class EnemyRoamState : State
 	public override void ExitState()
 	{
 		base.ExitState();
-		//Enemy.ActiveTween.Kill();
+		_moveTween.Kill();
 	}
 
 }

@@ -11,7 +11,7 @@ public partial class PlayerHitbox : Area2D
 	
 	public DamageInfo GetDamageInfo(Vector2 targetPosition)
 	{   
-        Vector2 knockback = Player.Direction * Globals.Instance.GRID_SIZE*2;
+        Vector2 knockback = Player.Direction * Globals.Instance.GRID_SIZE * Player.KnockbackForce;
 
 		return new DamageInfo
 		{

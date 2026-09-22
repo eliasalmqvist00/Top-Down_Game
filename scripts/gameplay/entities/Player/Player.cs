@@ -13,9 +13,10 @@ public partial class Player : Entity
 	[Export] public PlayerAnimation PlayerAnimation;
 
 	[ExportCategory("Player Vars")]
+	[Export] public int PlayerMovementSpeed = 5;
 	[Export] public double AttackCoolDown = 0.0;
 	[Export] public int AttackDamage = 5;
-	[Export] public int PlayerMovementSpeed = 5;
+	[Export] public int KnockbackForce = 4;
 
 	private Tween _dmgFlashTween;
 	public bool IsAttacking = false;

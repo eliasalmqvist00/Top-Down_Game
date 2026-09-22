@@ -21,9 +21,8 @@ public partial class Enemy : Entity
 	[ExportCategory("Enemy Vars")]
 	[Export] public int AttackDamage = 4;
 
-
-	public Tween ActiveTween;
-
+	//Tweens
+	private Tween _knockbackTween;
 	private Tween _dmgFlashTween;
 
 	public override void _Ready()
@@ -78,17 +77,20 @@ public partial class Enemy : Entity
 
 	public void Death()
 	{
+		_knockbackTween.Kill();
+		//_dmgFlashTween.Kill();
+
 		StateMachine.ChangeState(StateMachine.GetNode<State>("Dead"));
 	}
 
-	private void ApplyKnockback(Vector2 knockbackForce)
+	private void ApplyKnockback(Vector2 knockback)
 	{
-		ActiveTween?.Kill();
-		ActiveTween = CreateTween();
+		_knockbackTween?.Kill();
+		_knockbackTween = CreateTween();
 		
-		EnemyMovement.TargetPosition = Position + knockbackForce;
+		EnemyMovement.TargetPosition = Position + knockback;
 
-		ActiveTween.TweenProperty(this, "position", EnemyMovement.TargetPosition, 0.15f)
+		_knockbackTween.TweenProperty(this, "position", EnemyMovement.TargetPosition, 0.15f)
 				.SetTrans(Tween.TransitionType.Spring)
 				.SetEase(Tween.EaseType.Out);
 	}
