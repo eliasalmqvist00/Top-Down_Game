@@ -436,7 +436,7 @@ border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
 border_blend = true
 
-[node name="Spider" type="CharacterBody2D" unique_id=276010328 node_paths=PackedStringArray("EnemyMovement", "EnemyHealthbar", "EnemyHurtbox", "EnemyAnimation", "DetectionArea", "StateMachine")]
+[node name="Spider" type="CharacterBody2D" unique_id=276010328 node_paths=PackedStringArray("EnemyMovement", "EnemyHealthbar", "EnemyHurtbox", "EnemyAnimation", "DetectionArea", "StateMachine", "CollisionShape")]
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("1_m1fgu")
@@ -446,6 +446,7 @@ EnemyHurtbox = NodePath("Hurtbox")
 EnemyAnimation = NodePath("Animations")
 DetectionArea = NodePath("DetectionArea")
 StateMachine = NodePath("StateMachine")
+CollisionShape = NodePath("CollisionBox")
 MaxHealth = 20
 MovementSpeed = 2
 

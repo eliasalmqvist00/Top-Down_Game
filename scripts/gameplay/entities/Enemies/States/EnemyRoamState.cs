@@ -23,6 +23,8 @@ public partial class EnemyRoamState : State
 
     public override void EnterState()
     {
+		if (!Enemy.IsAlive) return;
+		
         base.EnterState();
 		BeginRoaming();
 		Enemy.MovementSpeed = 3;

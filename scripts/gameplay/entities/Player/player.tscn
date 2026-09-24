@@ -674,7 +674,7 @@ PlayerAttack = NodePath("../HitboxPivot")
 Entity = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1236158671]
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
 limit_right = 688

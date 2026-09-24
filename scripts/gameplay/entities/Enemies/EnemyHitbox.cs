@@ -8,14 +8,7 @@ public partial class EnemyHitbox : Area2D
 	[ExportCategory("Nodes")]
 	[Export] public Enemy Enemy;
 	[Export] public CollisionShape2D HitboxShape;
-
-	public bool HitboxEntered = false;
 	
-	public override void _Ready()
-	{
-		// AreaEntered += OnAreaEntered;
-		// AreaExited += OnAreaExited;
-	}
 
 	public DamageInfo GetDamageInfo(Vector2 targetPosition)
 	{   
@@ -28,21 +21,5 @@ public partial class EnemyHitbox : Area2D
 			Attacker = Owner
 		};
 	}
-
-	// private void OnAreaEntered(Area2D area)
-	// {
-	// 	if(area is PlayerHurtbox)
-	// 	{
-	// 		HitboxEntered = true;
-	// 	}
-	// }
-
-	// private void OnAreaExited(Area2D area)
-	// {
-	// 	if(area is PlayerHitbox hitbox)
-	// 	{
-	// 		HitboxEntered = false;
-	// 	}
-	// }
 
 }

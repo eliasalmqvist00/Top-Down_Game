@@ -21,9 +21,30 @@ public partial class PlayerRoamState : State
 	private static readonly StringName ActionDown = "ui_down";
 	private static readonly StringName ActionLeft = "ui_left";
 	private static readonly StringName ActionRight = "ui_right";
+	private static readonly StringName ActionSprint = "ui_shift";
 
 	// Tracks held directional inputs in the order they were pressed
 	private readonly List<StringName> ActiveInputs = new();
+
+	public override void EnterState()
+    {
+        base.EnterState();
+
+        // Connect signals only while in this state
+        PlayerMovement.StepStarted += OnStepStarted;
+        PlayerMovement.StepFinished += OnStepFinished;
+        PlayerMovement.StepBlocked += OnStepBlocked;
+
+		if(ActiveInputs.Count != 0)
+        {
+        	HoldTime = HoldThreshold;
+            
+        }
+        else
+        { 
+        	HoldTime = 0.0;
+        }
+    }
 
 	public override void _Process(double delta)
 	{
@@ -39,6 +60,14 @@ public partial class PlayerRoamState : State
 
 	private void GetInput(double delta)
 	{
+		if(ActiveInputs.Contains(ActionSprint))
+        {
+            Player.MovementSpeed = 8;
+        }
+        else
+        {
+            Player.MovementSpeed = Player.PlayerBaseMovementSpeed;
+        }
 
 		if(PlayerMovement.IsCurrentlyMoving())
         {
@@ -148,6 +177,7 @@ public partial class PlayerRoamState : State
 		UpdateInputStack(ActionDown);
 		UpdateInputStack(ActionLeft);
 		UpdateInputStack(ActionRight);
+		UpdateInputStack(ActionSprint);
 	}
 
 	private void UpdateInputStack(StringName action)
@@ -164,18 +194,6 @@ public partial class PlayerRoamState : State
 			ActiveInputs.Remove(action);
 		}
 	}
-
-	public override void EnterState()
-    {
-        base.EnterState();
-
-        // Connect signals only while in this state
-        PlayerMovement.StepStarted += OnStepStarted;
-        PlayerMovement.StepFinished += OnStepFinished;
-        PlayerMovement.StepBlocked += OnStepBlocked;
-
-        HoldTime = 0.0;
-    }
 
 	public override void ExitState()
 	{

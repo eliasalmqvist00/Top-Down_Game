@@ -25,6 +25,21 @@ public static class Modules
         return Input.IsActionJustPressed("ui_attack");
     }
 
+    public static bool IsSprintPressed()
+    {
+        return Input.IsActionPressed("ui_shift");
+    }
+
+    public static bool ScrollUp()
+    {
+        return Input.IsActionJustPressed("ui_scroll_up");
+    }
+
+    public static bool ScrollDown()
+    {
+        return Input.IsActionPressed("ui_scroll_down");
+    }
+
     public static Vector2 GetDirectionVector(string directionName)
     {
         if (DirectionVector.TryGetValue(directionName, out Vector2I direction))

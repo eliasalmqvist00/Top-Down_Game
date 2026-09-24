@@ -13,7 +13,7 @@ public partial class Player : Entity
 	[Export] public PlayerAnimation PlayerAnimation;
 
 	[ExportCategory("Player Vars")]
-	[Export] public int PlayerMovementSpeed = 5;
+	[Export] public int PlayerBaseMovementSpeed = 5;
 	[Export] public double AttackCoolDown = 0.0;
 	[Export] public int AttackDamage = 5;
 	[Export] public int KnockbackForce = 4;
@@ -27,7 +27,7 @@ public partial class Player : Entity
 		MaxHealth = 30;
 		base._Ready();
 
-		MovementSpeed = PlayerMovementSpeed;
+		MovementSpeed = PlayerBaseMovementSpeed;
 		PlayerHurtbox.ReceivedDamage += OnDamageReceived;
 
 		StateMachine.ChangeState(StateMachine.GetNode<State>("Roam"));

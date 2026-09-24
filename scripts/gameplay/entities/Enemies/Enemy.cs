@@ -114,25 +114,27 @@ public partial class Enemy : Entity
 
 	public void DamageFlash()
     {
-        // Cancel any existing flash tween so it doesn't fight the new one
         _dmgFlashTween?.Kill();
         _dmgFlashTween = CreateTween();
 
-        // 10x overbright dmgFlash (or use Colors.Red for a red tint)
         EnemyAnimation.Modulate = new Color(10, 10, 10, 1);
 
-        // Tween back to normal over 0.15 seconds
         _dmgFlashTween.TweenProperty(EnemyAnimation, "modulate", Colors.White, 0.15f);
     }
 
 	private void DisableAreaMonitoring()
     {
+		CollisionShape.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+		;
         DetectionArea.SetDeferred(Area2D.PropertyName.Monitoring, false);
 		DetectionArea.SetDeferred(Area2D.PropertyName.Monitorable, false);
+
 		EnemyHurtbox.SetDeferred(Area2D.PropertyName.Monitoring, false);
 		EnemyHurtbox.SetDeferred(Area2D.PropertyName.Monitorable, false);
+
 		GetNode<Marker2D>("HitboxPivot").GetNode<EnemyHitbox>("Hitbox").SetDeferred(Area2D.PropertyName.Monitoring, false);
 		GetNode<Marker2D>("HitboxPivot").GetNode<EnemyHitbox>("Hitbox").SetDeferred(Area2D.PropertyName.Monitorable, false);
+
 		GetNode<Marker2D>("AttackRangePivot").GetNode<Area2D>("AttackRange").SetDeferred(Area2D.PropertyName.Monitoring, false);
 		GetNode<Marker2D>("AttackRangePivot").GetNode<Area2D>("AttackRange").SetDeferred(Area2D.PropertyName.Monitorable, false);
     }
