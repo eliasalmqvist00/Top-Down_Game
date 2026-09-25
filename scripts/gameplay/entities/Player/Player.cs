@@ -20,6 +20,7 @@ public partial class Player : Entity
 
 	private Tween _dmgFlashTween;
 	public bool IsAttacking = false;
+	public ItemData HeldItem;
 
 	
 	public override void _Ready()
@@ -28,6 +29,8 @@ public partial class Player : Entity
 		base._Ready();
 
 		MovementSpeed = PlayerBaseMovementSpeed;
+
+		GameEvents.OnActiveItemChanged += OnItemEquipped;
 		PlayerHurtbox.ReceivedDamage += OnDamageReceived;
 
 		StateMachine.ChangeState(StateMachine.GetNode<State>("Roam"));
@@ -36,6 +39,11 @@ public partial class Player : Entity
     public override void _Process(double delta)
     {
         HitboxPivot.Rotation = Direction.Angle() + Vector2.Up.Angle();
+    }
+
+	public void OnItemEquipped(ItemData item)
+    {
+        HeldItem = item;
     }
 
 	private void OnDamageReceived(DamageInfo dmgInfo)

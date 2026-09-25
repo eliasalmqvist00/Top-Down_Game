@@ -27,31 +27,32 @@ public partial class PlayerRoamState : State
 	private readonly List<StringName> ActiveInputs = new();
 
 	public override void EnterState()
-    {
-        base.EnterState();
+	{
+		base.EnterState();
 
-        // Connect signals only while in this state
-        PlayerMovement.StepStarted += OnStepStarted;
-        PlayerMovement.StepFinished += OnStepFinished;
-        PlayerMovement.StepBlocked += OnStepBlocked;
+		// Connect signals only while in this state
+		PlayerMovement.StepStarted += OnStepStarted;
+		PlayerMovement.StepFinished += OnStepFinished;
+		PlayerMovement.StepBlocked += OnStepBlocked;
 
 		if(ActiveInputs.Count != 0)
-        {
-        	HoldTime = HoldThreshold;
-            
-        }
-        else
-        { 
-        	HoldTime = 0.0;
-        }
-    }
+		{
+			HoldTime = HoldThreshold;
+			
+		}
+		else
+		{ 
+			HoldTime = 0.0;
+		}
+	}
 
 	public override void _Process(double delta)
 	{
 		// 1. Attack priority check
 		if (Modules.IsAttackJustPressed())
 		{
-			StateMachine.ChangeState(StateMachine.GetNode<State>("Attack"));
+			if(Player.HeldItem.ItemName == "Sword") StateMachine.ChangeState(StateMachine.GetNode<State>("Attack"));
+			if(Player.HeldItem.ItemName == "Axe") StateMachine.ChangeState(StateMachine.GetNode<State>("Chop"));
 			return;
 		}
 		// 2. Movement handling
@@ -61,18 +62,18 @@ public partial class PlayerRoamState : State
 	private void GetInput(double delta)
 	{
 		if(ActiveInputs.Contains(ActionSprint))
-        {
-            Player.MovementSpeed = 8;
-        }
-        else
-        {
-            Player.MovementSpeed = Player.PlayerBaseMovementSpeed;
-        }
+		{
+			Player.MovementSpeed = 8;
+		}
+		else
+		{
+			Player.MovementSpeed = Player.PlayerBaseMovementSpeed;
+		}
 
 		if(PlayerMovement.IsCurrentlyMoving())
-        {
-            return;
-        }
+		{
+			return;
+		}
 
 		if (ActiveInputs.Count == 0)
 		{
@@ -92,9 +93,9 @@ public partial class PlayerRoamState : State
 
 			}
 			else
-            {
-                PlayerAnimation.PlayTurn();
-            }
+			{
+				PlayerAnimation.PlayTurn();
+			}
 		}
 		else
 		{
@@ -103,27 +104,27 @@ public partial class PlayerRoamState : State
 	}
 
 	private void OnStepStarted()
-    {
-        PlayerAnimation.PlayWalk();
-    }
+	{
+		PlayerAnimation.PlayWalk();
+	}
 
-    private void OnStepFinished()
-    {
-        // Check if player is still holding a direction to chain steps smoothly
-        if (Player.Direction != Vector2.Zero)
-        {
-            PlayerAnimation.PlayWalk();
-        }
-        else
-        {
-            PlayerAnimation.PlayIdle();
-        }
-    }
+	private void OnStepFinished()
+	{
+		// Check if player is still holding a direction to chain steps smoothly
+		if (Player.Direction != Vector2.Zero)
+		{
+			PlayerAnimation.PlayWalk();
+		}
+		else
+		{
+			PlayerAnimation.PlayIdle();
+		}
+	}
 
-    private void OnStepBlocked()
-    {
-        PlayerAnimation.PlayIdle();
-    }
+	private void OnStepBlocked()
+	{
+		PlayerAnimation.PlayIdle();
+	}
 
 	private Vector2 GetInputDirection()
 	{
@@ -200,10 +201,10 @@ public partial class PlayerRoamState : State
 		base.ExitState();
 		//ActiveInputs.Clear();
 
-        // Disconnectonnect signals only while not in this state
+		// Disconnectonnect signals only while not in this state
 		PlayerMovement.StepStarted -= OnStepStarted;
-        PlayerMovement.StepFinished -= OnStepFinished;
-        PlayerMovement.StepBlocked -= OnStepBlocked;
+		PlayerMovement.StepFinished -= OnStepFinished;
+		PlayerMovement.StepBlocked -= OnStepBlocked;
 
 		HoldTime = 0.0f;
 	}

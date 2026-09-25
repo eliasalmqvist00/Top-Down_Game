@@ -6,17 +6,44 @@ namespace Game.HUD;
 
 public partial class ToolbarSlot : PanelContainer
 {
-    private Sprite2D _itemSprite;
-    private ItemData _slotItem;
+	[Export] private TextureRect _icon;
 
-    public ToolbarSlot()
-    {
-        
-    }
+	[ExportGroup("Slot Styles")]
+	[Export] private StyleBox _normalStyle;
+	[Export] private StyleBox _highlightStyle;
 
-    public Sprite2D GetItemSprite()
-    {
-        return _itemSprite;
-    }
+	[ExportGroup("Item")]
+	[Export] public ItemData SlotItem { get; private set; }
+
+	public override void _Ready()
+	{
+		SetItem(SlotItem);
+	}
+
+	public void SetItem(ItemData item)
+	{
+		SlotItem = item;
+		
+		if (item != null && item.ItemIcon != null)
+		{
+			_icon.Texture = item.ItemIcon;
+			_icon.Visible = true;
+		}
+		else
+		{
+			_icon.Texture = null;
+			_icon.Visible = false;
+		}
+	}
+
+	public void SetSelected(bool isSelected)
+	{
+		StyleBox activeStyle = isSelected ? _highlightStyle : _normalStyle;
+		if (activeStyle != null)
+		{
+			AddThemeStyleboxOverride("panel", activeStyle);
+		}
+		
+	}
 
 }

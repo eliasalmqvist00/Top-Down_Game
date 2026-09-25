@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://blwfg314mo34h"]
+
+[ext_resource type="Script" uid="uid://ckr4ualmj54sg" path="res://scripts/UI/HUD/toolbar/Toolbar.cs" id="1_d3nv4"]
+[ext_resource type="Script" uid="uid://xma8amsimpcn" path="res://scripts/UI/HUD/toolbar/ToolbarSlot.cs" id="2_ktlb0"]
+[ext_resource type="Resource" uid="uid://d0wos3ki02phw" path="res://resources/items/tools/Sword.tres" id="3_y4css"]
+[ext_resource type="Resource" uid="uid://orrewko5a5v8" path="res://resources/items/tools/Axe.tres" id="4_ag2rl"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qmgkd"]
+load_path = "res://.godot/imported/Toolbar.png-4f1d656449a66fd1cfde9b9f235a7101.ctex"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ag2rl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ag2rl"]
+bg_color = Color(0.62999433, 1.2549831, 0.61669666, 0.8784314)
+
+[node name="HUD_Toolbar" type="CanvasLayer" unique_id=1611501958]
+
+[node name="Control" type="Control" parent="." unique_id=1795949325]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 487.99997
+offset_right = 1152.0
+offset_bottom = 616.0
+size_flags_vertical = 8
+
+[node name="Toolbar" type="HBoxContainer" parent="Control" unique_id=628622997]
+modulate = Color(1, 1, 1, 0.9137255)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -64.0
+offset_right = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 16
+script = ExtResource("1_d3nv4")
+
+[node name="ToolbarSprite" type="Sprite2D" parent="Control/Toolbar" unique_id=1623386164]
+texture_filter = 1
+position = Vector2(192, 32)
+scale = Vector2(0.9999998, 0.9999998)
+texture = SubResource("CompressedTexture2D_qmgkd")
+
+[node name="ToolbarSlot" type="PanelContainer" parent="Control/Toolbar" unique_id=156969197 node_paths=PackedStringArray("_icon")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+script = ExtResource("2_ktlb0")
+_icon = NodePath("MarginContainer/Icon")
+_normalStyle = SubResource("StyleBoxEmpty_ag2rl")
+_highlightStyle = SubResource("StyleBoxFlat_ag2rl")
+SlotItem = ExtResource("3_y4css")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Toolbar/ToolbarSlot" unique_id=1907024173]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Control/Toolbar/ToolbarSlot/MarginContainer" unique_id=42610690]
+layout_mode = 2
+
+[node name="ToolbarSlot2" type="PanelContainer" parent="Control/Toolbar" unique_id=1147306864 node_paths=PackedStringArray("_icon")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+script = ExtResource("2_ktlb0")
+_icon = NodePath("MarginContainer/Icon")
+_normalStyle = SubResource("StyleBoxEmpty_ag2rl")
+_highlightStyle = SubResource("StyleBoxFlat_ag2rl")
+SlotItem = ExtResource("4_ag2rl")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Toolbar/ToolbarSlot2" unique_id=1151392754]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Control/Toolbar/ToolbarSlot2/MarginContainer" unique_id=2102869612]
+layout_mode = 2
+
+[node name="ToolbarSlot3" type="PanelContainer" parent="Control/Toolbar" unique_id=290675421 node_paths=PackedStringArray("_icon")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+script = ExtResource("2_ktlb0")
+_icon = NodePath("MarginContainer/Icon")
+_normalStyle = SubResource("StyleBoxEmpty_ag2rl")
+_highlightStyle = SubResource("StyleBoxFlat_ag2rl")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Toolbar/ToolbarSlot3" unique_id=1290109068]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Control/Toolbar/ToolbarSlot3/MarginContainer" unique_id=2129609260]
+layout_mode = 2
+
+[node name="ToolbarSlot4" type="PanelContainer" parent="Control/Toolbar" unique_id=430745575 node_paths=PackedStringArray("_icon")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+script = ExtResource("2_ktlb0")
+_icon = NodePath("MarginContainer/Icon")
+_normalStyle = SubResource("StyleBoxEmpty_ag2rl")
+_highlightStyle = SubResource("StyleBoxFlat_ag2rl")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Toolbar/ToolbarSlot4" unique_id=662275541]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Control/Toolbar/ToolbarSlot4/MarginContainer" unique_id=816312257]
+layout_mode = 2
+
+[node name="ToolbarSlot5" type="PanelContainer" parent="Control/Toolbar" unique_id=25850760 node_paths=PackedStringArray("_icon")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+script = ExtResource("2_ktlb0")
+_icon = NodePath("MarginContainer/Icon")
+_normalStyle = SubResource("StyleBoxEmpty_ag2rl")
+_highlightStyle = SubResource("StyleBoxFlat_ag2rl")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Toolbar/ToolbarSlot5" unique_id=718169180]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Control/Toolbar/ToolbarSlot5/MarginContainer" unique_id=1613594473]
+layout_mode = 2

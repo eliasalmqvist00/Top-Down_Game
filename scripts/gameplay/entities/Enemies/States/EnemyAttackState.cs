@@ -35,10 +35,10 @@ public partial class EnemyAttackState : State
 	public async void Attack()
 	{
 		while(_inRange)
-        {
+		{
 			EnemyAnimation.PlayAttack();
 			await ToSignal(GetTree().CreateTimer(1.2f), SceneTreeTimer.SignalName.Timeout); 
-        }
+		}
 	}
 
 	private void NotInRange(Area2D areaa)

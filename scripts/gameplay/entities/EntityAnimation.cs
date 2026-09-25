@@ -20,7 +20,7 @@ public partial class EntityAnimation : AnimatedSprite2D
 	public void PlayAttack() => PlayAnimation("attack");
 	public void PlayDeath() => Play("death");
 
-	private void PlayAnimation(string animationPrefix)
+	public virtual void PlayAnimation(string animationPrefix)
 	{
 		string animation = GetDirectionalAnimation(animationPrefix).ToString();
 

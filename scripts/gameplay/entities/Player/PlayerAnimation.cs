@@ -13,4 +13,7 @@ public partial class PlayerAnimation : EntityAnimation
 		base._Ready();
 
 	}
+	
+	public void PlayChop() => PlayAnimation("chop");
+
 }
