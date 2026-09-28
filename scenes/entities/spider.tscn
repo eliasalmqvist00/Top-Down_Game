@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c4iju26wimvi5" path="res://scripts/gameplay/entities/Enemies/Enemy.cs" id="1_m1fgu"]
 [ext_resource type="Script" uid="uid://cd6siq5vunnlm" path="res://scripts/gameplay/entities/Enemies/EnemyMovement.cs" id="2_r3082"]
-[ext_resource type="Texture2D" uid="uid://peynxdmw7sfy" path="res://assets/enemies/spider09.png" id="4_aoms7"]
+[ext_resource type="Texture2D" uid="uid://peynxdmw7sfy" path="res://assets/entities/enemies/spider09.png" id="4_aoms7"]
 [ext_resource type="Script" uid="uid://1vx5wvndm0o0" path="res://scripts/gameplay/entities/Enemies/EnemyHurtbox.cs" id="4_r3082"]
 [ext_resource type="Script" uid="uid://cnuc364wpe2pg" path="res://scripts/gameplay/entities/Enemies/EnemyAnimation.cs" id="5_ed2xj"]
 [ext_resource type="Script" uid="uid://djqef7e1rhxd8" path="res://scripts/gameplay/utilities/StateMachine.cs" id="8_584b1"]

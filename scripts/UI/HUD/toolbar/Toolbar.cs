@@ -31,12 +31,10 @@ public partial class Toolbar :  HBoxContainer
 	{
 		if(@event.IsActionPressed("ui_scroll_up"))
 		{
-			Core.Logger.Info("Next Item in Toolbar");
 			SelectPreviousItem();
 		}
 		else if(@event.IsActionPressed("ui_scroll_down"))
 		{
-			Core.Logger.Info("Previous Item in Toolbar");
 			SelectNextItem();
 		}
 	}
@@ -61,7 +59,7 @@ public partial class Toolbar :  HBoxContainer
 		{
 			_slots[i-1].SetSelected(SelectedIdx == i);
 		}
-		_activeItem = _slots[SelectedIdx].SlotItem;
+		_activeItem = _slots[SelectedIdx-1].SlotItem;
 		GameEvents.EmitActiveItemChanged(_activeItem);
 	}
 

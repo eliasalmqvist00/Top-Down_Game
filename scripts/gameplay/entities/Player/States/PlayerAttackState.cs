@@ -24,7 +24,7 @@ public partial class PlayerAttackState : State
 	    
 		PlayerAnimation.PlayAttack();
 
-        await ToSignal(PlayerAnimation, EntityAnimation.SignalName.AnimationFinished);
+        await ToSignal(PlayerAnimation, PlayerAnimation.SignalName.AnimationFinished);
 
         PlayerHitbox.Disabled = true;
         OnAttackFinished();

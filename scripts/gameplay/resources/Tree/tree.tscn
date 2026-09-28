@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://ciif1xy1nl6mv"]
+
+[ext_resource type="Texture2D" uid="uid://1l6phuwlqmqx" path="res://assets/nature/decoration/Oak_Tree_Small.png" id="1_b6hod"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mo4my"]
+size = Vector2(4, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j22mf"]
+size = Vector2(4, 10)
+
+[node name="Tree" type="StaticBody2D" unique_id=2125091723]
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=347808413]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_mo4my")
+
+[node name="TreeSprite" type="Sprite2D" parent="." unique_id=924827601]
+
+[node name="TreeHurtbox" type="Area2D" parent="." unique_id=1935627987]
+visible = false
+
+[node name="HurtboxShape" type="CollisionShape2D" parent="TreeHurtbox" unique_id=1494254958]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_j22mf")
+
+[node name="TrunkSprite" type="Sprite2D" parent="." unique_id=421522340]
+texture_filter = 1
+texture = ExtResource("1_b6hod")
+region_enabled = true
+region_rect = Rect2(0, 0.5, 32, 47.5)
+
+[node name="CanopyPivot" type="Marker2D" parent="." unique_id=1661316686]
+position = Vector2(0, 8)
+
+[node name="CanopySprite" type="Sprite2D" parent="CanopyPivot" unique_id=1787626726]
+texture_filter = 1
+position = Vector2(0.05585008, -7.9998055)
+texture = ExtResource("1_b6hod")
+region_enabled = true
+region_rect = Rect2(64, 0, 32, 48)

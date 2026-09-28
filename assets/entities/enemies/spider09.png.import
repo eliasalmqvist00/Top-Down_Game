@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clfor3ep072fl"
-path="res://.godot/imported/Player_Actions.png-3ea80fc140b420903eca6e3609c97097.ctex"
+uid="uid://peynxdmw7sfy"
+path="res://.godot/imported/spider09.png-09ad84257bd6e4b9de79115a434de362.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/Player_Actions.png"
-dest_files=["res://.godot/imported/Player_Actions.png-3ea80fc140b420903eca6e3609c97097.ctex"]
+source_file="res://assets/entities/enemies/spider09.png"
+dest_files=["res://.godot/imported/spider09.png-09ad84257bd6e4b9de79115a434de362.ctex"]
 
 [params]
 

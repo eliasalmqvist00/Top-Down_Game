@@ -21,9 +21,15 @@ public partial class PlayerChopState : State
 		Vector2 chopDirection = GetMouseDirection(Player.Position);
 		Player.Direction = chopDirection;
 		
-		PlayerAnimation.PlayChop();
+		Core.Logger.Debug("About to chop");
 
-		await ToSignal(PlayerAnimation, EntityAnimation.SignalName.AnimationFinished);
+		PlayerAnimation.PlayChop();
+		
+		Core.Logger.Debug("Chopped");
+
+		await ToSignal(PlayerAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
+
+		Core.Logger.Debug("Finished animation wait");
 
 		PlayerHitbox.Disabled = true;
 		OnChopFinished();
@@ -31,7 +37,7 @@ public partial class PlayerChopState : State
 
 	public void OnFrameChange()
 	{
-		if(PlayerAnimation.Animation.ToString().StartsWith("chop"))
+		if(PlayerAnimation.Animation.ToString().StartsWith("axe"))
 		{
 			if(PlayerAnimation.Frame == 1)
 			{

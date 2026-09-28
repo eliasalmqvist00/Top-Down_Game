@@ -12,8 +12,6 @@ public partial class EntityAnimation : AnimatedSprite2D
 	[ExportCategory("Animation Vars")]
 	[Export] public ECharacterAnimation CurrentAnimation = ECharacterAnimation.idle_down;
 	
-
-
 	public void PlayWalk() => PlayAnimation("move");
 	public void PlayIdle() => PlayAnimation("idle");
 	public void PlayTurn() => PlayAnimation("turn");

@@ -4,8 +4,6 @@ namespace Game.Gameplay;
 
 public partial class PlayerAnimation : EntityAnimation
 {
-	[ExportCategory("Nodes")]
-	[Export] public PlayerAttack PlayerAttack;
 
 	public bool IsAttacking = false;
 	public override void _Ready()
@@ -14,6 +12,6 @@ public partial class PlayerAnimation : EntityAnimation
 
 	}
 	
-	public void PlayChop() => PlayAnimation("chop");
+	public void PlayChop() => PlayAnimation("axe");
 
 }

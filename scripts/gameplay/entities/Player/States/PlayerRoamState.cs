@@ -23,14 +23,13 @@ public partial class PlayerRoamState : State
 	private static readonly StringName ActionRight = "ui_right";
 	private static readonly StringName ActionSprint = "ui_shift";
 
-	// Tracks held directional inputs in the order they were pressed
+
 	private readonly List<StringName> ActiveInputs = new();
 
 	public override void EnterState()
 	{
 		base.EnterState();
 
-		// Connect signals only while in this state
 		PlayerMovement.StepStarted += OnStepStarted;
 		PlayerMovement.StepFinished += OnStepFinished;
 		PlayerMovement.StepBlocked += OnStepBlocked;
@@ -51,8 +50,8 @@ public partial class PlayerRoamState : State
 		// 1. Attack priority check
 		if (Modules.IsAttackJustPressed())
 		{
-			if(Player.HeldItem.ItemName == "Sword") StateMachine.ChangeState(StateMachine.GetNode<State>("Attack"));
-			if(Player.HeldItem.ItemName == "Axe") StateMachine.ChangeState(StateMachine.GetNode<State>("Chop"));
+			if(Player.HeldItem?.ItemName == "Sword") StateMachine.ChangeState(StateMachine.GetNode<State>("Attack"));
+			if(Player.HeldItem?.ItemName == "Axe") StateMachine.ChangeState(StateMachine.GetNode<State>("Chop"));
 			return;
 		}
 		// 2. Movement handling
@@ -110,7 +109,6 @@ public partial class PlayerRoamState : State
 
 	private void OnStepFinished()
 	{
-		// Check if player is still holding a direction to chain steps smoothly
 		if (Player.Direction != Vector2.Zero)
 		{
 			PlayerAnimation.PlayWalk();
@@ -138,7 +136,6 @@ public partial class PlayerRoamState : State
 		bool isLeft = ActiveInputs.Contains(ActionLeft);
 		bool isRight = ActiveInputs.Contains(ActionRight);
 
-		// Cancel opposing inputs on the same axis (holding W + S cancels out)
 		int x = 0;
 		if (isRight && !isLeft) x = 1;
 		else if (isLeft && !isRight) x = -1;
@@ -147,7 +144,6 @@ public partial class PlayerRoamState : State
 		if (isDown && !isUp) y = 1;
 		else if (isUp && !isDown) y = -1;
 
-		// Determine the direction string based on combined axes
 		string directionName = (x, y) switch
 		{
 			( 0, -1) => "North",
@@ -163,7 +159,6 @@ public partial class PlayerRoamState : State
 
 		if (directionName == null)
 		{
-			// Inputs canceled each other out (e.g. holding both Left and Right)
 			HoldTime = 0.0;
 			return Vector2.Zero;
 		}
@@ -199,9 +194,7 @@ public partial class PlayerRoamState : State
 	public override void ExitState()
 	{
 		base.ExitState();
-		//ActiveInputs.Clear();
 
-		// Disconnectonnect signals only while not in this state
 		PlayerMovement.StepStarted -= OnStepStarted;
 		PlayerMovement.StepFinished -= OnStepFinished;
 		PlayerMovement.StepBlocked -= OnStepBlocked;

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bi532wrvl1rlk" path="res://scripts/gameplay/entities/Player/player.tscn" id="2_xopn4"]
 [ext_resource type="PackedScene" uid="uid://bmthxxlaedqtq" path="res://scenes/entities/spider.tscn" id="3_cbem3"]
 [ext_resource type="Script" uid="uid://clpylg78cwnnv" path="res://scripts/gameplay/entities/Player/PlayerHealthbar.cs" id="4_xopn4"]
+[ext_resource type="PackedScene" uid="uid://ciif1xy1nl6mv" path="res://scripts/gameplay/resources/Tree/tree.tscn" id="5_br8lc"]
 [ext_resource type="PackedScene" uid="uid://blwfg314mo34h" path="res://scripts/UI/HUD/toolbar/hud_toolbar.tscn" id="5_cbem3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbem3"]
@@ -62,6 +63,9 @@ position = Vector2(56, 256)
 position = Vector2(56, 256)
 Player = NodePath("../Player")
 SpawnPoint = NodePath("../Spider Spawn2")
+
+[node name="Tree" parent="Control/SubViewportContainer/SubViewport" unique_id=2125091723 instance=ExtResource("5_br8lc")]
+position = Vector2(500, 260)
 
 [node name="HUD_Layer" type="CanvasLayer" parent="." unique_id=610799083]
 

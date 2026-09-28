@@ -44,6 +44,7 @@ public partial class Player : Entity
 	public void OnItemEquipped(ItemData item)
     {
         HeldItem = item;
+		GD.Print($"Player equipped: {HeldItem?.ItemName ?? "Hands empty"}");
     }
 
 	private void OnDamageReceived(DamageInfo dmgInfo)
@@ -89,8 +90,4 @@ public partial class Player : Entity
         _dmgFlashTween.TweenProperty(PlayerAnimation, "modulate", Colors.White, 0.15f);
     }
 
-	// public static Vector2 GetPlayerPosition()
-    // {
-    //     return Position;
-    // }
 }
