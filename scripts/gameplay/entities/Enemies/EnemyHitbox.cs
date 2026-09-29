@@ -18,7 +18,8 @@ public partial class EnemyHitbox : Area2D
 		{
 			Amount = Enemy.AttackDamage,
 			KnockbackForce = new Vector2(0,0),
-			Attacker = Owner
+			Attacker = Owner,
+			HitDirection = Enemy.Direction
 		};
 	}
 

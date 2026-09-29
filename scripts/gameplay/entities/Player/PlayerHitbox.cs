@@ -15,9 +15,10 @@ public partial class PlayerHitbox : Area2D
 
 		return new DamageInfo
 		{
-			Amount = Player.AttackDamage,
+			Amount = Player.HeldItem.Damage,
 			KnockbackForce = knockback,
-			Attacker = Owner
+			Attacker = Owner,
+			HitDirection = Player.Direction
 		};
 	}
 

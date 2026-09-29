@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://br8vi6u30o263"]
+
+[ext_resource type="Script" uid="uid://dj84j3x1hgvpp" path="res://scripts/gameplay/items/ItemData.cs" id="1_3vxn5"]
+[ext_resource type="Texture2D" uid="uid://cqukdjf6c2wc6" path="res://assets/nature/decoration/Outdoor_Decor_Free.png" id="1_jqm8o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvenx"]
+atlas = ExtResource("1_jqm8o")
+region = Rect2(0, 113, 32, 13)
+
+[resource]
+script = ExtResource("1_3vxn5")
+ItemID = "4"
+ItemName = "Log"
+ItemIcon = SubResource("AtlasTexture_qvenx")
+metadata/_custom_type_script = "uid://dj84j3x1hgvpp"

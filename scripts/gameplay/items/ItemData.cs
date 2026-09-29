@@ -9,6 +9,7 @@ public partial class ItemData : Resource
     [Export] public string ItemName { get; set; } = "New Item";
     [Export] public Texture2D ItemIcon { get; set; }
     [Export] public bool IsConsumable { get; set; } = false;
+    [Export] public int Damage {get; set;} = 0;
 
 
 }

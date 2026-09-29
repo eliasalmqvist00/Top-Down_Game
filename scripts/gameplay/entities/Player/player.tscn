@@ -720,7 +720,7 @@ size = Vector2(16, 8)
 size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D" unique_id=2135259194 node_paths=PackedStringArray("StateMachine", "HitboxPivot", "PlayerHurtbox", "PlayerAnimation", "CollisionShape", "EntityMovement")]
-z_index = 1
+position = Vector2(0, -8)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_dnykm")
@@ -766,6 +766,7 @@ PlayerHitbox = NodePath("HitBox/HitboxShape")
 PlayerAnimation = NodePath("../Animations")
 
 [node name="HitBox" type="Area2D" parent="HitboxPivot" unique_id=1530885381 node_paths=PackedStringArray("Player")]
+y_sort_enabled = true
 position = Vector2(0, 12)
 collision_layer = 4
 collision_mask = 0

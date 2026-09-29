@@ -20,16 +20,10 @@ public partial class PlayerChopState : State
 	{
 		Vector2 chopDirection = GetMouseDirection(Player.Position);
 		Player.Direction = chopDirection;
-		
-		Core.Logger.Debug("About to chop");
 
 		PlayerAnimation.PlayChop();
-		
-		Core.Logger.Debug("Chopped");
 
 		await ToSignal(PlayerAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
-
-		Core.Logger.Debug("Finished animation wait");
 
 		PlayerHitbox.Disabled = true;
 		OnChopFinished();

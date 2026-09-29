@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dhh4h1jjasq38"]
+
+[ext_resource type="Script" uid="uid://s1aw5lcjxo7v" path="res://scripts/gameplay/items/ItemPickup.cs" id="1_kv6vy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mo4my"]
+radius = 24.0
+
+[node name="ItemPickup" type="Area2D" unique_id=1747388561 node_paths=PackedStringArray("_icon", "_collisionShape")]
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_kv6vy")
+_icon = NodePath("Icon")
+_collisionShape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1920245353]
+y_sort_enabled = true
+shape = SubResource("CircleShape2D_mo4my")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=1134101925]
