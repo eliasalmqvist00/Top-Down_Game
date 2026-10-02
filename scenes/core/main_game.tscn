@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bx5dtxm4u4101"]
 
 [ext_resource type="PackedScene" uid="uid://c0rlim53vdj3p" path="res://scenes/levels/nature_test.tscn" id="1_kikm7"]
+[ext_resource type="PackedScene" uid="uid://bsk53u41nc28o" path="res://scripts/UI/HUD/inventory/inventorty.tscn" id="1_sdxsi"]
 [ext_resource type="PackedScene" uid="uid://bi532wrvl1rlk" path="res://scripts/gameplay/entities/Player/player.tscn" id="2_xopn4"]
-[ext_resource type="PackedScene" uid="uid://bmthxxlaedqtq" path="res://scenes/entities/spider.tscn" id="3_cbem3"]
 [ext_resource type="Script" uid="uid://clpylg78cwnnv" path="res://scripts/gameplay/entities/Player/PlayerHealthbar.cs" id="4_xopn4"]
 [ext_resource type="PackedScene" uid="uid://ciif1xy1nl6mv" path="res://scripts/gameplay/resources/Tree/tree.tscn" id="5_br8lc"]
-[ext_resource type="PackedScene" uid="uid://blwfg314mo34h" path="res://scripts/UI/HUD/toolbar/hud_toolbar.tscn" id="5_cbem3"]
+[ext_resource type="PackedScene" uid="uid://bmthxxlaedqtq" path="res://scripts/gameplay/entities/Enemies/spider.tscn" id="5_sdxsi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbem3"]
 bg_color = Color(0.41132262, 0.39743367, 0.2764011, 0.7764706)
@@ -41,7 +41,7 @@ size_2d_override = Vector2i(1152, 648)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="HUD_Toolbar" parent="Control/SubViewportContainer/SubViewport" unique_id=1611501958 instance=ExtResource("5_cbem3")]
+[node name="Inventory" parent="Control/SubViewportContainer/SubViewport" unique_id=1473540657 instance=ExtResource("1_sdxsi")]
 
 [node name="World" type="Node2D" parent="Control/SubViewportContainer/SubViewport" unique_id=1745456054]
 y_sort_enabled = true
@@ -55,18 +55,16 @@ position = Vector2(560, 176)
 [node name="Spider Spawn" type="Marker2D" parent="Control/SubViewportContainer/SubViewport/World" unique_id=1627040465]
 position = Vector2(552, 88)
 
-[node name="Spider" parent="Control/SubViewportContainer/SubViewport/World" unique_id=276010328 node_paths=PackedStringArray("Player", "SpawnPoint") instance=ExtResource("3_cbem3")]
-position = Vector2(552, 88)
-Player = NodePath("../Player")
-SpawnPoint = NodePath("../Spider Spawn")
+[node name="Spider" parent="Control/SubViewportContainer/SubViewport/World/Spider Spawn" unique_id=276010328 node_paths=PackedStringArray("Player", "SpawnPoint") instance=ExtResource("5_sdxsi")]
+Player = NodePath("../../Player")
+SpawnPoint = NodePath("..")
 
 [node name="Spider Spawn2" type="Marker2D" parent="Control/SubViewportContainer/SubViewport/World" unique_id=224167669]
 position = Vector2(56, 256)
 
-[node name="Spider 2" parent="Control/SubViewportContainer/SubViewport/World" unique_id=278787618 node_paths=PackedStringArray("Player", "SpawnPoint") instance=ExtResource("3_cbem3")]
-position = Vector2(56, 256)
-Player = NodePath("../Player")
-SpawnPoint = NodePath("../Spider Spawn2")
+[node name="Spider" parent="Control/SubViewportContainer/SubViewport/World/Spider Spawn2" unique_id=89735853 node_paths=PackedStringArray("Player", "SpawnPoint") instance=ExtResource("5_sdxsi")]
+Player = NodePath("../../Player")
+SpawnPoint = NodePath("..")
 
 [node name="Trees" type="Node2D" parent="Control/SubViewportContainer/SubViewport/World" unique_id=902537748]
 y_sort_enabled = true

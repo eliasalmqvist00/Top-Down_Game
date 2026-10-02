@@ -28,7 +28,7 @@ public partial class Tree : StaticBody2D
 
 	public void OnHurtboxEntered(Area2D area)
 	{
-		if(area is PlayerHitbox hitbox)
+		if(area is PlayerHitbox hitbox && hitbox.Player.HeldItem.ItemName == "Axe")
 		{
 			DamageInfo dmgInfo = hitbox.GetDamageInfo(Position);
 

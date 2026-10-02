@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bratbvcts7v6"]
+
+[ext_resource type="Script" uid="uid://xma8amsimpcn" path="res://scripts/UI/HUD/toolbar/ToolbarSlot.cs" id="1_soqmf"]
+[ext_resource type="Resource" uid="uid://d0wos3ki02phw" path="res://resources/items/tools/Sword.tres" id="2_lgxpx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ag2rl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ag2rl"]
+bg_color = Color(0.62999433, 1.2549831, 0.61669666, 0.8784314)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ag2rl"]
+
+[node name="ToolbarSlot" type="PanelContainer" unique_id=2051378662 node_paths=PackedStringArray("_icon", "_countLabel")]
+custom_minimum_size = Vector2(64, 64)
+size_flags_vertical = 4
+script = ExtResource("1_soqmf")
+_icon = NodePath("IconContainer/Icon")
+_countLabel = NodePath("CountContainer/TextEdit")
+_normalStyle = SubResource("StyleBoxEmpty_ag2rl")
+_highlightStyle = SubResource("StyleBoxFlat_ag2rl")
+SlotItem = ExtResource("2_lgxpx")
+
+[node name="IconContainer" type="MarginContainer" parent="." unique_id=366820870]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="IconContainer" unique_id=1613952661]
+layout_mode = 2
+
+[node name="CountContainer" type="MarginContainer" parent="." unique_id=32837537]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+offset_transform_position = Vector2(48, 0)
+layout_direction = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = -1
+
+[node name="TextEdit" type="Label" parent="CountContainer" unique_id=46370870]
+layout_mode = 2
+offset_transform_enabled = true
+text = "8"
+label_settings = SubResource("LabelSettings_ag2rl")
+horizontal_alignment = 2
+vertical_alignment = 2

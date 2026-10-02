@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://decw3h13yesik"]
+
+[ext_resource type="Texture2D" uid="uid://cg5go5beksx4j" path="res://resources/items/LogIcon.tres" id="1_owi3e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mo4my"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_owi3e"]
+font_color = Color(0.00020955394, 3.492566e-05, 0.0004631083, 1)
+outline_size = 2
+
+[node name="InventorySlot" type="PanelContainer" unique_id=1922975075]
+custom_minimum_size = Vector2(64, 64)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mo4my")
+
+[node name="IconContainer" type="MarginContainer" parent="." unique_id=1661025044]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="IconContainer" unique_id=1205893941]
+layout_mode = 2
+texture = ExtResource("1_owi3e")
+
+[node name="CountContainer" type="MarginContainer" parent="." unique_id=1444524688]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="CountContainer" unique_id=1758659878]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "89"
+label_settings = SubResource("LabelSettings_owi3e")

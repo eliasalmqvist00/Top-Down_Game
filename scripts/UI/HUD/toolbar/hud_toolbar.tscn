@@ -1,17 +1,8 @@
 [gd_scene format=3 uid="uid://blwfg314mo34h"]
 
 [ext_resource type="Script" uid="uid://ckr4ualmj54sg" path="res://scripts/UI/HUD/toolbar/Toolbar.cs" id="1_d3nv4"]
-[ext_resource type="Script" uid="uid://xma8amsimpcn" path="res://scripts/UI/HUD/toolbar/ToolbarSlot.cs" id="2_ktlb0"]
-[ext_resource type="Resource" uid="uid://d0wos3ki02phw" path="res://resources/items/tools/Sword.tres" id="3_y4css"]
-[ext_resource type="Resource" uid="uid://orrewko5a5v8" path="res://resources/items/tools/Axe.tres" id="4_ag2rl"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qmgkd"]
-load_path = "res://.godot/imported/Toolbar.png-4f1d656449a66fd1cfde9b9f235a7101.ctex"
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ag2rl"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ag2rl"]
-bg_color = Color(0.62999433, 1.2549831, 0.61669666, 0.8784314)
+[ext_resource type="Texture2D" uid="uid://3grirm0pf2gx" path="res://assets/UI/Toolbar.png" id="2_trfux"]
+[ext_resource type="PackedScene" uid="uid://bratbvcts7v6" path="res://scripts/UI/HUD/toolbar/toolbar_slot.tscn" id="3_y4css"]
 
 [node name="HUD_Toolbar" type="CanvasLayer" unique_id=1611501958]
 
@@ -41,83 +32,36 @@ script = ExtResource("1_d3nv4")
 
 [node name="ToolbarSprite" type="Sprite2D" parent="Control/Toolbar" unique_id=1623386164]
 texture_filter = 1
-position = Vector2(192, 32)
-scale = Vector2(0.9999998, 0.9999998)
-texture = SubResource("CompressedTexture2D_qmgkd")
+position = Vector2(392, 128)
+texture = ExtResource("2_trfux")
+offset = Vector2(1, 0)
 
-[node name="ToolbarSlot" type="PanelContainer" parent="Control/Toolbar" unique_id=156969197 node_paths=PackedStringArray("_icon")]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_vertical = 4
-script = ExtResource("2_ktlb0")
-_icon = NodePath("MarginContainer/Icon")
-_normalStyle = SubResource("StyleBoxEmpty_ag2rl")
-_highlightStyle = SubResource("StyleBoxFlat_ag2rl")
-SlotItem = ExtResource("3_y4css")
-
-[node name="MarginContainer" type="MarginContainer" parent="Control/Toolbar/ToolbarSlot" unique_id=1907024173]
+[node name="ToolbarSlot" parent="Control/Toolbar" unique_id=2051378662 instance=ExtResource("3_y4css")]
 layout_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Control/Toolbar/ToolbarSlot/MarginContainer" unique_id=42610690]
+[node name="ToolbarSlot2" parent="Control/Toolbar" unique_id=1531831704 instance=ExtResource("3_y4css")]
 layout_mode = 2
 
-[node name="ToolbarSlot2" type="PanelContainer" parent="Control/Toolbar" unique_id=1147306864 node_paths=PackedStringArray("_icon")]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_vertical = 4
-script = ExtResource("2_ktlb0")
-_icon = NodePath("MarginContainer/Icon")
-_normalStyle = SubResource("StyleBoxEmpty_ag2rl")
-_highlightStyle = SubResource("StyleBoxFlat_ag2rl")
-SlotItem = ExtResource("4_ag2rl")
-
-[node name="MarginContainer" type="MarginContainer" parent="Control/Toolbar/ToolbarSlot2" unique_id=1151392754]
+[node name="ToolbarSlot3" parent="Control/Toolbar" unique_id=925154286 instance=ExtResource("3_y4css")]
 layout_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Control/Toolbar/ToolbarSlot2/MarginContainer" unique_id=2102869612]
+[node name="ToolbarSlot4" parent="Control/Toolbar" unique_id=567140911 instance=ExtResource("3_y4css")]
 layout_mode = 2
 
-[node name="ToolbarSlot3" type="PanelContainer" parent="Control/Toolbar" unique_id=290675421 node_paths=PackedStringArray("_icon")]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_vertical = 4
-script = ExtResource("2_ktlb0")
-_icon = NodePath("MarginContainer/Icon")
-_normalStyle = SubResource("StyleBoxEmpty_ag2rl")
-_highlightStyle = SubResource("StyleBoxFlat_ag2rl")
-
-[node name="MarginContainer" type="MarginContainer" parent="Control/Toolbar/ToolbarSlot3" unique_id=1290109068]
+[node name="ToolbarSlot5" parent="Control/Toolbar" unique_id=861975067 instance=ExtResource("3_y4css")]
 layout_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Control/Toolbar/ToolbarSlot3/MarginContainer" unique_id=2129609260]
+[node name="ToolbarSlot6" parent="Control/Toolbar" unique_id=1984300923 instance=ExtResource("3_y4css")]
 layout_mode = 2
 
-[node name="ToolbarSlot4" type="PanelContainer" parent="Control/Toolbar" unique_id=430745575 node_paths=PackedStringArray("_icon")]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_vertical = 4
-script = ExtResource("2_ktlb0")
-_icon = NodePath("MarginContainer/Icon")
-_normalStyle = SubResource("StyleBoxEmpty_ag2rl")
-_highlightStyle = SubResource("StyleBoxFlat_ag2rl")
-
-[node name="MarginContainer" type="MarginContainer" parent="Control/Toolbar/ToolbarSlot4" unique_id=662275541]
+[node name="ToolbarSlot7" parent="Control/Toolbar" unique_id=259040075 instance=ExtResource("3_y4css")]
 layout_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Control/Toolbar/ToolbarSlot4/MarginContainer" unique_id=816312257]
+[node name="ToolbarSlot8" parent="Control/Toolbar" unique_id=1692707858 instance=ExtResource("3_y4css")]
 layout_mode = 2
 
-[node name="ToolbarSlot5" type="PanelContainer" parent="Control/Toolbar" unique_id=25850760 node_paths=PackedStringArray("_icon")]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_vertical = 4
-script = ExtResource("2_ktlb0")
-_icon = NodePath("MarginContainer/Icon")
-_normalStyle = SubResource("StyleBoxEmpty_ag2rl")
-_highlightStyle = SubResource("StyleBoxFlat_ag2rl")
-
-[node name="MarginContainer" type="MarginContainer" parent="Control/Toolbar/ToolbarSlot5" unique_id=718169180]
+[node name="ToolbarSlot9" parent="Control/Toolbar" unique_id=1049759086 instance=ExtResource("3_y4css")]
 layout_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Control/Toolbar/ToolbarSlot5/MarginContainer" unique_id=1613594473]
+[node name="ToolbarSlot10" parent="Control/Toolbar" unique_id=1260355204 instance=ExtResource("3_y4css")]
 layout_mode = 2

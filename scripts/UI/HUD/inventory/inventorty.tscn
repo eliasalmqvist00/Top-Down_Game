@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://bsk53u41nc28o"]
+
+[ext_resource type="Texture2D" uid="uid://b7i6b0yvjqm6y" path="res://assets/UI/Inventory.png" id="1_6mk1n"]
+[ext_resource type="Script" uid="uid://chptrrcfbt8e7" path="res://scripts/UI/HUD/inventory/Inventory.cs" id="1_eoob8"]
+[ext_resource type="PackedScene" uid="uid://decw3h13yesik" path="res://scripts/UI/HUD/inventory/inventory_slot.tscn" id="2_eoob8"]
+[ext_resource type="PackedScene" uid="uid://blwfg314mo34h" path="res://scripts/UI/HUD/toolbar/hud_toolbar.tscn" id="4_lmti5"]
+
+[node name="Inventory" type="CanvasLayer" unique_id=1473540657 node_paths=PackedStringArray("_toolbar")]
+process_mode = 3
+layer = 10
+script = ExtResource("1_eoob8")
+_toolbar = NodePath("HUD_Toolbar")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1843587676]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.007843138, 0.015686275, 0.11372549)
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect" unique_id=835000745]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="ColorRect/CenterContainer" unique_id=167989132]
+custom_minimum_size = Vector2(852, 320)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/CenterContainer/Control" unique_id=2135126073]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_6mk1n")
+
+[node name="InventoryGrid" type="GridContainer" parent="ColorRect/CenterContainer/Control" unique_id=291937342]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 864.0
+offset_bottom = 304.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(32, 32)
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 32
+columns = 10
+
+[node name="InventorySlot" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=1922975075 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=30630577 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=1204062423 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=127507310 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot5" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=1037239591 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot6" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=1252053409 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot7" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=1272849039 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot8" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=1992463231 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot9" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=681955187 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot10" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=175157738 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot11" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=1555468056 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot12" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=356600672 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot13" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=1433693538 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot14" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=1115326261 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot15" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=1598304677 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot16" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=67821474 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot17" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=1209438107 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot18" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=894000853 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot19" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=603709083 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot20" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=1412467599 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot21" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=1107260790 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot22" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=2005338933 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot23" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=1954526069 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot24" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=1328021334 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot25" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=489285701 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot26" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=1711795730 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot27" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=1482344659 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot28" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=882009996 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot29" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=1156484849 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="InventorySlot30" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=923311472 instance=ExtResource("2_eoob8")]
+layout_mode = 2
+
+[node name="HUD_Toolbar" parent="." unique_id=1611501958 instance=ExtResource("4_lmti5")]

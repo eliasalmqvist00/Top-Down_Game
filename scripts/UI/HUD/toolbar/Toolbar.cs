@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Game.Gameplay;
 using Godot;
 
@@ -10,11 +11,13 @@ public partial class Toolbar :  HBoxContainer
 {	
 	private readonly List<ToolbarSlot> _slots = new();
 	private ItemData _activeItem;
-	public int MaxIdx = 5;
+	public int MaxIdx = 10;
 	public int MinIdx = 1;
 	public int SelectedIdx;
 	public override void _Ready()
 	{
+		GameEvents.OnItemPickedUp += AddItem;
+
 		foreach (Node child in GetChildren())
 		{
 			if (child is ToolbarSlot slot)
@@ -25,6 +28,35 @@ public partial class Toolbar :  HBoxContainer
 		SelectedIdx = 1;
 		
 		UpdateSelected();
+	}
+
+	public void AddItem(ItemData item)
+	{
+		ToolbarSlot slot = FindSlotWithItem(item);
+		if(slot != null)
+		{
+			slot.UpdateCount();
+			return;
+		}
+		slot = FindFirstEmptySlot();
+		if(slot == null) return;
+		slot.SetItem(item);
+	}
+
+	public ToolbarSlot FindFirstEmptySlot()
+	{
+		return _slots.FirstOrDefault(slot => slot.SlotItem == null);
+	}
+
+	public ToolbarSlot FindSlotWithItem(ItemData item)
+	{
+		if(item == null) return null;
+		return _slots.FirstOrDefault(slot => slot.SlotItem == item);
+	}
+
+	private bool HasItem(ItemData item)
+	{
+		return FindSlotWithItem(item) != null;
 	}
 
 	public override void _UnhandledInput(InputEvent @event)

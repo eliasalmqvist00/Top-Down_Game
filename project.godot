@@ -93,6 +93,7 @@ ui_shift={
 2d_physics/layer_4="Player Hurtbox"
 2d_physics/layer_5="Enemy Hibox"
 2d_physics/layer_6="Enemy Hurtbox"
+2d_physics/layer_7="PlayerDetection"
 
 [physics]
 

@@ -7,6 +7,7 @@ namespace Game.Gameplay;
 public partial class ItemPickup : Area2D
 {
 	[ExportCategory("Nodes")]
+	[Export] private ItemData _item;
 	[Export] private Sprite2D _icon;
 	[Export] private CollisionShape2D _collisionShape;
 
@@ -14,11 +15,16 @@ public partial class ItemPickup : Area2D
 	
 	public override void _Ready()
 	{
-		//AreaEntered += ItemInRange;
+		_collisionShape.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+		SetDeferred(Area2D.PropertyName.Monitoring, true);
+		SetDeferred(Area2D.PropertyName.Monitorable, true);
+
+		AreaEntered += ItemInRange;
 	}
 
 	public void Instantiate(ItemData item, Vector2 spawnPosition, Vector2 targetOffset)
 	{
+		_item = item;
 		_icon.Texture = item.ItemIcon;
 		GlobalPosition = spawnPosition;
 
@@ -33,13 +39,14 @@ public partial class ItemPickup : Area2D
 			pickupTween.TweenProperty(this, "position", hurtbox.Position, 1.2f)
 			 .SetTrans(Tween.TransitionType.Sine)
 			 .SetEase(Tween.EaseType.In);
+
+			GameEvents.EmitItemPickedUp(_item);
+			QueueFree();
 		}
 	}
 
 	private void PlaySpawnBounce(Vector2 targetOffset)
 	{
-		_collisionShape.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
-
 		Vector2 targetPosition = GlobalPosition + targetOffset;
 
 		Tween tween = CreateTween().SetParallel(true);
@@ -60,6 +67,8 @@ public partial class ItemPickup : Area2D
 		{
 			_canBePickedUp = true;
 			_collisionShape.SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
+			SetDeferred(Area2D.PropertyName.Monitoring, true);
+			SetDeferred(Area2D.PropertyName.Monitorable, true);
 		};
 	}
 }

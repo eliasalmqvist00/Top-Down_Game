@@ -49,7 +49,6 @@ public partial class EnemyRoamState : State
 			await ToSignal(_moveTween, Tween.SignalName.Finished);
 
 			EnemyMovement.SnapPositionToGrid();
-			Core.Logger.Debug($"Enemy Position = {Enemy.Position}");
         }
 
     }
