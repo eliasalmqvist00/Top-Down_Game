@@ -4,7 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://3grirm0pf2gx" path="res://assets/UI/Toolbar.png" id="2_trfux"]
 [ext_resource type="PackedScene" uid="uid://bratbvcts7v6" path="res://scripts/UI/HUD/toolbar/toolbar_slot.tscn" id="3_y4css"]
 
-[node name="HUD_Toolbar" type="CanvasLayer" unique_id=1611501958]
+[node name="HUD_Toolbar" type="CanvasLayer" unique_id=1611501958 node_paths=PackedStringArray("ToolbarSlotContainer")]
+script = ExtResource("1_d3nv4")
+ToolbarSlotContainer = NodePath("Control/Toolbar")
 
 [node name="Control" type="Control" parent="." unique_id=1795949325]
 layout_mode = 3
@@ -28,7 +30,6 @@ offset_right = 192.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 16
-script = ExtResource("1_d3nv4")
 
 [node name="ToolbarSprite" type="Sprite2D" parent="Control/Toolbar" unique_id=1623386164]
 texture_filter = 1

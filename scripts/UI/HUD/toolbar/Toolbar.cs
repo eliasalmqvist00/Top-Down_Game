@@ -4,59 +4,51 @@ using System.Linq;
 using Game.Gameplay;
 using Godot;
 
-
 namespace Game.HUD;
 
-public partial class Toolbar :  HBoxContainer
+public partial class Toolbar :  CanvasLayer
 {	
-	private readonly List<ToolbarSlot> _slots = new();
+	[Export] public HBoxContainer ToolbarSlotContainer;
+	private InventoryData _inventoryData;
+	private readonly List<ToolbarSlot> _toolbarSlots = new();
+
 	private ItemData _activeItem;
 	public int MaxIdx = 10;
 	public int MinIdx = 1;
 	public int SelectedIdx;
 	public override void _Ready()
 	{
-		GameEvents.OnItemPickedUp += AddItem;
-
-		foreach (Node child in GetChildren())
+        _toolbarSlots.Clear();
+		foreach (Node child in ToolbarSlotContainer.GetChildren())
 		{
 			if (child is ToolbarSlot slot)
 			{
-				_slots.Add(slot);
+				_toolbarSlots.Add(slot);
 			}
 		}
 		SelectedIdx = 1;
-		
-		UpdateSelected();
 	}
 
-	public void AddItem(ItemData item)
-	{
-		ToolbarSlot slot = FindSlotWithItem(item);
-		if(slot != null)
-		{
-			slot.UpdateCount();
-			return;
-		}
-		slot = FindFirstEmptySlot();
-		if(slot == null) return;
-		slot.SetItem(item);
-	}
+    public void BindInventory(InventoryData inventoryData)
+    {
+        if(inventoryData == null) return;
+        
+        _inventoryData = inventoryData;
+    }
 
-	public ToolbarSlot FindFirstEmptySlot()
-	{
-		return _slots.FirstOrDefault(slot => slot.SlotItem == null);
-	}
+    public void InitializeToolbar()
+    {
+        _inventoryData.SlotUpdated += OnSlotUpdated;
+        for(int i = 0; i < _toolbarSlots.Count; i++)
+        {
+            _toolbarSlots[i].SetItem(_inventoryData.Slots[i]);
+        }
+        UpdateSelected();
+    }
 
-	public ToolbarSlot FindSlotWithItem(ItemData item)
+	public void OnSlotUpdated(InventorySlotData slotData, int idx)
 	{
-		if(item == null) return null;
-		return _slots.FirstOrDefault(slot => slot.SlotItem == item);
-	}
-
-	private bool HasItem(ItemData item)
-	{
-		return FindSlotWithItem(item) != null;
+		_toolbarSlots[idx].SetItem(slotData);
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
@@ -71,27 +63,43 @@ public partial class Toolbar :  HBoxContainer
 		}
 	}
 
+	public ItemData GetCurrentItem()
+	{
+		return _activeItem;
+	}	
+
 	private void SelectNextItem()
 	{
 		SelectedIdx++;
-		if(SelectedIdx > MaxIdx) SelectedIdx = 1;
+		if(SelectedIdx > MaxIdx) SelectedIdx = MinIdx;
 		UpdateSelected();
 	}
 
 	private void SelectPreviousItem()
 	{
 		SelectedIdx--;
-		if(SelectedIdx < MinIdx) SelectedIdx = 5;
+		if(SelectedIdx < MinIdx) SelectedIdx = MaxIdx;
 		UpdateSelected();
 	}
 	
 	private void UpdateSelected()
 	{
-		for(int i = MinIdx; i <= _slots.Count; i++)
-		{
-			_slots[i-1].SetSelected(SelectedIdx == i);
-		}
-		_activeItem = _slots[SelectedIdx-1].SlotItem;
+		if (_toolbarSlots.Count == 0) return;
+
+        for (int i = 0; i < _toolbarSlots.Count; i++)
+        {
+            _toolbarSlots[i].SetSelected(SelectedIdx == (i + 1));
+        }
+
+        int targetIndex = SelectedIdx - 1;
+        if (targetIndex >= 0 && targetIndex < _toolbarSlots.Count)
+        {
+            _activeItem = _toolbarSlots[targetIndex].SlotData?.Item;
+        }
+        else
+        {
+            _activeItem = null;
+        }
 		GameEvents.EmitActiveItemChanged(_activeItem);
 	}
 

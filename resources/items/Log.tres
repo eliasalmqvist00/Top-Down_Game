@@ -12,4 +12,5 @@ script = ExtResource("1_3vxn5")
 ItemID = "4"
 ItemName = "Log"
 ItemIcon = SubResource("AtlasTexture_qvenx")
+StackQuantity = 99
 metadata/_custom_type_script = "uid://dj84j3x1hgvpp"

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b8hmchmlisgrc" path="res://scripts/gameplay/entities/Player/Player.cs" id="1_dnykm"]
 [ext_resource type="Texture2D" uid="uid://dixk2fsyc1dmr" path="res://assets/entities/player/Player.png" id="1_ucweq"]
+[ext_resource type="Resource" uid="uid://dix44ervbsx3s" path="res://resources/UI/inventory/InventoryData.tres" id="2_56ash"]
 [ext_resource type="Script" uid="uid://el21wrx4nlag" path="res://scripts/gameplay/entities/Player/PlayerMovement.cs" id="3_c5rqy"]
 [ext_resource type="Texture2D" uid="uid://clfor3ep072fl" path="res://assets/entities/player/Player_Actions.png" id="4_sufvw"]
 [ext_resource type="Script" uid="uid://07hjub4q0hyt" path="res://scripts/gameplay/entities/Player/PlayerAnimation.cs" id="5_c5rqy"]
@@ -770,6 +771,7 @@ StateMachine = NodePath("StateMachine")
 HitboxPivot = NodePath("HitboxPivot")
 PlayerHurtbox = NodePath("Hurtbox")
 PlayerAnimation = NodePath("Animations")
+InventoryData = ExtResource("2_56ash")
 CollisionShape = NodePath("CollisionShape2D")
 EntityMovement = NodePath("Movement")
 
@@ -788,7 +790,7 @@ Entity = NodePath("..")
 texture_filter = 1
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_mo4my")
-animation = &"death"
+animation = &"idle_down"
 autoplay = "idle_down"
 script = ExtResource("5_c5rqy")
 Entity = NodePath("..")

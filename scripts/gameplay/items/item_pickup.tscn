@@ -18,3 +18,4 @@ y_sort_enabled = true
 shape = SubResource("CircleShape2D_mo4my")
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=1134101925]
+texture_filter = 1

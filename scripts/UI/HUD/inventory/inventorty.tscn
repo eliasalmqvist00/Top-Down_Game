@@ -1,15 +1,14 @@
 [gd_scene format=3 uid="uid://bsk53u41nc28o"]
 
 [ext_resource type="Texture2D" uid="uid://b7i6b0yvjqm6y" path="res://assets/UI/Inventory.png" id="1_6mk1n"]
-[ext_resource type="Script" uid="uid://chptrrcfbt8e7" path="res://scripts/UI/HUD/inventory/Inventory.cs" id="1_eoob8"]
+[ext_resource type="Script" uid="uid://bs3yjki1rgb0b" path="res://scripts/UI/HUD/inventory/InventoryUI.cs" id="1_lmti5"]
 [ext_resource type="PackedScene" uid="uid://decw3h13yesik" path="res://scripts/UI/HUD/inventory/inventory_slot.tscn" id="2_eoob8"]
-[ext_resource type="PackedScene" uid="uid://blwfg314mo34h" path="res://scripts/UI/HUD/toolbar/hud_toolbar.tscn" id="4_lmti5"]
 
-[node name="Inventory" type="CanvasLayer" unique_id=1473540657 node_paths=PackedStringArray("_toolbar")]
+[node name="Inventory" type="CanvasLayer" unique_id=1473540657 node_paths=PackedStringArray("InventoryGrid")]
 process_mode = 3
 layer = 10
-script = ExtResource("1_eoob8")
-_toolbar = NodePath("HUD_Toolbar")
+script = ExtResource("1_lmti5")
+InventoryGrid = NodePath("ColorRect/CenterContainer/Control/InventoryGrid")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1843587676]
 anchors_preset = 15
@@ -141,5 +140,3 @@ layout_mode = 2
 
 [node name="InventorySlot30" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=923311472 instance=ExtResource("2_eoob8")]
 layout_mode = 2
-
-[node name="HUD_Toolbar" parent="." unique_id=1611501958 instance=ExtResource("4_lmti5")]

@@ -3,9 +3,9 @@ using Godot;
 namespace Game.Gameplay;
 
 [GlobalClass]
-public partial class InventortSlotData : Resource
+public partial class InventorySlotData : Resource
 {
-    [Export] public ItemData Item { get; set; }
+    [Export] public ItemData Item { get; set; } = null;
     [Export] public int ItemQuantity { get; set; } = 0;
 
     public bool IsEmpty => Item == null || ItemQuantity <= 0;
@@ -15,6 +15,5 @@ public partial class InventortSlotData : Resource
         Item = null;
         ItemQuantity = 0;
     }
-
 
 }
