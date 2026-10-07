@@ -1,54 +1,87 @@
 [gd_scene format=3 uid="uid://ciif1xy1nl6mv"]
 
-[ext_resource type="Texture2D" uid="uid://1l6phuwlqmqx" path="res://assets/nature/decoration/Oak_Tree_Small.png" id="1_b6hod"]
 [ext_resource type="Script" uid="uid://hhr6h553tcnc" path="res://scripts/gameplay/resources/Tree/Tree.cs" id="1_suo57"]
 [ext_resource type="PackedScene" uid="uid://dhh4h1jjasq38" path="res://scripts/gameplay/items/item_pickup.tscn" id="2_o4me6"]
 [ext_resource type="Resource" uid="uid://br8vi6u30o263" path="res://resources/items/Log.tres" id="3_d77yt"]
+[ext_resource type="Texture2D" uid="uid://btumy1uwj6oim" path="res://assets/nature/tree.png" id="4_d77yt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mo4my"]
-size = Vector2(4, 4)
+size = Vector2(8, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j22mf"]
-size = Vector2(4, 6)
+size = Vector2(8, 6)
 
-[node name="Tree" type="StaticBody2D" unique_id=2125091723 node_paths=PackedStringArray("Hurtbox", "CanopyPivot")]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0vjq0"]
+load_path = "res://.godot/imported/tree.png-cc6a2d4cd4d90b26caae6e883a7af298.ctex"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_135ol"]
+custom_solver_bias = 0.026
+radius = 18.0
+height = 44.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_d77yt"]
+load_path = "res://.godot/imported/tree.png-cc6a2d4cd4d90b26caae6e883a7af298.ctex"
+
+[node name="Tree" type="StaticBody2D" unique_id=2125091723 node_paths=PackedStringArray("TreeSprite", "Hurtbox", "CanopyPivot", "CanopySprite", "CrownArea")]
 y_sort_enabled = true
 scale = Vector2(2, 2)
 script = ExtResource("1_suo57")
+TreeSprite = NodePath("TreeSprite")
 Hurtbox = NodePath("TreeHurtbox")
 CanopyPivot = NodePath("CanopyPivot")
+CanopySprite = NodePath("CanopyPivot/CanopySprite")
+CrownArea = NodePath("CanopyPivot/CrownArea")
 PickupScene = ExtResource("2_o4me6")
 ItemDrop = ExtResource("3_d77yt")
 _baseHealth = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=347808413]
 z_index = 1
-position = Vector2(0, -4)
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_mo4my")
 
-[node name="TreeSprite" type="Sprite2D" parent="." unique_id=924827601]
-
 [node name="TreeHurtbox" type="Area2D" parent="." unique_id=1935627987]
+visible = false
 collision_layer = 0
 collision_mask = 4
 
 [node name="HurtboxShape" type="CollisionShape2D" parent="TreeHurtbox" unique_id=1494254958]
 z_index = 1
-position = Vector2(0, -3)
+position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_j22mf")
 
 [node name="TrunkSprite" type="Sprite2D" parent="." unique_id=421522340]
 texture_filter = 1
-position = Vector2(0, -8)
-texture = ExtResource("1_b6hod")
+position = Vector2(0, -30)
+texture = ExtResource("4_d77yt")
 region_enabled = true
-region_rect = Rect2(0, 0.5, 32, 47.5)
+region_rect = Rect2(64, 0, 64, 68)
 
 [node name="CanopyPivot" type="Marker2D" parent="." unique_id=1661316686]
+y_sort_enabled = true
 
 [node name="CanopySprite" type="Sprite2D" parent="CanopyPivot" unique_id=1787626726]
+y_sort_enabled = true
 texture_filter = 1
-position = Vector2(0, -8)
-texture = ExtResource("1_b6hod")
+position = Vector2(0, -30)
+texture = SubResource("CompressedTexture2D_0vjq0")
 region_enabled = true
-region_rect = Rect2(64, 0, 32, 48)
+region_rect = Rect2(128, 0, 64, 68)
+
+[node name="CrownArea" type="Area2D" parent="CanopyPivot" unique_id=2064385893]
+position = Vector2(2, -30)
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanopyPivot/CrownArea" unique_id=1409109135]
+position = Vector2(-2, -4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_135ol")
+
+[node name="TreeSprite" type="Sprite2D" parent="." unique_id=924827601]
+visible = false
+texture_filter = 1
+position = Vector2(0, -24)
+texture = SubResource("CompressedTexture2D_d77yt")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 80)

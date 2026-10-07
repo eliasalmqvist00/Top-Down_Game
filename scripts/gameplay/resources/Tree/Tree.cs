@@ -6,8 +6,11 @@ namespace Game.Gameplay;
 public partial class Tree : StaticBody2D
 {
 	[ExportCategory("Tree Nodes")]
+	[Export] public Sprite2D TreeSprite;
 	[Export] public Area2D Hurtbox;
 	[Export] public Marker2D CanopyPivot;
+	[Export] public Sprite2D CanopySprite;
+	[Export] public Area2D CrownArea;
 
 	[ExportCategory("Pickup and Drops")]
 	[Export] public PackedScene PickupScene;
@@ -24,7 +27,20 @@ public partial class Tree : StaticBody2D
 	{
 		_currentHealth = _baseHealth;
 		Hurtbox.AreaEntered += OnHurtboxEntered;
+
+		CrownArea.AreaEntered += OnCrownAreaEntered;
+		CrownArea.AreaExited += OnCrownAreaExited;
 	}
+
+	public void OnCrownAreaEntered(Area2D area)
+    {
+        CanopySprite.ZIndex = 1;
+    }
+
+	public void OnCrownAreaExited(Area2D area)
+    {
+        CanopySprite.ZIndex = 0;
+    }
 
 	public void OnHurtboxEntered(Area2D area)
 	{
@@ -47,8 +63,14 @@ public partial class Tree : StaticBody2D
 
 	private void ChoppedDown(Vector2 hitDirection)
 	{
+		TreeSprite.Visible = false;
+		CanopySprite.Visible = true;
+
 		Hurtbox.SetDeferred(Area2D.PropertyName.Monitoring, false);
 		Hurtbox.SetDeferred(Area2D.PropertyName.Monitorable, false);
+
+		CrownArea.AreaEntered -= OnCrownAreaEntered;
+		CrownArea.AreaExited -= OnCrownAreaExited;
 		Core.Logger.Info("Tree chopped down");
 
 		float fallAngle = hitDirection.X >= 0 ? Mathf.DegToRad(90) : Mathf.DegToRad(-90);
@@ -65,7 +87,7 @@ public partial class Tree : StaticBody2D
 
 		_treeTween.Finished += () =>
 		{
-			SpawnLoot();
+			SpawnLoot(hitDirection);
 			CanopyPivot.QueueFree();
 		};
 	}
@@ -85,7 +107,7 @@ public partial class Tree : StaticBody2D
 			.SetEase(Tween.EaseType.In);
 	}
 
-	public void SpawnLoot()
+	public void SpawnLoot(Vector2 fallDirection)
 	{
 		if (PickupScene == null || ItemDrop == null) return;
 
@@ -98,9 +120,11 @@ public partial class Tree : StaticBody2D
 
 			float dist = (float) GD.RandRange(8, 16);
 			float angle = (float) GD.RandRange(0, Mathf.Tau);
-			Vector2 offset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * dist);
+			Vector2 offset = new Vector2(Mathf.Cos(angle) * dist, Mathf.Sin(angle) * dist);
+
+			int spawnDistOffset = 32;
 			
-			drop.Instantiate(ItemDrop, GlobalPosition, offset);
+			drop.Instantiate(ItemDrop, GlobalPosition + spawnDistOffset * fallDirection, offset);
 		}
 		
 	}

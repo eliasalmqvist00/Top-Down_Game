@@ -80,8 +80,9 @@ public partial class InventoryData : Resource
 
         if(itemResult.hasItem && item.IsStackable)
         {
-            int newQuantity = Slots[itemResult.idx].ItemQuantity += quantity;
+            int newQuantity = Slots[itemResult.idx].ItemQuantity + quantity;
 
+            Slots[itemResult.idx].ItemQuantity += quantity;
             SlotUpdated(Slots[itemResult.idx], itemResult.idx);
         }
         else if(itemResult.hasItem && !item.IsStackable)
@@ -111,7 +112,7 @@ public partial class InventoryData : Resource
 		
         for(int i = 0; i < Slots.Count; i++)
         {
-            if(Slots[i].Item == item)
+            if(Slots[i].Item == item && Slots[i].ItemQuantity < item.StackQuantity)
             {
                 return (true, i);
             }

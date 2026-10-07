@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://bx5dtxm4u4101"]
 
-[ext_resource type="PackedScene" uid="uid://c0rlim53vdj3p" path="res://scenes/levels/nature_test.tscn" id="1_kikm7"]
-[ext_resource type="PackedScene" uid="uid://dhh4h1jjasq38" path="res://scripts/gameplay/items/item_pickup.tscn" id="1_lek67"]
 [ext_resource type="PackedScene" uid="uid://bsk53u41nc28o" path="res://scripts/UI/HUD/inventory/inventorty.tscn" id="1_sdxsi"]
-[ext_resource type="Resource" uid="uid://orrewko5a5v8" path="res://resources/items/tools/Axe.tres" id="2_ihhme"]
 [ext_resource type="PackedScene" uid="uid://bi532wrvl1rlk" path="res://scripts/gameplay/entities/Player/player.tscn" id="2_xopn4"]
+[ext_resource type="PackedScene" uid="uid://bka1lxpr2kxbw" path="res://scenes/levels/main_level_scene.tscn" id="3_sdxsi"]
 [ext_resource type="Script" uid="uid://clpylg78cwnnv" path="res://scripts/gameplay/entities/Player/PlayerHealthbar.cs" id="4_xopn4"]
 [ext_resource type="PackedScene" uid="uid://ciif1xy1nl6mv" path="res://scripts/gameplay/resources/Tree/tree.tscn" id="5_br8lc"]
 [ext_resource type="PackedScene" uid="uid://blwfg314mo34h" path="res://scripts/UI/HUD/toolbar/hud_toolbar.tscn" id="5_cbem3"]
@@ -35,13 +33,13 @@ grow_vertical = 2
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Control" unique_id=1648537629]
 texture_filter = 1
 layout_mode = 0
-offset_right = 1152.0
+offset_right = 1192.0
 offset_bottom = 648.0
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer" unique_id=1341362406]
 handle_input_locally = false
-size = Vector2i(1152, 648)
+size = Vector2i(1192, 648)
 size_2d_override = Vector2i(1152, 648)
 size_2d_override_stretch = true
 render_target_update_mode = 4
@@ -49,16 +47,13 @@ render_target_update_mode = 4
 [node name="HUD_Toolbar" parent="Control/SubViewportContainer/SubViewport" unique_id=1611501958 instance=ExtResource("5_cbem3")]
 
 [node name="Inventory" parent="Control/SubViewportContainer/SubViewport" unique_id=1473540657 node_paths=PackedStringArray("_toolbar") instance=ExtResource("1_sdxsi")]
+visible = false
 _toolbar = NodePath("../HUD_Toolbar")
 
 [node name="World" type="Node2D" parent="Control/SubViewportContainer/SubViewport" unique_id=1745456054]
 y_sort_enabled = true
 
-[node name="ItemPickup" parent="Control/SubViewportContainer/SubViewport/World" unique_id=1747388561 instance=ExtResource("1_lek67")]
-position = Vector2(500, 250)
-_item = ExtResource("2_ihhme")
-
-[node name="Level" parent="Control/SubViewportContainer/SubViewport/World" unique_id=1201450892 instance=ExtResource("1_kikm7")]
+[node name="MainLevelScene" parent="Control/SubViewportContainer/SubViewport/World" unique_id=1050202108 instance=ExtResource("3_sdxsi")]
 
 [node name="Player" parent="Control/SubViewportContainer/SubViewport/World" unique_id=2135259194 node_paths=PackedStringArray("_inventoryUI", "_toolbar") instance=ExtResource("2_xopn4")]
 y_sort_enabled = true
@@ -96,6 +91,84 @@ position = Vector2(320, 224)
 
 [node name="Tree4" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=1149140915 instance=ExtResource("5_br8lc")]
 position = Vector2(400, 56)
+
+[node name="Tree5" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=1383748566 instance=ExtResource("5_br8lc")]
+position = Vector2(960, 112)
+
+[node name="Tree6" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=1498822879 instance=ExtResource("5_br8lc")]
+position = Vector2(872, 208)
+
+[node name="Tree7" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=746253038 instance=ExtResource("5_br8lc")]
+position = Vector2(112, 48)
+
+[node name="Tree8" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=1076695938 instance=ExtResource("5_br8lc")]
+position = Vector2(192, 160)
+
+[node name="Tree9" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=1995930119 instance=ExtResource("5_br8lc")]
+position = Vector2(816, 64)
+
+[node name="Tree10" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=134568183 instance=ExtResource("5_br8lc")]
+position = Vector2(48, 352)
+
+[node name="Tree11" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=235811363 instance=ExtResource("5_br8lc")]
+position = Vector2(192, 344)
+
+[node name="Tree12" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=1390160780 instance=ExtResource("5_br8lc")]
+position = Vector2(1088, 248)
+
+[node name="Tree13" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=1788705654 instance=ExtResource("5_br8lc")]
+position = Vector2(1096, 520)
+
+[node name="Tree14" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=2082933177 instance=ExtResource("5_br8lc")]
+position = Vector2(1000, 544)
+
+[node name="Tree15" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=611336573 instance=ExtResource("5_br8lc")]
+position = Vector2(88, 456)
+
+[node name="Tree16" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=1400831916 instance=ExtResource("5_br8lc")]
+position = Vector2(256, 456)
+
+[node name="Tree17" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=1125663181 instance=ExtResource("5_br8lc")]
+position = Vector2(120, 584)
+
+[node name="Tree18" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=62041770 instance=ExtResource("5_br8lc")]
+position = Vector2(304, 592)
+
+[node name="Tree19" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=2019531881 instance=ExtResource("5_br8lc")]
+position = Vector2(248, 592)
+
+[node name="Tree20" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=1505489255 instance=ExtResource("5_br8lc")]
+position = Vector2(192, 536)
+
+[node name="Tree21" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=1799525599 instance=ExtResource("5_br8lc")]
+position = Vector2(176, 616)
+
+[node name="Tree22" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=740238977 instance=ExtResource("5_br8lc")]
+position = Vector2(64, 608)
+
+[node name="Tree23" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=1777095117 instance=ExtResource("5_br8lc")]
+position = Vector2(56, 512)
+
+[node name="Tree24" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=1556874474 instance=ExtResource("5_br8lc")]
+position = Vector2(160, 440)
+
+[node name="Tree25" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=1227757262 instance=ExtResource("5_br8lc")]
+position = Vector2(288, 376)
+
+[node name="Tree26" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=2120209082 instance=ExtResource("5_br8lc")]
+position = Vector2(344, 448)
+
+[node name="Tree27" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=1483106926 instance=ExtResource("5_br8lc")]
+position = Vector2(360, 536)
+
+[node name="Tree28" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=1008397802 instance=ExtResource("5_br8lc")]
+position = Vector2(400, 616)
+
+[node name="Tree29" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=291672226 instance=ExtResource("5_br8lc")]
+position = Vector2(456, 576)
+
+[node name="Tree30" parent="Control/SubViewportContainer/SubViewport/World/Trees" unique_id=489001483 instance=ExtResource("5_br8lc")]
+position = Vector2(536, 616)
 
 [node name="HUD_Layer" type="CanvasLayer" parent="." unique_id=610799083]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctrn547kjf1pk"
-path="res://.godot/imported/Player_Frog_v2.png-5f5e742995536e32a5c9c5df88589103.ctex"
+uid="uid://beje530jms703"
+path="res://.godot/imported/log_icon.png-048c04c83c16fd0f9fff83484f5b935c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entities/player/Player_Frog_v2.png"
-dest_files=["res://.godot/imported/Player_Frog_v2.png-5f5e742995536e32a5c9c5df88589103.ctex"]
+source_file="res://resources/items/log_icon.png"
+dest_files=["res://.godot/imported/log_icon.png-048c04c83c16fd0f9fff83484f5b935c.ctex"]
 
 [params]
 
