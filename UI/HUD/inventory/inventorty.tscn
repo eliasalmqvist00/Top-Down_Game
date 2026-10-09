@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bsk53u41nc28o"]
 
 [ext_resource type="Texture2D" uid="uid://b7i6b0yvjqm6y" path="res://assets/UI/Inventory.png" id="1_6mk1n"]
-[ext_resource type="Script" uid="uid://bs3yjki1rgb0b" path="res://scripts/UI/HUD/inventory/InventoryUI.cs" id="1_lmti5"]
-[ext_resource type="PackedScene" uid="uid://decw3h13yesik" path="res://scripts/UI/HUD/inventory/inventory_slot.tscn" id="2_eoob8"]
+[ext_resource type="Script" uid="uid://bs3yjki1rgb0b" path="res://UI/HUD/inventory/InventoryUI.cs" id="1_lmti5"]
+[ext_resource type="PackedScene" uid="uid://decw3h13yesik" path="res://UI/HUD/inventory/inventory_slot.tscn" id="2_eoob8"]
 
 [node name="Inventory" type="CanvasLayer" unique_id=1473540657 node_paths=PackedStringArray("InventoryGrid")]
 process_mode = 3

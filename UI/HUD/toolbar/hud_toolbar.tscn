@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://blwfg314mo34h"]
 
-[ext_resource type="Script" uid="uid://ckr4ualmj54sg" path="res://scripts/UI/HUD/toolbar/Toolbar.cs" id="1_d3nv4"]
+[ext_resource type="Script" uid="uid://ckr4ualmj54sg" path="res://UI/HUD/toolbar/Toolbar.cs" id="1_d3nv4"]
 [ext_resource type="Texture2D" uid="uid://3grirm0pf2gx" path="res://assets/UI/Toolbar.png" id="2_trfux"]
-[ext_resource type="PackedScene" uid="uid://bratbvcts7v6" path="res://scripts/UI/HUD/toolbar/toolbar_slot.tscn" id="3_y4css"]
+[ext_resource type="PackedScene" uid="uid://bratbvcts7v6" path="res://UI/HUD/toolbar/toolbar_slot.tscn" id="3_y4css"]
 
 [node name="HUD_Toolbar" type="CanvasLayer" unique_id=1611501958 node_paths=PackedStringArray("ToolbarSlotContainer")]
 script = ExtResource("1_d3nv4")
@@ -21,6 +21,7 @@ offset_right = 288.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
+mouse_filter = 2
 
 [node name="Toolbar" type="HBoxContainer" parent="Control" unique_id=628622997]
 modulate = Color(1, 1, 1, 0.9137255)

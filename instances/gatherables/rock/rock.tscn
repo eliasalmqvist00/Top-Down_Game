@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dmmhl64apmigk" path="res://instances/gatherables/rock/scripts/Rock.cs" id="1_8iubv"]
 [ext_resource type="Texture2D" uid="uid://lcb3mnige0es" path="res://instances/gatherables/rock/assets/rock.png" id="2_ao2tl"]
 [ext_resource type="PackedScene" uid="uid://dhh4h1jjasq38" path="res://common/items/item_drop.tscn" id="2_vgrkw"]
+[ext_resource type="Script" uid="uid://dj84j3x1hgvpp" path="res://common/items/ItemData.cs" id="3_1cuhh"]
 [ext_resource type="Resource" uid="uid://bjid1m5r6iiog" path="res://resources/items/gatherables/Stone.tres" id="3_vgrkw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8iubv"]
@@ -19,9 +20,9 @@ script = ExtResource("1_8iubv")
 RockSprite = NodePath("Sprite2D")
 Hurtbox = NodePath("Hurtbox")
 ItemDropScene = ExtResource("2_vgrkw")
-ItemDrop = ExtResource("3_vgrkw")
-MinDrop = 2
-MaxDrop = 5
+ItemDrops = Dictionary[ExtResource("3_1cuhh"), Vector2]({
+ExtResource("3_vgrkw"): Vector2(2, 5)
+})
 BaseHealth = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1232247161]

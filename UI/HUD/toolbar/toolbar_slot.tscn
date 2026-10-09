@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bratbvcts7v6"]
 
-[ext_resource type="Script" uid="uid://xma8amsimpcn" path="res://scripts/UI/HUD/toolbar/ToolbarSlot.cs" id="1_soqmf"]
-[ext_resource type="PackedScene" uid="uid://ybv178u238ha" path="res://scripts/UI/HUD/inventory/item_quantity_label.tscn" id="2_soqmf"]
+[ext_resource type="Script" uid="uid://xma8amsimpcn" path="res://UI/HUD/toolbar/ToolbarSlot.cs" id="1_soqmf"]
+[ext_resource type="PackedScene" uid="uid://ybv178u238ha" path="res://UI/HUD/inventory/item_quantity_label.tscn" id="2_soqmf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ag2rl"]
 

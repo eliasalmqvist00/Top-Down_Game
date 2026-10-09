@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bx5dtxm4u4101"]
 
-[ext_resource type="PackedScene" uid="uid://bsk53u41nc28o" path="res://scripts/UI/HUD/inventory/inventorty.tscn" id="1_sdxsi"]
+[ext_resource type="PackedScene" uid="uid://bsk53u41nc28o" path="res://UI/HUD/inventory/inventorty.tscn" id="1_sdxsi"]
 [ext_resource type="PackedScene" uid="uid://bi532wrvl1rlk" path="res://instances/entities/Player/player.tscn" id="2_xopn4"]
 [ext_resource type="PackedScene" uid="uid://bka1lxpr2kxbw" path="res://levels/main/main_level_scene.tscn" id="3_sdxsi"]
 [ext_resource type="Script" uid="uid://clpylg78cwnnv" path="res://instances/entities/Player/PlayerHealthbar.cs" id="4_xopn4"]
-[ext_resource type="PackedScene" uid="uid://blwfg314mo34h" path="res://scripts/UI/HUD/toolbar/hud_toolbar.tscn" id="5_cbem3"]
+[ext_resource type="PackedScene" uid="uid://blwfg314mo34h" path="res://UI/HUD/toolbar/hud_toolbar.tscn" id="5_cbem3"]
 [ext_resource type="PackedScene" uid="uid://bmthxxlaedqtq" path="res://instances/entities/enemies/spider/spider.tscn" id="5_sdxsi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbem3"]

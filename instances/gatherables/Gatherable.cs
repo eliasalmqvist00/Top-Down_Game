@@ -1,42 +1,46 @@
+using System;
+using Godot.Collections;
 using Godot;
 
 namespace Game.Gameplay;
 
 public partial class Gatherable : StaticBody2D
 {
-    [ExportCategory("Pickup and Drops")]
+	[ExportCategory("Pickup and Drops")]
 	[Export] public PackedScene ItemDropScene;
-	[Export] public ItemData ItemDrop;
-    [Export] public int MinDrop;
-    [Export] public int MaxDrop;
+	[Export] public Dictionary<ItemData, Vector2> ItemDrops {get; set;} = new();
 
 
 	[ExportCategory("Gatherable vars")]
 	[Export] public int BaseHealth;
-    
-    public int CurrentHealth;
 
-    public override void _Ready()
-    {
-        CurrentHealth = BaseHealth;
-    }
+	public int CurrentHealth;
 
-    public void SpawnLoot(Vector2 spawnPosition)
+	public override void _Ready()
 	{
-		if (ItemDropScene == null || ItemDrop == null) return;
+		CurrentHealth = BaseHealth;
+	}
 
-		int dropCount = GD.RandRange(MinDrop, MaxDrop);
-
-		for(int i = 0; i < dropCount; i++)
+	public void SpawnLoot(Vector2 spawnPosition)
+	{
+		if (ItemDropScene == null || ItemDrops == null) return;
+		
+		foreach(ItemData drop in ItemDrops.Keys)
 		{
-			ItemDrop drop = ItemDropScene.Instantiate<ItemDrop>();
-			GetParent().AddChild(drop);
+			Core.Logger.Debug("Found drop");
+			int dropCount = GD.RandRange((int)ItemDrops[drop].X, (int)ItemDrops[drop].Y);
 
-			float dist = (float) GD.RandRange(8, 16);
-			float angle = (float) GD.RandRange(0, Mathf.Tau);
-			Vector2 offset = new Vector2(Mathf.Cos(angle) * dist, Mathf.Sin(angle) * dist);
-			
-			drop.Instantiate(ItemDrop, spawnPosition, offset);
+			for(int i = 0; i < dropCount; i++)
+			{
+				ItemDrop itemDrop = ItemDropScene.Instantiate<ItemDrop>();
+				GetParent().AddChild(itemDrop);
+
+				float dist = (float) GD.RandRange(8, 16);
+				float angle = (float) GD.RandRange(0, Mathf.Tau);
+				Vector2 offset = new Vector2(Mathf.Cos(angle) * dist, Mathf.Sin(angle) * dist);
+				
+				itemDrop.Instantiate(drop, spawnPosition, offset);
+			}
 		}
 		
 	}

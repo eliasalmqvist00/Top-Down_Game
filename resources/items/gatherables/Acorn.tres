@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://ueuwqe3n6wgf"]
+
+[ext_resource type="Texture2D" uid="uid://c4vc0dva78u6g" path="res://instances/gatherables/tree/assets/acorn_icon.png" id="1_je4xx"]
+[ext_resource type="Script" uid="uid://dj84j3x1hgvpp" path="res://common/items/ItemData.cs" id="1_rjd32"]
+
+[resource]
+script = ExtResource("1_rjd32")
+ItemID = "6"
+ItemName = "Acorn"
+ItemIcon = ExtResource("1_je4xx")
+StackQuantity = 50
+metadata/_custom_type_script = "uid://dj84j3x1hgvpp"
