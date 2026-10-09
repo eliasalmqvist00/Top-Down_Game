@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://ciif1xy1nl6mv"]
 
-[ext_resource type="Script" uid="uid://hhr6h553tcnc" path="res://scripts/gameplay/resources/Tree/Tree.cs" id="1_suo57"]
-[ext_resource type="PackedScene" uid="uid://dhh4h1jjasq38" path="res://scripts/gameplay/items/item_pickup.tscn" id="2_o4me6"]
+[ext_resource type="Script" uid="uid://hhr6h553tcnc" path="res://instances/gatherables/tree/scripts/Tree.cs" id="1_suo57"]
+[ext_resource type="PackedScene" uid="uid://dhh4h1jjasq38" path="res://common/items/item_pickup.tscn" id="2_o4me6"]
 [ext_resource type="Resource" uid="uid://br8vi6u30o263" path="res://resources/items/Log.tres" id="3_d77yt"]
-[ext_resource type="Texture2D" uid="uid://btumy1uwj6oim" path="res://assets/nature/tree.png" id="4_d77yt"]
+[ext_resource type="Texture2D" uid="uid://btumy1uwj6oim" path="res://instances/gatherables/tree/assets/tree.png" id="4_d77yt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mo4my"]
 size = Vector2(8, 6)
@@ -41,7 +41,6 @@ position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_mo4my")
 
 [node name="TreeHurtbox" type="Area2D" parent="." unique_id=1935627987]
-visible = false
 collision_layer = 0
 collision_mask = 4
 

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://br8vi6u30o263"]
 
-[ext_resource type="Script" uid="uid://dj84j3x1hgvpp" path="res://scripts/gameplay/items/ItemData.cs" id="1_3vxn5"]
-[ext_resource type="Texture2D" uid="uid://beje530jms703" path="res://resources/items/log_icon.png" id="1_jqm8o"]
+[ext_resource type="Script" uid="uid://dj84j3x1hgvpp" path="res://common/items/ItemData.cs" id="1_3vxn5"]
+[ext_resource type="Texture2D" uid="uid://beje530jms703" path="res://instances/gatherables/tree/assets/log_icon.png" id="1_jqm8o"]
 
 [resource]
 script = ExtResource("1_3vxn5")

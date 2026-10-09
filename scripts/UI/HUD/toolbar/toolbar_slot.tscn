@@ -10,7 +10,7 @@ bg_color = Color(0.62999433, 1.2549831, 0.61669666, 0.8784314)
 
 [node name="ToolbarSlot" type="PanelContainer" unique_id=2051378662 node_paths=PackedStringArray("_icon", "_countLabel")]
 texture_filter = 1
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(32, 32)
 size_flags_vertical = 4
 script = ExtResource("1_soqmf")
 _normalStyle = SubResource("StyleBoxEmpty_ag2rl")
@@ -36,5 +36,4 @@ theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = -1
 
 [node name="Label" parent="CountContainer" unique_id=118911873 instance=ExtResource("2_soqmf")]
-texture_filter = 1
 layout_mode = 2

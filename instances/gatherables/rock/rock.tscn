@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://qp0i6qr7rx0"]
+
+[ext_resource type="Script" uid="uid://b3wwq86gbl4ph" path="res://instances/gatherables/rock/scripts/rock.cs" id="1_8iubv"]
+[ext_resource type="Texture2D" uid="uid://lcb3mnige0es" path="res://instances/gatherables/rock/assets/rock.png" id="2_ao2tl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8iubv"]
+radius = 9.0
+height = 26.0
+
+[node name="rock" type="StaticBody2D" unique_id=1261355952]
+script = ExtResource("1_8iubv")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1232247161]
+position = Vector2(0, -8)
+texture = ExtResource("2_ao2tl")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1845607245]
+position = Vector2(0, -6)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8iubv")

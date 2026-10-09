@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://ybv178u238ha"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_owi3e"]
-font_size = 18
+font_size = 9
 font_color = Color(0.00020955394, 3.492566e-05, 0.0004631083, 1)
-outline_size = 2
 
 [node name="Label" type="Label" unique_id=118911873]
 texture_filter = 1

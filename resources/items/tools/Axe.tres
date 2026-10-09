@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ToolData" format=3 uid="uid://orrewko5a5v8"]
 
 [ext_resource type="Texture2D" uid="uid://byi8k2rjv6ny1" path="res://assets/items/tools/ThrowingAxe01.png" id="1_0l88t"]
-[ext_resource type="Script" uid="uid://dxo0lsj72gc07" path="res://scripts/gameplay/items/ToolData.cs" id="1_sw1ko"]
+[ext_resource type="Script" uid="uid://dxo0lsj72gc07" path="res://common/items/ToolData.cs" id="1_sw1ko"]
 
 [resource]
 script = ExtResource("1_sw1ko")

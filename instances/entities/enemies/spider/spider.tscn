@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://bmthxxlaedqtq"]
 
-[ext_resource type="Script" uid="uid://c4iju26wimvi5" path="res://scripts/gameplay/entities/Enemies/Enemy.cs" id="1_s0cna"]
-[ext_resource type="Script" uid="uid://cd6siq5vunnlm" path="res://scripts/gameplay/entities/Enemies/EnemyMovement.cs" id="2_osj6q"]
+[ext_resource type="Script" uid="uid://c4iju26wimvi5" path="res://instances/entities/enemies/Enemy.cs" id="1_s0cna"]
+[ext_resource type="Script" uid="uid://cd6siq5vunnlm" path="res://instances/entities/enemies/EnemyMovement.cs" id="2_osj6q"]
 [ext_resource type="Texture2D" uid="uid://peynxdmw7sfy" path="res://assets/entities/enemies/spider09.png" id="3_8f5w6"]
-[ext_resource type="Script" uid="uid://cnuc364wpe2pg" path="res://scripts/gameplay/entities/Enemies/EnemyAnimation.cs" id="4_jrc2g"]
-[ext_resource type="Script" uid="uid://1vx5wvndm0o0" path="res://scripts/gameplay/entities/Enemies/EnemyHurtbox.cs" id="5_4ir71"]
-[ext_resource type="Script" uid="uid://cu0q6w3nnoofb" path="res://scripts/gameplay/entities/Enemies/EnemyHitbox.cs" id="6_thu41"]
-[ext_resource type="Script" uid="uid://djqef7e1rhxd8" path="res://scripts/gameplay/utilities/StateMachine.cs" id="7_1ence"]
-[ext_resource type="Script" uid="uid://t8yq54ud0ime" path="res://scripts/gameplay/entities/Enemies/States/EnemyRoamState.cs" id="8_lw55q"]
-[ext_resource type="Script" uid="uid://clk4ou2tdrpop" path="res://scripts/gameplay/entities/Enemies/States/EnemyChaseState.cs" id="9_07rgn"]
-[ext_resource type="Script" uid="uid://rggi4vb3bpnn" path="res://scripts/gameplay/entities/Enemies/States/EnemyAttackState.cs" id="10_j14qe"]
-[ext_resource type="Script" uid="uid://vipwed1wgga2" path="res://scripts/gameplay/entities/Enemies/States/EnemyDeadState.cs" id="11_7n36c"]
-[ext_resource type="Script" uid="uid://dkf8apwiy4qwj" path="res://scripts/gameplay/entities/Enemies/EnemyHealthbar.cs" id="12_taj6p"]
+[ext_resource type="Script" uid="uid://cnuc364wpe2pg" path="res://instances/entities/enemies/EnemyAnimation.cs" id="4_jrc2g"]
+[ext_resource type="Script" uid="uid://1vx5wvndm0o0" path="res://instances/entities/enemies/EnemyHurtbox.cs" id="5_4ir71"]
+[ext_resource type="Script" uid="uid://cu0q6w3nnoofb" path="res://instances/entities/enemies/EnemyHitbox.cs" id="6_thu41"]
+[ext_resource type="Script" uid="uid://djqef7e1rhxd8" path="res://common/utilities/StateMachine.cs" id="7_1ence"]
+[ext_resource type="Script" uid="uid://t8yq54ud0ime" path="res://instances/entities/enemies/States/EnemyRoamState.cs" id="8_lw55q"]
+[ext_resource type="Script" uid="uid://clk4ou2tdrpop" path="res://instances/entities/enemies/States/EnemyChaseState.cs" id="9_07rgn"]
+[ext_resource type="Script" uid="uid://rggi4vb3bpnn" path="res://instances/entities/enemies/States/EnemyAttackState.cs" id="10_j14qe"]
+[ext_resource type="Script" uid="uid://vipwed1wgga2" path="res://instances/entities/enemies/States/EnemyDeadState.cs" id="11_7n36c"]
+[ext_resource type="Script" uid="uid://dkf8apwiy4qwj" path="res://instances/entities/enemies/EnemyHealthbar.cs" id="12_taj6p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mo4my"]
 size = Vector2(16, 12)
@@ -438,6 +438,7 @@ border_blend = true
 
 [node name="Spider" type="CharacterBody2D" unique_id=276010328 node_paths=PackedStringArray("EnemyMovement", "EnemyHealthbar", "EnemyHurtbox", "EnemyAnimation", "DetectionArea", "StateMachine", "CollisionShape")]
 y_sort_enabled = true
+texture_filter = 1
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("1_s0cna")
@@ -466,7 +467,6 @@ Entity = NodePath("..")
 
 [node name="Animations" type="AnimatedSprite2D" parent="." unique_id=1373929480 node_paths=PackedStringArray("Enemy", "EnemyMovement", "EnemyRoamState", "EnemyAttackState", "Entity")]
 texture_filter = 1
-scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_mo4my")
 animation = &"attack_down"
 autoplay = "idle_down"
@@ -484,13 +484,14 @@ script = ExtResource("5_4ir71")
 Enemy = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=453441147]
+position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_j22mf")
 
 [node name="HitboxPivot" type="Marker2D" parent="." unique_id=1414648179]
 rotation = -1.5707964
 
 [node name="Hitbox" type="Area2D" parent="HitboxPivot" unique_id=2057842230 node_paths=PackedStringArray("Enemy", "HitboxShape")]
-position = Vector2(2, 0)
+position = Vector2(10, 0)
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("6_thu41")
@@ -507,6 +508,7 @@ debug_color = Color(0.92941177, 0, 0, 0.41960785)
 rotation = -1.5707964
 
 [node name="AttackRange" type="Area2D" parent="AttackRangePivot" unique_id=1714966752]
+position = Vector2(8, 0)
 collision_layer = 0
 collision_mask = 64
 
@@ -549,6 +551,7 @@ Enemy = NodePath("../..")
 StateMachine = NodePath("..")
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=337178119]
+visible = false
 collision_layer = 0
 collision_mask = 64
 
@@ -559,10 +562,10 @@ debug_color = Color(0.77931434, 0.4189905, 0.36209816, 0.41960785)
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=1552848556 node_paths=PackedStringArray("Enemy")]
 texture_filter = 1
-offset_left = -8.0
-offset_top = -16.0
-offset_right = 8.0
-offset_bottom = -12.0
+offset_left = -12.0
+offset_top = -20.0
+offset_right = 12.0
+offset_bottom = -16.0
 theme_override_styles/background = SubResource("StyleBoxTexture_gdla5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_yimc4")
 max_value = 20.0

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjncrfpvjgyal"
-path="res://.godot/imported/Toolbar.png-02b7820326ff61377addaec47c2e829d.ctex"
+uid="uid://beje530jms703"
+path="res://.godot/imported/log_icon.png-470e269e95f0cc0a93a238862be10486.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Toolbar.png"
-dest_files=["res://.godot/imported/Toolbar.png-02b7820326ff61377addaec47c2e829d.ctex"]
+source_file="res://instances/gatherables/tree/assets/log_icon.png"
+dest_files=["res://.godot/imported/log_icon.png-470e269e95f0cc0a93a238862be10486.ctex"]
 
 [params]
 

@@ -7,7 +7,8 @@
 
 [node name="InventorySlot" type="PanelContainer" unique_id=1922975075 node_paths=PackedStringArray("_icon", "_countLabel")]
 texture_filter = 1
-custom_minimum_size = Vector2(64, 64)
+offset_right = 32.0
+offset_bottom = 32.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_mo4my")
 script = ExtResource("1_owi3e")
 _icon = NodePath("IconContainer/Icon")
@@ -19,7 +20,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="Icon" type="TextureRect" parent="IconContainer" unique_id=1205893941]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 expand_mode = 1
 

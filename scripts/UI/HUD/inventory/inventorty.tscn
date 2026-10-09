@@ -28,27 +28,32 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Control" type="Control" parent="ColorRect/CenterContainer" unique_id=167989132]
-custom_minimum_size = Vector2(852, 320)
+custom_minimum_size = Vector2(640, 360)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect/CenterContainer/Control" unique_id=2135126073]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 980.0
+offset_bottom = 420.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_6mk1n")
 
 [node name="InventoryGrid" type="GridContainer" parent="ColorRect/CenterContainer/Control" unique_id=291937342]
 layout_mode = 1
-anchors_preset = -1
-offset_right = 864.0
-offset_bottom = 304.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 124.0
+offset_top = 116.0
+offset_right = -124.0
+offset_bottom = -116.0
+grow_horizontal = 2
+grow_vertical = 2
 offset_transform_enabled = true
-offset_transform_position = Vector2(32, 32)
-theme_override_constants/h_separation = 16
-theme_override_constants/v_separation = 32
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 16
 columns = 10
 
 [node name="InventorySlot" parent="ColorRect/CenterContainer/Control/InventoryGrid" unique_id=1922975075 instance=ExtResource("2_eoob8")]

@@ -1,20 +1,20 @@
 [gd_scene format=3 uid="uid://bi532wrvl1rlk"]
 
-[ext_resource type="Script" uid="uid://b8hmchmlisgrc" path="res://scripts/gameplay/entities/Player/Player.cs" id="1_dnykm"]
+[ext_resource type="Script" uid="uid://b8hmchmlisgrc" path="res://instances/entities/Player/Player.cs" id="1_dnykm"]
 [ext_resource type="Texture2D" uid="uid://dixk2fsyc1dmr" path="res://assets/entities/player/Player.png" id="1_ucweq"]
-[ext_resource type="Resource" uid="uid://cu1kv4ijue8en" path="res://resources/UI/inventory/InventoryData.tres" id="2_56ash"]
-[ext_resource type="Script" uid="uid://el21wrx4nlag" path="res://scripts/gameplay/entities/Player/PlayerMovement.cs" id="3_c5rqy"]
+[ext_resource type="Resource" uid="uid://b1uemrj4j44vg" path="res://resources/UI/inventory/InventoryData.tres" id="2_56ash"]
+[ext_resource type="Script" uid="uid://el21wrx4nlag" path="res://instances/entities/Player/PlayerMovement.cs" id="3_c5rqy"]
 [ext_resource type="Texture2D" uid="uid://bhpaad5nb5e8w" path="res://assets/entities/player/frog_chop.png" id="5_56ash"]
-[ext_resource type="Script" uid="uid://07hjub4q0hyt" path="res://scripts/gameplay/entities/Player/PlayerAnimation.cs" id="5_c5rqy"]
+[ext_resource type="Script" uid="uid://07hjub4q0hyt" path="res://instances/entities/Player/PlayerAnimation.cs" id="5_c5rqy"]
 [ext_resource type="Texture2D" uid="uid://brmflhq653gd5" path="res://assets/entities/player/frog_idle_walk.png" id="6_5ysax"]
-[ext_resource type="Script" uid="uid://1h4cb3pdfx2h" path="res://scripts/gameplay/entities/Player/PlayerAttack.cs" id="7_c5rqy"]
-[ext_resource type="Script" uid="uid://c65ulh4unuqbc" path="res://scripts/gameplay/entities/Player/PlayerHurtbox.cs" id="8_73kkf"]
-[ext_resource type="Script" uid="uid://h1fhvfu08r1c" path="res://scripts/gameplay/entities/Player/PlayerHitbox.cs" id="8_b6tgf"]
-[ext_resource type="Script" uid="uid://djqef7e1rhxd8" path="res://scripts/gameplay/utilities/StateMachine.cs" id="9_b6tgf"]
-[ext_resource type="Script" uid="uid://bjv7lchyujpmv" path="res://scripts/gameplay/entities/Player/States/PlayerAttackState.cs" id="10_73kkf"]
-[ext_resource type="Script" uid="uid://b6vbqpw113vvk" path="res://scripts/gameplay/entities/Player/States/PlayerRoamState.cs" id="10_b6tgf"]
-[ext_resource type="Script" uid="uid://cj7vjbuwxr01" path="res://scripts/gameplay/entities/Player/States/PlayerDeadState.cs" id="11_73kkf"]
-[ext_resource type="Script" uid="uid://6v5ijgrnlga" path="res://scripts/gameplay/entities/Player/States/PlayerChopState.cs" id="13_kww5f"]
+[ext_resource type="Script" uid="uid://1h4cb3pdfx2h" path="res://instances/entities/Player/PlayerAttack.cs" id="7_c5rqy"]
+[ext_resource type="Script" uid="uid://c65ulh4unuqbc" path="res://instances/entities/Player/PlayerHurtbox.cs" id="8_73kkf"]
+[ext_resource type="Script" uid="uid://h1fhvfu08r1c" path="res://instances/entities/Player/PlayerHitbox.cs" id="8_b6tgf"]
+[ext_resource type="Script" uid="uid://djqef7e1rhxd8" path="res://common/utilities/StateMachine.cs" id="9_b6tgf"]
+[ext_resource type="Script" uid="uid://bjv7lchyujpmv" path="res://instances/entities/Player/States/PlayerAttackState.cs" id="10_73kkf"]
+[ext_resource type="Script" uid="uid://b6vbqpw113vvk" path="res://instances/entities/Player/States/PlayerRoamState.cs" id="10_b6tgf"]
+[ext_resource type="Script" uid="uid://cj7vjbuwxr01" path="res://instances/entities/Player/States/PlayerDeadState.cs" id="11_73kkf"]
+[ext_resource type="Script" uid="uid://6v5ijgrnlga" path="res://instances/entities/Player/States/PlayerChopState.cs" id="13_kww5f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mo4my"]
 size = Vector2(16, 16)
@@ -755,7 +755,6 @@ Entity = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1236158671]
 position = Vector2(0, -16)
-zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
 limit_right = 1968

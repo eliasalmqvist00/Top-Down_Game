@@ -1,7 +1,0 @@
-[gd_resource type="AtlasTexture" format=3 uid="uid://cg5go5beksx4j"]
-
-[ext_resource type="Texture2D" uid="uid://cqukdjf6c2wc6" path="res://assets/nature/decoration/Outdoor_Decor_Free.png" id="1_eurvx"]
-
-[resource]
-atlas = ExtResource("1_eurvx")
-region = Rect2(0, 113, 32, 13)

@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="InventoryData" format=3]
+[gd_resource type="Resource" script_class="InventoryData" format=3 uid="uid://cyvfftte0vluh"]
 
-[ext_resource type="Script" path="res://scripts/UI/HUD/inventory/InventorySlotData.cs" id="1_yxd2v"]
-[ext_resource type="Resource" path="res://resources/items/tools/Axe.tres" id="2_ftjli"]
-[ext_resource type="Script" path="res://scripts/UI/HUD/inventory/InventoryData.cs" id="2_t5hu6"]
-[ext_resource type="Resource" path="res://resources/items/tools/Sword.tres" id="3_ftjli"]
-[ext_resource type="Resource" path="res://resources/items/Log.tres" id="4_72nkr"]
+[ext_resource type="Script" uid="uid://dp1ojgmngtxy6" path="res://scripts/UI/HUD/inventory/InventorySlotData.cs" id="1_yxd2v"]
+[ext_resource type="Resource" uid="uid://orrewko5a5v8" path="res://resources/items/tools/Axe.tres" id="2_ftjli"]
+[ext_resource type="Script" uid="uid://dmgt21tn0mhhw" path="res://scripts/UI/HUD/inventory/InventoryData.cs" id="2_t5hu6"]
+[ext_resource type="Resource" uid="uid://d0wos3ki02phw" path="res://resources/items/tools/Sword.tres" id="3_ftjli"]
+[ext_resource type="Resource" uid="uid://br8vi6u30o263" path="res://resources/items/Log.tres" id="4_72nkr"]
 
 [sub_resource type="Resource" id="Resource_yxd2v"]
 script = ExtResource("1_yxd2v")
@@ -24,7 +24,7 @@ ItemQuantity = 99
 [sub_resource type="Resource" id="Resource_72nkr"]
 script = ExtResource("1_yxd2v")
 Item = ExtResource("4_72nkr")
-ItemQuantity = 31
+ItemQuantity = 41
 
 [sub_resource type="Resource" id="Resource_egtkv"]
 script = ExtResource("1_yxd2v")
