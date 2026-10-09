@@ -4,9 +4,16 @@ namespace Game.Gameplay;
 
 public interface IGatherable
 {
-    ToolData RequiredTool {get;}
+    RequiredTool RequiredTool {get;}
 
-    void DamageTaken();
+    void DamageTaken(Area2D area);
     void SpawnLoot(Vector2 position);
+    void ClearObject();
 
+}
+
+public enum RequiredTool
+{
+    Axe,
+    Pickaxe
 }

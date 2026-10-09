@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://ciif1xy1nl6mv"]
 
-[ext_resource type="Script" uid="uid://hhr6h553tcnc" path="res://instances/gatherables/tree/scripts/Tree.cs" id="1_suo57"]
-[ext_resource type="PackedScene" uid="uid://dhh4h1jjasq38" path="res://common/items/item_pickup.tscn" id="2_o4me6"]
-[ext_resource type="Resource" uid="uid://br8vi6u30o263" path="res://resources/items/Log.tres" id="3_d77yt"]
-[ext_resource type="Texture2D" uid="uid://btumy1uwj6oim" path="res://instances/gatherables/tree/assets/tree.png" id="4_d77yt"]
+[ext_resource type="Script" uid="uid://hhr6h553tcnc" path="res://instances/gatherables/tree/scripts/Tree.cs" id="1_7yks8"]
+[ext_resource type="PackedScene" uid="uid://dhh4h1jjasq38" path="res://common/items/item_drop.tscn" id="2_ymkhb"]
+[ext_resource type="Resource" uid="uid://br8vi6u30o263" path="res://resources/items/gatherables/Log.tres" id="3_bg42b"]
+[ext_resource type="Texture2D" uid="uid://btumy1uwj6oim" path="res://instances/gatherables/tree/assets/tree.png" id="4_4uhp7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mo4my"]
 size = Vector2(8, 6)
@@ -16,8 +16,8 @@ load_path = "res://.godot/imported/tree.png-cc6a2d4cd4d90b26caae6e883a7af298.cte
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_135ol"]
 custom_solver_bias = 0.026
-radius = 18.0
-height = 44.0
+radius = 19.0
+height = 45.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_d77yt"]
 load_path = "res://.godot/imported/tree.png-cc6a2d4cd4d90b26caae6e883a7af298.ctex"
@@ -25,15 +25,17 @@ load_path = "res://.godot/imported/tree.png-cc6a2d4cd4d90b26caae6e883a7af298.cte
 [node name="Tree" type="StaticBody2D" unique_id=2125091723 node_paths=PackedStringArray("TreeSprite", "Hurtbox", "CanopyPivot", "CanopySprite", "CrownArea")]
 y_sort_enabled = true
 scale = Vector2(2, 2)
-script = ExtResource("1_suo57")
+script = ExtResource("1_7yks8")
 TreeSprite = NodePath("TreeSprite")
 Hurtbox = NodePath("TreeHurtbox")
 CanopyPivot = NodePath("CanopyPivot")
 CanopySprite = NodePath("CanopyPivot/CanopySprite")
 CrownArea = NodePath("CanopyPivot/CrownArea")
-PickupScene = ExtResource("2_o4me6")
-ItemDrop = ExtResource("3_d77yt")
-_baseHealth = 10
+ItemDropScene = ExtResource("2_ymkhb")
+ItemDrop = ExtResource("3_bg42b")
+MinDrop = 2
+MaxDrop = 4
+BaseHealth = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=347808413]
 z_index = 1
@@ -52,7 +54,7 @@ shape = SubResource("RectangleShape2D_j22mf")
 [node name="TrunkSprite" type="Sprite2D" parent="." unique_id=421522340]
 texture_filter = 1
 position = Vector2(0, -30)
-texture = ExtResource("4_d77yt")
+texture = ExtResource("4_4uhp7")
 region_enabled = true
 region_rect = Rect2(64, 0, 64, 68)
 

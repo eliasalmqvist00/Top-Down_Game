@@ -4,7 +4,7 @@ using System;
 
 namespace Game.Gameplay;
 
-public partial class ItemPickup : Area2D
+public partial class ItemDrop: Area2D
 {
 	[ExportCategory("Nodes")]
 	[Export] private ItemData _item;

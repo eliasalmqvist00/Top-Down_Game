@@ -1,14 +1,28 @@
 [gd_scene format=3 uid="uid://qp0i6qr7rx0"]
 
-[ext_resource type="Script" uid="uid://b3wwq86gbl4ph" path="res://instances/gatherables/rock/scripts/rock.cs" id="1_8iubv"]
+[ext_resource type="Script" uid="uid://dmmhl64apmigk" path="res://instances/gatherables/rock/scripts/Rock.cs" id="1_8iubv"]
 [ext_resource type="Texture2D" uid="uid://lcb3mnige0es" path="res://instances/gatherables/rock/assets/rock.png" id="2_ao2tl"]
+[ext_resource type="PackedScene" uid="uid://dhh4h1jjasq38" path="res://common/items/item_drop.tscn" id="2_vgrkw"]
+[ext_resource type="Resource" uid="uid://bjid1m5r6iiog" path="res://resources/items/gatherables/Stone.tres" id="3_vgrkw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8iubv"]
-radius = 9.0
+radius = 4.0
 height = 26.0
 
-[node name="rock" type="StaticBody2D" unique_id=1261355952]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mo4my"]
+radius = 7.0
+height = 26.0
+
+[node name="rock" type="StaticBody2D" unique_id=1261355952 node_paths=PackedStringArray("RockSprite", "Hurtbox")]
+y_sort_enabled = true
 script = ExtResource("1_8iubv")
+RockSprite = NodePath("Sprite2D")
+Hurtbox = NodePath("Hurtbox")
+ItemDropScene = ExtResource("2_vgrkw")
+ItemDrop = ExtResource("3_vgrkw")
+MinDrop = 2
+MaxDrop = 5
+BaseHealth = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1232247161]
 position = Vector2(0, -8)
@@ -17,6 +31,15 @@ region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1845607245]
-position = Vector2(0, -6)
+position = Vector2(0, -2)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_8iubv")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=10416132]
+collision_layer = 0
+collision_mask = 4
+
+[node name="HurtboxShape" type="CollisionShape2D" parent="Hurtbox" unique_id=483744867]
+position = Vector2(0, -5)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_mo4my")

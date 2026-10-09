@@ -3,7 +3,7 @@ using Godot;
 
 namespace Game.Gameplay;
 
-public partial class Tree : StaticBody2D
+public partial class Tree : Gatherable, IGatherable
 {
 	[ExportCategory("Tree Nodes")]
 	[Export] public Sprite2D TreeSprite;
@@ -12,21 +12,15 @@ public partial class Tree : StaticBody2D
 	[Export] public Sprite2D CanopySprite;
 	[Export] public Area2D CrownArea;
 
-	[ExportCategory("Pickup and Drops")]
-	[Export] public PackedScene PickupScene;
-	[Export] public ItemData ItemDrop;
-
-	[ExportCategory("Tree vars")]
-	[Export] private int _baseHealth;
-
-	private int _currentHealth;
-
 	private Tween _treeTween;
 
-	public override void _Ready()
+    public RequiredTool RequiredTool => throw new NotImplementedException();
+
+    public override void _Ready()
 	{
-		_currentHealth = _baseHealth;
-		Hurtbox.AreaEntered += OnHurtboxEntered;
+		base._Ready();
+
+		Hurtbox.AreaEntered += DamageTaken;
 
 		CrownArea.AreaEntered += OnCrownAreaEntered;
 		CrownArea.AreaExited += OnCrownAreaExited;
@@ -42,16 +36,16 @@ public partial class Tree : StaticBody2D
         CanopySprite.ZIndex = 0;
     }
 
-	public void OnHurtboxEntered(Area2D area)
+	public void DamageTaken(Area2D area)
 	{
 		if(area is PlayerHitbox hitbox && hitbox.Player.HeldItem.ItemName == "Axe")
 		{
 			DamageInfo dmgInfo = hitbox.GetDamageInfo(Position);
 
-			Core.Logger.Info($"Chop, health = {_currentHealth}");
-			_currentHealth -= dmgInfo.Amount;
+			Core.Logger.Info($"Chop, health = {CurrentHealth}");
+			CurrentHealth -= dmgInfo.Amount;
 
-			if(_currentHealth <= 0)
+			if(CurrentHealth <= 0)
 			{
 				ChoppedDown(dmgInfo.HitDirection);
 				return;
@@ -87,7 +81,9 @@ public partial class Tree : StaticBody2D
 
 		_treeTween.Finished += () =>
 		{
-			SpawnLoot(hitDirection);
+			int spawnDistOffset = 32;
+
+			SpawnLoot(GlobalPosition + hitDirection * spawnDistOffset);
 			CanopyPivot.QueueFree();
 		};
 	}
@@ -107,26 +103,8 @@ public partial class Tree : StaticBody2D
 			.SetEase(Tween.EaseType.In);
 	}
 
-	public void SpawnLoot(Vector2 fallDirection)
-	{
-		if (PickupScene == null || ItemDrop == null) return;
-
-		int dropCount = GD.RandRange(2,4);
-
-		for(int i = 0; i < dropCount; i++)
-		{
-			ItemPickup drop = PickupScene.Instantiate<ItemPickup>();
-			GetParent().AddChild(drop);
-
-			float dist = (float) GD.RandRange(8, 16);
-			float angle = (float) GD.RandRange(0, Mathf.Tau);
-			Vector2 offset = new Vector2(Mathf.Cos(angle) * dist, Mathf.Sin(angle) * dist);
-
-			int spawnDistOffset = 32;
-			
-			drop.Instantiate(ItemDrop, GlobalPosition + spawnDistOffset * fallDirection, offset);
-		}
-		
-	}
-
+    public void ClearObject()
+    {
+        throw new NotImplementedException();
+    }
 }

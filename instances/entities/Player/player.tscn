@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b8hmchmlisgrc" path="res://instances/entities/Player/Player.cs" id="1_dnykm"]
 [ext_resource type="Texture2D" uid="uid://dixk2fsyc1dmr" path="res://assets/entities/player/Player.png" id="1_ucweq"]
-[ext_resource type="Resource" uid="uid://b1uemrj4j44vg" path="res://resources/UI/inventory/InventoryData.tres" id="2_56ash"]
+[ext_resource type="Resource" path="res://resources/UI/inventory/InventoryData.tres" id="2_56ash"]
 [ext_resource type="Script" uid="uid://el21wrx4nlag" path="res://instances/entities/Player/PlayerMovement.cs" id="3_c5rqy"]
 [ext_resource type="Texture2D" uid="uid://bhpaad5nb5e8w" path="res://assets/entities/player/frog_chop.png" id="5_56ash"]
 [ext_resource type="Script" uid="uid://07hjub4q0hyt" path="res://instances/entities/Player/PlayerAnimation.cs" id="5_c5rqy"]
@@ -719,7 +719,7 @@ animations = [{
 size = Vector2(16, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_135ol"]
-size = Vector2(15.624998, 29.374996)
+size = Vector2(15.624998, 24.687498)
 
 [node name="Player" type="CharacterBody2D" unique_id=2135259194 node_paths=PackedStringArray("StateMachine", "HitboxPivot", "PlayerHurtbox", "PlayerAnimation", "CollisionShape", "EntityMovement")]
 collision_layer = 2
@@ -763,7 +763,7 @@ limit_smoothed = true
 position_smoothing_speed = 10.0
 
 [node name="HitboxPivot" type="Marker2D" parent="." unique_id=1201070922 node_paths=PackedStringArray("Player", "HitboxPivot", "PlayerHitbox", "PlayerAnimation")]
-position = Vector2(0, -16)
+position = Vector2(0, -8)
 script = ExtResource("7_c5rqy")
 Player = NodePath("..")
 HitboxPivot = NodePath(".")
@@ -777,7 +777,6 @@ collision_layer = 4
 collision_mask = 0
 script = ExtResource("8_b6tgf")
 Player = NodePath("../..")
-metadata/_edit_group_ = true
 
 [node name="HitboxShape" type="CollisionShape2D" parent="HitboxPivot/HitBox" unique_id=236620279]
 shape = SubResource("RectangleShape2D_j22mf")
@@ -792,7 +791,7 @@ script = ExtResource("8_73kkf")
 Player = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1201580846]
-position = Vector2(-2.9802322e-08, 4.25)
+position = Vector2(-1.0587912e-22, 5.874999)
 scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_135ol")
 
