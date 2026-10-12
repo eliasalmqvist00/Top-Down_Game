@@ -11,8 +11,4 @@ public partial class EnemyAnimation : EntityAnimation
 	[Export] public EnemyRoamState EnemyRoamState;
 	[Export] public EnemyAttackState EnemyAttackState;
 
-	public override void _Ready()
-	{
-		
-	}
 }

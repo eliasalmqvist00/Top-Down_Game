@@ -13,6 +13,12 @@ public partial class EnemyDeadState : State
 	public override void EnterState()
 	{
 		base.EnterState();
+
+		Enemy.SetPhysicsProcess(false);
+		Enemy.SetProcess(false);
+		Enemy.StateMachine.SetPhysicsProcess(false);
+		Enemy.StateMachine.SetProcess(false);
+
 		Death();
 	}
 
@@ -23,11 +29,22 @@ public partial class EnemyDeadState : State
 		Enemy.EnemyAnimation.PlayDeath();
 		await ToSignal(Enemy.EnemyAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
 
+		if (!IsInstanceValid(Enemy)) return;
+
+		Enemy.EnemyAnimation.Stop(); 
+		if (Enemy.EnemyAnimation is AnimatedSprite2D sprite)
+		{
+			sprite.Frame = sprite.SpriteFrames.GetFrameCount("death") - 1;
+		}
+
 		Enemy.CollisionLayer = 2;
-		Enemy.EnemyHurtbox.Dispose();
+		Enemy.EnemyHurtbox.QueueFree();
 
 		await ToSignal(GetTree().CreateTimer(5.0f), SceneTreeTimer.SignalName.Timeout);
-		Enemy.QueueFree();
+		if (IsInstanceValid(Enemy))
+		{
+			Enemy.QueueFree();
+		}
 	}
 
 }

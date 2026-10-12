@@ -85,6 +85,8 @@ public partial class Enemy : Entity
 
 		await ToSignal(GetTree().CreateTimer(0.8f), SceneTreeTimer.SignalName.Timeout);
 
+		if (!IsAlive || !IsInstanceValid(this)) return;
+
 		if(StateMachine.GetCurrentState() != "chase") StateMachine.ChangeState(StateMachine.GetNode<State>("Chase"));
 	}
 
@@ -92,6 +94,10 @@ public partial class Enemy : Entity
 	{
 		if(!IsAlive) return;
 		IsAlive = false;
+
+		EnemyHurtbox.ReceivedDamage -= OnDamageReceived;
+		DetectionArea.AreaEntered -= OnDetectionAreaEntered;
+		DetectionArea.AreaExited -= OnDetectionAreaExited;
 
 		_knockbackTween.Kill();
 		_dmgFlashTween.Kill();

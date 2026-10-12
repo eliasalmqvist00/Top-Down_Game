@@ -35,6 +35,7 @@ namespace Game.Utilities
 				if(child is State state)
 				{
 					state.SetProcess(child == CurrentState);
+					state.SetPhysicsProcess(child == CurrentState);
 				}
 			}
 		}

@@ -86,6 +86,22 @@ SpawnPoint = NodePath("../spider-spawn5")
 Player = NodePath("../../Player")
 SpawnPoint = NodePath("../spider-spawn6")
 
+[node name="Spider7" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=2005122275 node_paths=PackedStringArray("Player", "SpawnPoint") instance=ExtResource("5_sdxsi")]
+Player = NodePath("../../Player")
+SpawnPoint = NodePath("../spider-spawn7")
+
+[node name="Spider8" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=2111789186 node_paths=PackedStringArray("Player", "SpawnPoint") instance=ExtResource("5_sdxsi")]
+Player = NodePath("../../Player")
+SpawnPoint = NodePath("../spider-spawn8")
+
+[node name="Spider9" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=308359933 node_paths=PackedStringArray("Player", "SpawnPoint") instance=ExtResource("5_sdxsi")]
+Player = NodePath("../../Player")
+SpawnPoint = NodePath("../spider-spawn9")
+
+[node name="Spider10" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=221256207 node_paths=PackedStringArray("Player", "SpawnPoint") instance=ExtResource("5_sdxsi")]
+Player = NodePath("../../Player")
+SpawnPoint = NodePath("../spider-spawn10")
+
 [node name="spider-spawn" type="Marker2D" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=383488559]
 position = Vector2(500, 400)
 
@@ -104,7 +120,20 @@ position = Vector2(344, 120)
 [node name="spider-spawn6" type="Marker2D" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=198889111]
 position = Vector2(224, 104)
 
+[node name="spider-spawn7" type="Marker2D" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=1576630407]
+position = Vector2(688, 248)
+
+[node name="spider-spawn8" type="Marker2D" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=2070918910]
+position = Vector2(248, 480)
+
+[node name="spider-spawn9" type="Marker2D" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=73242707]
+position = Vector2(360, 520)
+
+[node name="spider-spawn10" type="Marker2D" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=1212911469]
+position = Vector2(680, 336)
+
 [node name="HUD_Layer" type="CanvasLayer" parent="." unique_id=610799083]
+visible = false
 
 [node name="HUD_root" type="Control" parent="HUD_Layer" unique_id=138492937]
 layout_mode = 3

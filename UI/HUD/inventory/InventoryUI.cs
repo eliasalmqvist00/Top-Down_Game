@@ -5,7 +5,6 @@ using Game.Gameplay;
 using Game.Utilities;
 using Godot;
 
-
 namespace Game.HUD;
 
 public partial class InventoryUI : CanvasLayer
@@ -60,7 +59,6 @@ public partial class InventoryUI : CanvasLayer
 	public void OnSlotUpdated(InventorySlotData slotData, int idx)
 	{
 		_inventorySlots[idx].SetItem(slotData);
-		if(slotData.ItemQuantity <= 0) _inventorySlots[idx].Clear();
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
