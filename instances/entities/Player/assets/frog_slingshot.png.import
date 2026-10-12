@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bteik3e4nhkck"
-path="res://.godot/imported/Water_Tile.png-4cc52ea9106d85e3950da38a81546a01.ctex"
+uid="uid://bnksi7r344sfr"
+path="res://.godot/imported/frog_slingshot.png-8f4200487066772dabdb35ad6985bd6a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/nature/tiles/Water_Tile.png"
-dest_files=["res://.godot/imported/Water_Tile.png-4cc52ea9106d85e3950da38a81546a01.ctex"]
+source_file="res://instances/entities/Player/assets/frog_slingshot.png"
+dest_files=["res://.godot/imported/frog_slingshot.png-8f4200487066772dabdb35ad6985bd6a.ctex"]
 
 [params]
 

@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://da25ww3no3mrq"]
+
+[ext_resource type="Script" uid="uid://lnlitwujcrx3" path="res://instances/entities/Player/weapons/slingshot/SlingshotProjectile.cs" id="1_up4lk"]
+[ext_resource type="Texture2D" uid="uid://c4vc0dva78u6g" path="res://instances/gatherables/tree/assets/acorn_icon.png" id="2_xdyj0"]
+[ext_resource type="Script" uid="uid://bnurwujghy8f7" path="res://instances/entities/Player/weapons/slingshot/SlingshotProjectileHitbox.cs" id="3_xdyj0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mo4my"]
+radius = 6.0
+height = 16.0
+
+[node name="slingshot_projectile" type="StaticBody2D" unique_id=481771030 node_paths=PackedStringArray("Hitbox", "DespawnTimer")]
+y_sort_enabled = true
+script = ExtResource("1_up4lk")
+Hitbox = NodePath("Hitbox")
+DespawnTimer = NodePath("DespawnTimer")
+Damage = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=296512156]
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_mo4my")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=376728165]
+rotation = 3.9269907
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_xdyj0")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1869304073 node_paths=PackedStringArray("Projectile")]
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+collision_mask = 32
+script = ExtResource("3_xdyj0")
+Projectile = NodePath("..")
+
+[node name="hitboxshape" type="CollisionShape2D" parent="Hitbox" unique_id=666064982]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_mo4my")
+
+[node name="DespawnTimer" type="Timer" parent="." unique_id=739801265]
+wait_time = 4.0
+one_shot = true
+autostart = true

@@ -16,7 +16,7 @@ public partial class Toolbar :  CanvasLayer
 	public int SelectedIdx;
 	public override void _Ready()
 	{
-        _toolbarSlots.Clear();
+		_toolbarSlots.Clear();
 		foreach (Node child in ToolbarSlotContainer.GetChildren())
 		{
 			if (child is ToolbarSlot slot)
@@ -27,36 +27,38 @@ public partial class Toolbar :  CanvasLayer
 		SelectedIdx = 1;
 	}
 
-    public void BindInventory(InventoryData inventoryData)
-    {
-        if(inventoryData == null) return;
-        
-        _inventoryData = inventoryData;
-    }
+	public void BindInventory(InventoryData inventoryData)
+	{
+		if(inventoryData == null) return;
+		
+		_inventoryData = inventoryData;
+	}
 
-    public void InitializeToolbar()
-    {
-        _inventoryData.SlotUpdated += OnSlotUpdated;
-        for(int i = 0; i < _toolbarSlots.Count; i++)
-        {
-            _toolbarSlots[i].SetItem(_inventoryData.Slots[i]);
-        }
-        UpdateSelected();
-    }
+	public void InitializeToolbar()
+	{
+		_inventoryData.SlotUpdated += OnSlotUpdated;
+		for(int i = 0; i < _toolbarSlots.Count; i++)
+		{
+			_toolbarSlots[i].SetItem(_inventoryData.Slots[i]);
+		}
+		UpdateSelected();
+	}
 
 	public void OnSlotUpdated(InventorySlotData slotData, int idx)
 	{
-		_toolbarSlots[idx].SetItem(slotData);
+		if(idx < 10) _toolbarSlots[idx].SetItem(slotData);
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
 	{
 		if(@event.IsActionPressed("ui_scroll_up"))
 		{
+			Core.Logger.Debug("Scroll detected");
 			SelectPreviousItem();
 		}
 		else if(@event.IsActionPressed("ui_scroll_down"))
 		{
+			Core.Logger.Debug("Scroll detected");
 			SelectNextItem();
 		}
 	}
@@ -84,20 +86,20 @@ public partial class Toolbar :  CanvasLayer
 	{
 		if (_toolbarSlots.Count == 0) return;
 
-        for (int i = 0; i < _toolbarSlots.Count; i++)
-        {
-            _toolbarSlots[i].SetSelected(SelectedIdx == (i + 1));
-        }
+		for (int i = 0; i < _toolbarSlots.Count; i++)
+		{
+			_toolbarSlots[i].SetSelected(SelectedIdx == (i + 1));
+		}
 
-        int targetIndex = SelectedIdx - 1;
-        if (targetIndex >= 0 && targetIndex < _toolbarSlots.Count)
-        {
-            _activeItem = _toolbarSlots[targetIndex].SlotData?.Item;
-        }
-        else
-        {
-            _activeItem = null;
-        }
+		int targetIndex = SelectedIdx - 1;
+		if (targetIndex >= 0 && targetIndex < _toolbarSlots.Count)
+		{
+			_activeItem = _toolbarSlots[targetIndex].SlotData?.Item;
+		}
+		else
+		{
+			_activeItem = null;
+		}
 		GameEvents.EmitActiveItemChanged(_activeItem);
 	}
 

@@ -33,6 +33,8 @@ public partial class Enemy : Entity
 
 	public override void _Ready()
 	{
+		Position = SpawnPoint.GlobalPosition;
+
 		MaxHealth = 20;
 		
 		base._Ready();
@@ -48,7 +50,6 @@ public partial class Enemy : Entity
 
 	public void OnDetectionAreaEntered(Area2D area)
 	{
-		//Add if enemy is looking towards player
 		if(area is PlayerHurtbox && StateMachine.GetCurrentState() == "Roam")
 		{
 			StateMachine.ChangeState(StateMachine.GetNode<State>("Chase"));
@@ -83,6 +84,8 @@ public partial class Enemy : Entity
 		ApplyKnockback(dmgInfo.KnockbackForce);
 
 		await ToSignal(GetTree().CreateTimer(0.8f), SceneTreeTimer.SignalName.Timeout);
+
+		if(StateMachine.GetCurrentState() != "chase") StateMachine.ChangeState(StateMachine.GetNode<State>("Chase"));
 	}
 
 	public void Death()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drua1xyu3elni"
-path="res://.godot/imported/House_1_Wood_Base_Blue.png-8fbc3cb38091d9f5031f6018f0d3357d.ctex"
+uid="uid://byvbfgvwfj421"
+path="res://.godot/imported/slingshot_icon.png-4cb92bf381c313ed152eb63d223b3943.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/nature/House_1_Wood_Base_Blue.png"
-dest_files=["res://.godot/imported/House_1_Wood_Base_Blue.png-8fbc3cb38091d9f5031f6018f0d3357d.ctex"]
+source_file="res://resources/items/assets/slingshot_icon.png"
+dest_files=["res://.godot/imported/slingshot_icon.png-4cb92bf381c313ed152eb63d223b3943.ctex"]
 
 [params]
 

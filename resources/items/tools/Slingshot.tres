@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ToolData" format=3 uid="uid://b3osqdmtqn1j1"]
+
+[ext_resource type="Texture2D" uid="uid://byvbfgvwfj421" path="res://resources/items/assets/slingshot_icon.png" id="1_jvmdf"]
+[ext_resource type="Script" uid="uid://dxo0lsj72gc07" path="res://common/items/ToolData.cs" id="1_rtkc6"]
+
+[resource]
+script = ExtResource("1_rtkc6")
+ItemID = "8"
+ItemName = "Slingshot"
+ItemIcon = ExtResource("1_jvmdf")
+Damage = 6
+metadata/_custom_type_script = "uid://dxo0lsj72gc07"

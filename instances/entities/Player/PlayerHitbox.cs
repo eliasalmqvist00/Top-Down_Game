@@ -4,7 +4,7 @@ using Godot;
 namespace Game.Gameplay;
 
 
-public partial class PlayerHitbox : Area2D
+public partial class PlayerHitbox : Area2D, IHitbox
 {   
 	[ExportCategory("Nodes")]
 	[Export] public Player Player;

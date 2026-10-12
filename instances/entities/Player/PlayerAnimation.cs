@@ -13,5 +13,6 @@ public partial class PlayerAnimation : EntityAnimation
 	}
 	
 	public void PlayChop() => PlayAnimation("axe");
+	public void PlaySlingshot() => PlayAnimation("slingshot");
 
 }

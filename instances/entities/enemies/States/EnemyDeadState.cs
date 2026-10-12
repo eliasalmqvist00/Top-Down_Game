@@ -21,7 +21,7 @@ public partial class EnemyDeadState : State
 		Enemy.EnemyHealthbar.Visible = false;
 
 		Enemy.EnemyAnimation.PlayDeath();
-		Core.Logger.Debug("Enemy has died");
+		await ToSignal(Enemy.EnemyAnimation, AnimatedSprite2D.SignalName.AnimationFinished);
 
 		Enemy.CollisionLayer = 2;
 		Enemy.EnemyHurtbox.Dispose();

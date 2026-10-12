@@ -18,7 +18,7 @@ public partial class PlayerChopState : State
 
 	private async void Chop()
 	{
-		Vector2 chopDirection = GetMouseDirection(Player.Position);
+		Vector2 chopDirection = Modules.GetQuantizedMouseDirection(Player, Player.Position);
 		Player.Direction = chopDirection;
 
 		PlayerAnimation.PlayChop();
@@ -41,29 +41,6 @@ public partial class PlayerChopState : State
 			{
 				PlayerHitbox.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
 			}
-		}
-	}
-
-	private Vector2 GetMouseDirection(Vector2 playerPosition)
-	{
-		Vector2 toMouse = Player.HitboxPivot.GetGlobalMousePosition() - playerPosition;
-		float angle = Mathf.PosMod(Mathf.RadToDeg(toMouse.Angle()), 360f);
-
-		if(angle > 45 && angle <= 135)
-		{
-			return Vector2.Down;
-		}
-		else if(angle > 135 && angle <= 225)
-		{
-			return Vector2.Left;
-		}
-		else if(angle > 225 && angle <= 315)
-		{
-			return Vector2.Up;
-		}
-		else
-		{
-			return Vector2.Right; 
 		}
 	}
 

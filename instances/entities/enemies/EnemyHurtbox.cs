@@ -17,7 +17,7 @@ public partial class EnemyHurtbox : Area2D
 
 	private void OnAreaEntered(Area2D area)
 	{
-		if(area is PlayerHitbox hitbox && Enemy.IsAlive)
+		if(area is IHitbox hitbox && Enemy.IsAlive)
 		{
 			DamageInfo dmgInfo = hitbox.GetDamageInfo(Enemy.Position);
 			ReceivedDamage?.Invoke(dmgInfo);

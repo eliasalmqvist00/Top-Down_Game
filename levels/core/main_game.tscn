@@ -28,6 +28,7 @@ offset_right = -112.0
 offset_bottom = -264.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Control" unique_id=1648537629]
 texture_filter = 1
@@ -59,19 +60,49 @@ _toolbar = NodePath("../../HUD_Toolbar")
 [node name="MainLevelScene" parent="Control/SubViewportContainer/SubViewport/World" unique_id=1050202108 instance=ExtResource("3_sdxsi")]
 texture_filter = 1
 
-[node name="Spider" parent="Control/SubViewportContainer/SubViewport/World" unique_id=276010328 node_paths=PackedStringArray("Player", "SpawnPoint") instance=ExtResource("5_sdxsi")]
-Player = NodePath("../Player")
+[node name="spiders" type="Node2D" parent="Control/SubViewportContainer/SubViewport/World" unique_id=1231776331]
+
+[node name="Spider" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=276010328 node_paths=PackedStringArray("Player", "SpawnPoint") instance=ExtResource("5_sdxsi")]
+Player = NodePath("../../Player")
 SpawnPoint = NodePath("../spider-spawn")
 
-[node name="Spider2" parent="Control/SubViewportContainer/SubViewport/World" unique_id=1734135315 node_paths=PackedStringArray("Player", "SpawnPoint") instance=ExtResource("5_sdxsi")]
-Player = NodePath("../Player")
+[node name="Spider2" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=1734135315 node_paths=PackedStringArray("Player", "SpawnPoint") instance=ExtResource("5_sdxsi")]
+Player = NodePath("../../Player")
 SpawnPoint = NodePath("../spider-spawn2")
 
-[node name="spider-spawn" type="Marker2D" parent="Control/SubViewportContainer/SubViewport/World" unique_id=383488559]
+[node name="Spider3" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=86595827 node_paths=PackedStringArray("Player", "SpawnPoint") instance=ExtResource("5_sdxsi")]
+Player = NodePath("../../Player")
+SpawnPoint = NodePath("../spider-spawn3")
+
+[node name="Spider4" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=1616210414 node_paths=PackedStringArray("Player", "SpawnPoint") instance=ExtResource("5_sdxsi")]
+Player = NodePath("../../Player")
+SpawnPoint = NodePath("../spider-spawn4")
+
+[node name="Spider5" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=279989166 node_paths=PackedStringArray("Player", "SpawnPoint") instance=ExtResource("5_sdxsi")]
+Player = NodePath("../../Player")
+SpawnPoint = NodePath("../spider-spawn5")
+
+[node name="Spider6" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=263927670 node_paths=PackedStringArray("Player", "SpawnPoint") instance=ExtResource("5_sdxsi")]
+Player = NodePath("../../Player")
+SpawnPoint = NodePath("../spider-spawn6")
+
+[node name="spider-spawn" type="Marker2D" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=383488559]
 position = Vector2(500, 400)
 
-[node name="spider-spawn2" type="Marker2D" parent="Control/SubViewportContainer/SubViewport/World" unique_id=690080217]
+[node name="spider-spawn2" type="Marker2D" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=690080217]
 position = Vector2(150, 200)
+
+[node name="spider-spawn3" type="Marker2D" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=1109377083]
+position = Vector2(448, 200)
+
+[node name="spider-spawn4" type="Marker2D" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=698444327]
+position = Vector2(296, 216)
+
+[node name="spider-spawn5" type="Marker2D" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=337007595]
+position = Vector2(344, 120)
+
+[node name="spider-spawn6" type="Marker2D" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=198889111]
+position = Vector2(224, 104)
 
 [node name="HUD_Layer" type="CanvasLayer" parent="." unique_id=610799083]
 
@@ -80,6 +111,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 640.0
 offset_bottom = 360.0
+mouse_filter = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="HUD_Layer/HUD_root" unique_id=2110598025 node_paths=PackedStringArray("Player")]
 z_index = 30
@@ -94,6 +126,7 @@ offset_bottom = 16.0
 grow_horizontal = 2
 offset_transform_enabled = true
 offset_transform_position = Vector2(0, 24)
+mouse_filter = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_cbem3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_br8lc")
 step = 1.0
@@ -101,3 +134,9 @@ value = 40.0
 show_percentage = false
 script = ExtResource("4_xopn4")
 Player = NodePath("../../../Control/SubViewportContainer/SubViewport/World/Player")
+
+[node name="World" type="Node" parent="." unique_id=1653274631]
+
+[node name="Audio" type="Node" parent="World" unique_id=1530414917]
+
+[node name="Level" type="Node" parent="World" unique_id=992069134]

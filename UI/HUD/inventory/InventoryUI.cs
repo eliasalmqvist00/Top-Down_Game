@@ -34,6 +34,9 @@ public partial class InventoryUI : CanvasLayer
 	public void InitializeInventoryUI()
 	{
 		_inventoryData.SlotUpdated += OnSlotUpdated;
+		GameEvents.OnItemPickedUp += _inventoryData.AddItem;
+		GameEvents.FindItemQuantity += _inventoryData.FindItemQuantity;
+		GameEvents.OnItemUsed += _inventoryData.UpdateItemQuantity;
 		
 		for(int i = 0; i < _inventorySlots.Count; i++)
 		{
@@ -57,6 +60,7 @@ public partial class InventoryUI : CanvasLayer
 	public void OnSlotUpdated(InventorySlotData slotData, int idx)
 	{
 		_inventorySlots[idx].SetItem(slotData);
+		if(slotData.ItemQuantity <= 0) _inventorySlots[idx].Clear();
 	}
 
 	public override void _UnhandledInput(InputEvent @event)

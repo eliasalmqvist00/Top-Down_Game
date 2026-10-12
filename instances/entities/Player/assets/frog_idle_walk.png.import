@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8po1vmd8jfpw"
-path="res://.godot/imported/FarmLand_Tile.png-f5b56d28bc5a3ccbff09b75a30ff0e1e.ctex"
+uid="uid://j7f8l0out1fw"
+path="res://.godot/imported/frog_idle_walk.png-059e03bc89901c7f729271d07f16c0ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/nature/tiles/FarmLand_Tile.png"
-dest_files=["res://.godot/imported/FarmLand_Tile.png-f5b56d28bc5a3ccbff09b75a30ff0e1e.ctex"]
+source_file="res://instances/entities/Player/assets/frog_idle_walk.png"
+dest_files=["res://.godot/imported/frog_idle_walk.png-059e03bc89901c7f729271d07f16c0ec.ctex"]
 
 [params]
 

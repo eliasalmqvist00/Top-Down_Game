@@ -21,7 +21,7 @@ public partial class EnemyChaseState : State
 	{
 		base.EnterState();
 		AttackRange.AreaEntered += PlayerInRange;
-		Enemy.MovementSpeed = 3;
+		Enemy.MovementSpeed = 8;
 	}
 
 	public void PlayerInRange(Area2D area)

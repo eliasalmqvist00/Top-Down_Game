@@ -35,13 +35,19 @@ public partial class ItemDrop: Area2D
 	{
 		if(area is PlayerHurtbox hurtbox)
 		{
-			Tween pickupTween = CreateTween();
-			pickupTween.TweenProperty(this, "position", hurtbox.Position, 1.2f)
-			 .SetTrans(Tween.TransitionType.Sine)
-			 .SetEase(Tween.EaseType.In);
+			SetDeferred(CollisionObject2D.PropertyName.CollisionLayer, 0);
+        	SetDeferred(CollisionObject2D.PropertyName.CollisionMask, 0);
 
-			GameEvents.EmitItemPickedUp(_item);
-			QueueFree();
+			Tween pickupTween = CreateTween();
+			pickupTween.TweenProperty(this, "global_position", hurtbox.GlobalPosition, 0.2f)
+				.SetTrans(Tween.TransitionType.Sine)
+				.SetEase(Tween.EaseType.In);
+
+			pickupTween.TweenCallback(Callable.From(() =>
+			{
+				GameEvents.EmitItemPickedUp(_item);
+				QueueFree();
+			}));
 		}
 	}
 

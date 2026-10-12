@@ -77,6 +77,8 @@ public partial class EnemyRoamState : State
 
 		for(int i = 0; i <= steps; i++)
 		{	
+			if(!Enemy.IsAlive) return;
+			
 			EnemyMovement.TargetPosition = Enemy.Position + Enemy.Direction * Core.Globals.Instance.GRID_SIZE;
 
 			EnemyAnimation.PlayWalk();

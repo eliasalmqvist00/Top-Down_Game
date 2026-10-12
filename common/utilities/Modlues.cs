@@ -40,6 +40,42 @@ public static class Modules
         return Input.IsActionPressed("ui_scroll_down");
     }
 
+    public static Vector2 GetMouseDirection(Node2D caller, Vector2 playerPosition)
+	{
+		Vector2 toMouse = (GetGlobalMousePosition(caller) - playerPosition).Normalized();
+
+		return toMouse;
+	}
+
+    public static Vector2 GetQuantizedMouseDirection(Node2D caller, Vector2 playerPosition)
+	{
+		Vector2 toMouse = GetGlobalMousePosition(caller) - playerPosition;
+		float angle = Mathf.PosMod(Mathf.RadToDeg(toMouse.Angle()), 360f);
+
+		if(angle > 45 && angle <= 135)
+		{
+			return Vector2.Down;
+		}
+		else if(angle > 135 && angle <= 225)
+		{
+			return Vector2.Left;
+		}
+		else if(angle > 225 && angle <= 315)
+		{
+			return Vector2.Up;
+		}
+		else
+		{
+			return Vector2.Right; 
+		}
+	}
+
+    public static Vector2 GetGlobalMousePosition(Node2D caller)
+    {
+        Vector2 mousePos = caller.GetGlobalMousePosition();
+        return mousePos;
+    }
+
     public static Vector2 GetDirectionVector(string directionName)
     {
         if (DirectionVector.TryGetValue(directionName, out Vector2I direction))

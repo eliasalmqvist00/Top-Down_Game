@@ -59,9 +59,7 @@ public partial class EntityAnimation : AnimatedSprite2D
 		}
 		else
 		{
-			return CurrentDirection.X > 0 
-				? ParseAnimationEnum($"{animationPrefix}_right") 
-				: ParseAnimationEnum($"{animationPrefix}_left");
+			return ParseAnimationEnum($"{animationPrefix}_side");
 		}
 	}
 

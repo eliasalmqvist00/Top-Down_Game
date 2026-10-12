@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8ns7eapikj6t"
-path="res://.godot/imported/Cliff_Tile.png-a044c7ace87cd37539d4056c2e648d6e.ctex"
+uid="uid://dmcw5xsp05jt7"
+path="res://.godot/imported/frog_chop.png-5ab6a062cd9b057cde9e286137a3145e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/nature/tiles/Cliff_Tile.png"
-dest_files=["res://.godot/imported/Cliff_Tile.png-a044c7ace87cd37539d4056c2e648d6e.ctex"]
+source_file="res://instances/entities/Player/assets/frog_chop.png"
+dest_files=["res://.godot/imported/frog_chop.png-5ab6a062cd9b057cde9e286137a3145e.ctex"]
 
 [params]
 

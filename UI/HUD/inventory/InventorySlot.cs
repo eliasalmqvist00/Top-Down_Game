@@ -24,17 +24,17 @@ public partial class InventorySlot : PanelContainer
 		{
 			_countLabel.Visible = false;
 			_icon.Visible = true;
-            _icon.Texture = SlotData.Item.ItemIcon;
+			_icon.Texture = SlotData.Item.ItemIcon;
 		}
 		else if (SlotData != null && SlotData.Item != null)
 		{
 			_icon.Texture = SlotData.Item.ItemIcon;
 			_icon.Visible = true;
-            _icon.Texture = SlotData.Item.ItemIcon;
+			_icon.Texture = SlotData.Item.ItemIcon;
 
 			int itemCount = SlotData.ItemQuantity;
 			_countLabel.Text = itemCount.ToString();
-            _countLabel.Visible = true;
+			_countLabel.Visible = true;
 		}
 		else
 		{
@@ -42,7 +42,7 @@ public partial class InventorySlot : PanelContainer
 			_icon.Visible = false;
 			
 			_countLabel.Text = "";
-            _countLabel.Visible = false;
+			_countLabel.Visible = false;
 		}
 	}
 
@@ -58,6 +58,10 @@ public partial class InventorySlot : PanelContainer
 		{
 			_countLabel.Text = string.Empty;
 			_countLabel.Visible = false;
+		}
+		if(SlotData != null)
+		{
+			SlotData.Clear();
 		}
 	}
 

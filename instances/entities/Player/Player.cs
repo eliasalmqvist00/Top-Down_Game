@@ -46,7 +46,6 @@ public partial class Player : Entity
 
 	public void InitializeInventory()
 	{
-		GameEvents.OnItemPickedUp += InventoryData.AddItem;
 		GameEvents.OnActiveItemChanged += OnItemEquipped;
 
 		InventoryData = InventoryData.LoadOrCreate(GameSavemanager.InventorySavePath);

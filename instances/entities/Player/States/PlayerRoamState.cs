@@ -47,14 +47,13 @@ public partial class PlayerRoamState : State
 
 	public override void _Process(double delta)
 	{
-		// 1. Attack priority check
 		if (Modules.IsAttackJustPressed())
 		{
 			if(Player.HeldItem?.ItemName == "Sword") StateMachine.ChangeState(StateMachine.GetNode<State>("Attack"));
 			if(Player.HeldItem?.ItemName == "Axe") StateMachine.ChangeState(StateMachine.GetNode<State>("Chop"));
+			if(Player.HeldItem?.ItemName == "Slingshot") StateMachine.ChangeState(StateMachine.GetNode<State>("Slingshot"));
 			return;
 		}
-		// 2. Movement handling
 		GetInput(delta);
 	}
 

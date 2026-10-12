@@ -3,7 +3,7 @@ using Godot;
 namespace Game.Gameplay;
 
 
-public partial class EnemyHitbox : Area2D
+public partial class EnemyHitbox : Area2D, IHitbox
 {   
 	[ExportCategory("Nodes")]
 	[Export] public Enemy Enemy;
