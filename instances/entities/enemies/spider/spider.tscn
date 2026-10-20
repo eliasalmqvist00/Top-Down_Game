@@ -322,8 +322,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j22mf"]
-size = Vector2(24, 22)
+[sub_resource type="CircleShape2D" id="CircleShape2D_tvtpw"]
+radius = 13.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_135ol"]
 size = Vector2(3.9999995, 12)
@@ -363,6 +363,7 @@ MaxHealth = 20
 MovementSpeed = 2
 
 [node name="CollisionBox" type="CollisionShape2D" parent="." unique_id=2061794104]
+visible = false
 position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_mo4my")
 
@@ -380,7 +381,7 @@ Entity = NodePath("..")
 texture_filter = 1
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_mo4my")
-animation = &"idle_down"
+animation = &"death"
 autoplay = "idle_down"
 script = ExtResource("4_jrc2g")
 Enemy = NodePath("..")
@@ -398,7 +399,7 @@ Enemy = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=453441147]
 position = Vector2(0, -4)
-shape = SubResource("RectangleShape2D_j22mf")
+shape = SubResource("CircleShape2D_tvtpw")
 
 [node name="HitboxPivot" type="Marker2D" parent="." unique_id=1414648179]
 position = Vector2(0, -8)

@@ -1,13 +1,13 @@
-[gd_resource type="Resource" script_class="InventoryData" format=3 uid="uid://dyw6mqin3rktt"]
+[gd_resource type="Resource" script_class="InventoryData" format=3]
 
-[ext_resource type="Script" uid="uid://dp1ojgmngtxy6" path="res://UI/HUD/inventory/InventorySlotData.cs" id="1_yxd2v"]
-[ext_resource type="Resource" uid="uid://orrewko5a5v8" path="res://resources/items/tools/Axe.tres" id="2_ftjli"]
-[ext_resource type="Resource" uid="uid://b3osqdmtqn1j1" path="res://resources/items/tools/Slingshot.tres" id="2_quyjl"]
-[ext_resource type="Script" uid="uid://dmgt21tn0mhhw" path="res://UI/HUD/inventory/InventoryData.cs" id="2_t5hu6"]
-[ext_resource type="Resource" uid="uid://d0wos3ki02phw" path="res://resources/items/tools/Sword.tres" id="3_ftjli"]
-[ext_resource type="Resource" uid="uid://br8vi6u30o263" path="res://resources/items/gatherables/Log.tres" id="4_72nkr"]
-[ext_resource type="Resource" uid="uid://bjid1m5r6iiog" path="res://resources/items/gatherables/Stone.tres" id="5_egtkv"]
-[ext_resource type="Resource" uid="uid://ueuwqe3n6wgf" path="res://resources/items/gatherables/Acorn.tres" id="5_quyjl"]
+[ext_resource type="Script" path="res://UI/HUD/inventory/InventorySlotData.cs" id="1_yxd2v"]
+[ext_resource type="Resource" path="res://resources/items/tools/Axe.tres" id="2_ftjli"]
+[ext_resource type="Resource" path="res://resources/items/tools/Slingshot.tres" id="2_quyjl"]
+[ext_resource type="Script" path="res://UI/HUD/inventory/InventoryData.cs" id="2_t5hu6"]
+[ext_resource type="Resource" path="res://resources/items/tools/Sword.tres" id="3_ftjli"]
+[ext_resource type="Resource" path="res://resources/items/gatherables/Log.tres" id="4_72nkr"]
+[ext_resource type="Resource" path="res://resources/items/gatherables/Stone.tres" id="5_egtkv"]
+[ext_resource type="Resource" path="res://resources/items/gatherables/Acorn.tres" id="5_quyjl"]
 
 [sub_resource type="Resource" id="Resource_pbsov"]
 script = ExtResource("1_yxd2v")
@@ -27,7 +27,7 @@ ItemQuantity = 1
 [sub_resource type="Resource" id="Resource_ftjli"]
 script = ExtResource("1_yxd2v")
 Item = ExtResource("5_quyjl")
-ItemQuantity = 40
+ItemQuantity = 15
 
 [sub_resource type="Resource" id="Resource_72nkr"]
 script = ExtResource("1_yxd2v")
@@ -47,18 +47,22 @@ ItemQuantity = 99
 [sub_resource type="Resource" id="Resource_quyjl"]
 script = ExtResource("1_yxd2v")
 Item = ExtResource("4_72nkr")
-ItemQuantity = 28
+ItemQuantity = 99
 
 [sub_resource type="Resource" id="Resource_7w1bt"]
 script = ExtResource("1_yxd2v")
 Item = ExtResource("5_egtkv")
-ItemQuantity = 64
+ItemQuantity = 99
 
 [sub_resource type="Resource" id="Resource_fka4d"]
 script = ExtResource("1_yxd2v")
+Item = ExtResource("4_72nkr")
+ItemQuantity = 89
 
 [sub_resource type="Resource" id="Resource_mr1ei"]
 script = ExtResource("1_yxd2v")
+Item = ExtResource("5_egtkv")
+ItemQuantity = 38
 
 [sub_resource type="Resource" id="Resource_vks1f"]
 script = ExtResource("1_yxd2v")

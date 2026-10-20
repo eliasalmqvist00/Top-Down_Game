@@ -59,7 +59,7 @@ public partial class EnemyRoamState : State
 
 		await ToSignal(GetTree().CreateTimer(1f), SceneTreeTimer.SignalName.Timeout);
 
-		while (IsInstanceValid(this) && IsInstanceValid(Enemy))
+		while (IsInstanceValid(this) && Enemy.IsAlive)
 		{
 			await Roam();
 

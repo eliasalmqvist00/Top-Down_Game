@@ -44,7 +44,7 @@ public partial class Tree : Gatherable, IGatherable
 
 			Core.Logger.Info($"Chop, health = {CurrentHealth}");
 			CurrentHealth -= dmgInfo.Amount;
-
+			
 			if(CurrentHealth <= 0)
 			{
 				ChoppedDown(dmgInfo.HitDirection);
@@ -55,7 +55,7 @@ public partial class Tree : Gatherable, IGatherable
 		}
 	}
 
-	private void ChoppedDown(Vector2 hitDirection)
+	private void ChoppedDown(Vector2 fallDirection)
 	{
 		TreeSprite.Visible = false;
 		CanopySprite.Visible = true;
@@ -65,9 +65,9 @@ public partial class Tree : Gatherable, IGatherable
 
 		CrownArea.AreaEntered -= OnCrownAreaEntered;
 		CrownArea.AreaExited -= OnCrownAreaExited;
-		Core.Logger.Info("Tree chopped down");
 
-		float fallAngle = hitDirection.X >= 0 ? Mathf.DegToRad(90) : Mathf.DegToRad(-90);
+		float fallAngle = fallDirection.X >= 0 ? Mathf.DegToRad(90) : Mathf.DegToRad(-90);
+		fallDirection = fallDirection.X >= 0 ? Vector2.Right : Vector2.Left;
 
 		_treeTween?.Kill();
 		_treeTween = CreateTween();
@@ -83,7 +83,7 @@ public partial class Tree : Gatherable, IGatherable
 		{
 			int spawnDistOffset = 32;
 
-			SpawnLoot(GlobalPosition + hitDirection * spawnDistOffset);
+			SpawnLoot(GlobalPosition + fallDirection * spawnDistOffset);
 			CanopyPivot.QueueFree();
 		};
 	}
