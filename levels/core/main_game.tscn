@@ -1,22 +1,17 @@
 [gd_scene format=3 uid="uid://bx5dtxm4u4101"]
 
 [ext_resource type="PackedScene" uid="uid://bsk53u41nc28o" path="res://UI/HUD/inventory/inventorty.tscn" id="1_sdxsi"]
+[ext_resource type="Script" uid="uid://8f1tyrab2rk5" path="res://common/core/MainGame.cs" id="1_tvtpw"]
 [ext_resource type="PackedScene" uid="uid://bi532wrvl1rlk" path="res://instances/entities/Player/player.tscn" id="2_xopn4"]
 [ext_resource type="PackedScene" uid="uid://bka1lxpr2kxbw" path="res://levels/main/main_level_scene.tscn" id="3_sdxsi"]
-[ext_resource type="Script" uid="uid://clpylg78cwnnv" path="res://instances/entities/Player/PlayerHealthbar.cs" id="4_xopn4"]
 [ext_resource type="PackedScene" uid="uid://blwfg314mo34h" path="res://UI/HUD/toolbar/hud_toolbar.tscn" id="5_cbem3"]
 [ext_resource type="PackedScene" uid="uid://bmthxxlaedqtq" path="res://instances/entities/enemies/spider/spider.tscn" id="5_sdxsi"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbem3"]
-bg_color = Color(0.41132262, 0.39743367, 0.2764011, 0.7764706)
-border_color = Color(0.0010082053, 0.15466428, 0.0011077413, 1)
-shadow_color = Color(0, 0.024554955, 0, 0.9607843)
-shadow_size = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_br8lc"]
-bg_color = Color(0.5344673, 0.87680113, 0.3438896, 1)
+[ext_resource type="Script" uid="uid://bkvexqou0wxuj" path="res://common/core/HUD.cs" id="7_n74dc"]
 
 [node name="MainGame" type="Node" unique_id=1623950917]
+script = ExtResource("1_tvtpw")
+InitialLevelScene = ExtResource("3_sdxsi")
+PlayerScene = ExtResource("2_xopn4")
 
 [node name="Control" type="Control" parent="." unique_id=1237666331]
 texture_filter = 1
@@ -132,40 +127,58 @@ position = Vector2(360, 520)
 [node name="spider-spawn10" type="Marker2D" parent="Control/SubViewportContainer/SubViewport/World/spiders" unique_id=1212911469]
 position = Vector2(680, 336)
 
-[node name="HUD_Layer" type="CanvasLayer" parent="." unique_id=610799083]
-visible = false
+[node name="Systems" type="Node" parent="." unique_id=1780780250]
 
-[node name="HUD_root" type="Control" parent="HUD_Layer" unique_id=138492937]
+[node name="World" type="Node2D" parent="." unique_id=341729238]
+y_sort_enabled = true
+
+[node name="LevelRoot" type="Node2D" parent="World" unique_id=1164939419]
+unique_name_in_owner = true
+
+[node name="EntityRoot" type="Node2D" parent="World" unique_id=186434063]
+unique_name_in_owner = true
+
+[node name="EffectRoot" type="Node2D" parent="World" unique_id=1227163836]
+unique_name_in_owner = true
+
+[node name="HUDLayer" type="CanvasLayer" parent="." unique_id=680058402]
+layer = 10
+
+[node name="HUDRoot" type="Control" parent="HUDLayer" unique_id=949209928]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_right = 640.0
-offset_bottom = 360.0
-mouse_filter = 2
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_n74dc")
+InventoryScene = ExtResource("1_sdxsi")
+ToolbarScene = ExtResource("5_cbem3")
+metadata/_edit_use_anchors_ = true
 
-[node name="ProgressBar" type="ProgressBar" parent="HUD_Layer/HUD_root" unique_id=2110598025 node_paths=PackedStringArray("Player")]
-z_index = 30
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -80.0
-offset_right = 80.0
-offset_bottom = 16.0
-grow_horizontal = 2
-offset_transform_enabled = true
-offset_transform_position = Vector2(0, 24)
-mouse_filter = 1
-theme_override_styles/background = SubResource("StyleBoxFlat_cbem3")
-theme_override_styles/fill = SubResource("StyleBoxFlat_br8lc")
-step = 1.0
-value = 40.0
-show_percentage = false
-script = ExtResource("4_xopn4")
-Player = NodePath("../../../Control/SubViewportContainer/SubViewport/World/Player")
+[node name="MenuLayer" type="CanvasLayer" parent="." unique_id=389963634]
+layer = 20
 
-[node name="World" type="Node" parent="." unique_id=1653274631]
+[node name="MenuRoot" type="Control" parent="MenuLayer" unique_id=559531661]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Audio" type="Node" parent="World" unique_id=1530414917]
+[node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=18395527]
+layer = 100
 
-[node name="Level" type="Node" parent="World" unique_id=992069134]
+[node name="TransitionRoot" type="Control" parent="TransitionLayer" unique_id=1516182715]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DebugLayer" type="CanvasLayer" parent="." unique_id=791056762]
+layer = 120
+
+[node name="DebugRoot" type="Control" parent="DebugLayer" unique_id=940277180]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

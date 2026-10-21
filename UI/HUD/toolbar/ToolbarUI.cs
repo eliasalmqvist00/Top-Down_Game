@@ -4,7 +4,7 @@ using Godot;
 
 namespace Game.HUD;
 
-public partial class Toolbar :  CanvasLayer
+public partial class ToolbarUI :  CanvasLayer
 {	
 	[Export] public HBoxContainer ToolbarSlotContainer;
 	private InventoryData _inventoryData;

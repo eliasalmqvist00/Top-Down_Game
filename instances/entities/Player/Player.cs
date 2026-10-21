@@ -22,7 +22,7 @@ public partial class Player : Entity
 
 	[ExportCategory("Inventory")]
 	[Export] private InventoryUI _inventoryUI;
-	[Export] private Toolbar _toolbar;
+	[Export] private ToolbarUI _toolbar;
 	[Export] InventoryData InventoryData;
 	public ItemData HeldItem;
 

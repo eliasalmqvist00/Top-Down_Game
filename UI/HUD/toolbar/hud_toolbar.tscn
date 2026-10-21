@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://blwfg314mo34h"]
 
-[ext_resource type="Script" uid="uid://ckr4ualmj54sg" path="res://UI/HUD/toolbar/Toolbar.cs" id="1_d3nv4"]
+[ext_resource type="Script" uid="uid://ckr4ualmj54sg" path="res://UI/HUD/toolbar/ToolbarUI.cs" id="1_d3nv4"]
 [ext_resource type="Texture2D" uid="uid://3grirm0pf2gx" path="res://assets/UI/Toolbar.png" id="2_trfux"]
 [ext_resource type="PackedScene" uid="uid://bratbvcts7v6" path="res://UI/HUD/toolbar/toolbar_slot.tscn" id="3_y4css"]
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bi532wrvl1rlk"]
 
 [ext_resource type="Script" uid="uid://b8hmchmlisgrc" path="res://instances/entities/Player/Player.cs" id="1_dnykm"]
-[ext_resource type="Resource" uid="uid://btijio3vd08oi" path="res://resources/UI/inventory/InventoryData.tres" id="2_56ash"]
+[ext_resource type="Resource" uid="uid://dxcgpbid21gb0" path="res://resources/UI/inventory/InventoryData.tres" id="2_56ash"]
 [ext_resource type="Script" uid="uid://el21wrx4nlag" path="res://instances/entities/Player/PlayerMovement.cs" id="3_c5rqy"]
 [ext_resource type="Texture2D" uid="uid://dmcw5xsp05jt7" path="res://instances/entities/Player/assets/frog_chop.png" id="4_i5yvg"]
 [ext_resource type="Texture2D" uid="uid://j7f8l0out1fw" path="res://instances/entities/Player/assets/frog_idle_walk.png" id="5_8bv0d"]
