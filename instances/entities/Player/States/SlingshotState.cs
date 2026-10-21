@@ -52,7 +52,7 @@ public partial class SlingshotState : State
 			
 			SlingshotProjectile projectile = ProjectileScene.Instantiate<SlingshotProjectile>();
 
-			Node2D container = GetNode<Node2D>("/root/MainGame/Control/SubViewportContainer/SubViewport/World");
+			Node2D container = GetNode<Node2D>("/root/MainGame/World/EntityRoot");
 			container.CallDeferred(Node.MethodName.AddChild, projectile);
 
 			int projectileSpawnOffset = 16;

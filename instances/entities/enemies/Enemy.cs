@@ -1,6 +1,7 @@
 using Godot;
 using Game.Utilities;
 using System;
+using Game.Core;
 
 namespace Game.Gameplay;
 
@@ -9,7 +10,6 @@ public partial class Enemy : Entity
 	[Signal] public delegate void AnimationEventHandler(string animationType);
 	
 	[ExportCategory("Nodes")]
-	[Export] public Player Player;
 	[Export] public EnemyMovement EnemyMovement;
 	[Export] public EnemyHealthbar EnemyHealthbar;
 	[Export] public EnemyHurtbox EnemyHurtbox;
@@ -25,7 +25,7 @@ public partial class Enemy : Entity
 	[ExportCategory("Enemy Vars")]
 	[Export] public int AttackDamage = 4;
 
-
+	public Player Player;
 
 	//Tweens
 	private Tween _knockbackTween;
@@ -52,6 +52,7 @@ public partial class Enemy : Entity
 	{
 		if(area is PlayerHurtbox && StateMachine.GetCurrentState() == "Roam")
 		{
+			Player = Globals.Instance.Player;
 			StateMachine.ChangeState(StateMachine.GetNode<State>("Chase"));
 		}
 	}
@@ -60,6 +61,7 @@ public partial class Enemy : Entity
 	{
 		if(area is PlayerHurtbox && StateMachine.GetCurrentState() == "Chase")
 		{
+			Player = null;
 			StateMachine.ChangeState(StateMachine.GetNode<State>("Roam"));
 		}
 	}
@@ -87,7 +89,11 @@ public partial class Enemy : Entity
 
 		if (!IsAlive || !IsInstanceValid(this)) return;
 
-		if(StateMachine.GetCurrentState() != "chase") StateMachine.ChangeState(StateMachine.GetNode<State>("Chase"));
+		if(StateMachine.GetCurrentState() != "chase") 
+		{
+			Player = Globals.Instance.Player;
+			StateMachine.ChangeState(StateMachine.GetNode<State>("Chase"));
+		}
 	}
 
 	public void Death()

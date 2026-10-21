@@ -1,4 +1,5 @@
 using Game.Gameplay;
+using Game.UI;
 using Godot;
 using System;
 
@@ -9,19 +10,18 @@ public partial class MainGame : Node
 
 	private Node2D _levelRoot;
 	private Node2D _entityRoot;
-	private Control _hudRoot;
+	private Node2D _fxRoot;
+	private HUD _hudRoot;
 
 	private Node2D _currentLevel;
 
 	public override void _Ready()
 	{
-		return;
-		
 		_levelRoot = GetNode<Node2D>("%LevelRoot");
 		_entityRoot = GetNode<Node2D>("%EntityRoot");
-		_hudRoot = GetNode<Control>("%HUDRoot");
+		_fxRoot = GetNode<Node2D>("%EffectRoot");
+		_hudRoot = GetNode<HUD>("%HUDRoot");
 
-		
 		if (InitialLevelScene != null)
 		{
 			LoadLevel(InitialLevelScene);
@@ -31,6 +31,8 @@ public partial class MainGame : Node
 		{
 			SpawnPlayer();
 		}
+
+		LoadHUD();
 	}
 
 	public void LoadLevel(PackedScene levelScene)
@@ -51,5 +53,13 @@ public partial class MainGame : Node
 
 		
 	}
+
+	public void LoadHUD()
+    {
+        if(IsInstanceValid(_hudRoot))
+        {
+            _hudRoot.BindInventory();
+        }
+    }
 
 }

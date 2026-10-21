@@ -1,3 +1,4 @@
+using Game.Core;
 using Game.HUD;
 using Game.Utilities;
 using Godot;
@@ -21,9 +22,6 @@ public partial class Player : Entity
 	[Export] public int KnockbackForce = 4;
 
 	[ExportCategory("Inventory")]
-	[Export] private InventoryUI _inventoryUI;
-	[Export] private ToolbarUI _toolbar;
-	[Export] InventoryData InventoryData;
 	public ItemData HeldItem;
 
 	// --- Tweens ---
@@ -39,24 +37,14 @@ public partial class Player : Entity
 
 		PlayerHurtbox.ReceivedDamage += OnDamageReceived;
 
-		InitializeInventory();
+		GameEvents.OnActiveItemChanged += OnItemEquipped;
 
 		StateMachine.ChangeState(StateMachine.GetNode<State>("Roam"));
 	}
 
-	public void InitializeInventory()
+	public override void _EnterTree()
 	{
-		GameEvents.OnActiveItemChanged += OnItemEquipped;
-
-		InventoryData = InventoryData.LoadOrCreate(GameSavemanager.InventorySavePath);
-
-		_inventoryUI.BindInventory(InventoryData);
-		_toolbar.BindInventory(InventoryData);
-
-		_inventoryUI.InitializeInventoryUI();
-		_toolbar.InitializeToolbar();
-
-		HeldItem = _toolbar.GetCurrentItem();
+		Globals.Instance.RegisterPlayer(this);
 	}
 
 	public override void _Process(double delta)
@@ -78,7 +66,6 @@ public partial class Player : Entity
 		Core.Logger.Info($"Player health = {CurrentHealth}");
 
 		DamageFlash();
-		//Position += dmgInfo.KnockbackForce;
 
 		if(CurrentHealth <= 0)
 		{
@@ -111,6 +98,11 @@ public partial class Player : Entity
 
 		// Tween back to normal over 0.15 seconds
 		_dmgFlashTween.TweenProperty(PlayerAnimation, "modulate", Colors.White, 0.15f);
+	}
+
+	public override void _ExitTree()
+	{
+		Globals.Instance.UnegisterPlayer(this);
 	}
 
 }

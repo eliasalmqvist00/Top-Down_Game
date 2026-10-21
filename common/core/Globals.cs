@@ -1,3 +1,4 @@
+using Game.Gameplay;
 using Godot;
 using System;
 
@@ -9,10 +10,25 @@ namespace Game.Core
 		
 		[ExportCategory("Gameplay")]
 		[Export] public int GRID_SIZE = 4;
-		public override void _Ready()
+
+		[ExportCategory("Player")]
+		[Export] public Player Player {get; private set;}
+		public override void _EnterTree()
 		{
 			Instance = this;
 			Logger.Info("Loading Globals...");
 		}
+
+		public void RegisterPlayer(Player player)
+        {
+            Player = player;
+        }
+		public void UnegisterPlayer(Player player)
+        {
+            if (Player == player)
+			{
+				Player = null;
+			}
+        }
 	} 
 }
